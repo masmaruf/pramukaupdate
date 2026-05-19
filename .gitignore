@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.astro/
+.npm-cache/
+astro.log
+.gitconfig-codex
+.env
+.env.*
+!.env.example

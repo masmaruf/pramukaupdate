@@ -1,0 +1,12 @@
+---
+interface Props {
+  label?: string;
+}
+
+const { label = "Catatan editorial" } = Astro.props;
+---
+
+<aside class="editorial-callout">
+  <span>{label}</span>
+  <slot />
+</aside>

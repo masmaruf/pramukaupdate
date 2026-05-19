@@ -1,0 +1,84 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products } from "../data/site";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("artikel")).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const featuredArticle = articles.find((article) => article.data.featured) ?? articles[0];
+---
+
+<BaseLayout title="Pramuka Update">
+  <section class="shell hero">
+    <div>
+      <span class="eyebrow">Media digital Pramuka</span>
+      <h1>Gagasan yang membuat gerakan tetap muda.</h1>
+      <p>
+        PramukaUpdate merawat sisi yang sering tercecer: pemikiran, sistem kerja,
+        dan alat bantu yang membuat pembinaan terasa lebih jernih.
+      </p>
+      <div class="actions">
+        <a class="button button-solid" href="/artikel">Baca artikel</a>
+        <a class="button button-outline" href="/produk">Lihat produk</a>
+        <a class="button button-ghost" href="/kelas">Ikuti kelas</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img src={featuredArticle.data.image} alt="Kegiatan Pramuka modern di alam terbuka" />
+    </div>
+  </section>
+
+  <section class="shell signal-strip">
+    <strong>Editorial</strong>
+    <span>Administrasi</span>
+    <span>Kritik</span>
+    <span>Kelas</span>
+    <span>Produk digital</span>
+  </section>
+
+  <section class="section shell">
+    <div class="section-head">
+      <h2>Artikel terbaru</h2>
+      <a href="/artikel">Lihat semua</a>
+    </div>
+    <div class="article-grid">
+      {articles.slice(0, 3).map((article) => (
+        <ArticleCard slug={article.id} {...article.data} />
+      ))}
+    </div>
+  </section>
+
+  <section class="section section-tint">
+    <div class="shell">
+      <div class="section-head">
+        <h2>Produk digital unggulan</h2>
+        <a href="/produk">Semua produk</a>
+      </div>
+      <div class="product-grid">
+        {products.slice(0, 2).map((product) => <ProductCard {...product} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="section shell spotlight">
+    <div>
+      <span class="pill">Pendaftaran dibuka</span>
+      <h2>Kelas 30 Hari Belajar Bikin Konten</h2>
+      <p>
+        Belajar copywriting, desain editorial, dan strategi publikasi digital
+        untuk akun ambalan yang ingin tumbuh dengan suara sendiri.
+      </p>
+      <a class="button button-light" href="/kelas">Lihat kelas</a>
+    </div>
+  </section>
+
+  <section class="shell manifesto">
+    <p>
+      “Gerakan yang kuat tidak hanya punya banyak kegiatan. Ia punya bahasa,
+      ingatan, dan keberanian untuk terus memperbarui dirinya.”
+    </p>
+  </section>
+</BaseLayout>

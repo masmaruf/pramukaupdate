@@ -1,0 +1,18 @@
+---
+import { navItems } from "../data/site";
+const currentPath = Astro.url.pathname;
+---
+
+<header class="topbar">
+  <div class="shell topbar-inner">
+    <a class="brand" href="/">PRAMUKA UPDATE</a>
+    <nav aria-label="Navigasi utama">
+      {navItems.map((item) => (
+        <a class={currentPath === item.href ? "active" : ""} href={item.href}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <a class="button button-solid" href="/kelas">Join now</a>
+  </div>
+</header>

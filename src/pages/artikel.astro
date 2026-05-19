@@ -1,0 +1,133 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+
+const articles = (await getCollection("artikel")).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const categories = [...new Set(articles.map((article) => article.data.category))];
+---
+
+<BaseLayout
+  title="Artikel | Pramuka Update"
+  description="Kumpulan artikel Pramuka Update tentang administrasi, pembinaan, opini, dan kritik konstruktif."
+>
+  <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+
+  <section class="page-hero shell">
+    <span class="eyebrow">Artikel</span>
+    <h1>Gagasan yang menjaga gerakan tetap hidup.</h1>
+    <p>
+      Administrasi, opini, kritik, dan pembinaan—ditulis untuk orang-orang yang
+      ingin Pramuka tetap relevan tanpa kehilangan akarnya.
+    </p>
+  </section>
+
+  <section class="section shell">
+    <div class="pagefind-shell">
+      <div>
+        <span class="eyebrow">Search lengkap</span>
+        <h2>Cari sampai ke isi tulisan.</h2>
+      </div>
+      <div id="pagefind-search"></div>
+    </div>
+
+    <div class="article-tools">
+      <label class="search-box">
+        <span>Filter cepat</span>
+        <input
+          data-search
+          type="search"
+          placeholder="Cari judul, kategori, atau ringkasan..."
+          autocomplete="off"
+        />
+      </label>
+
+      <div class="chip-row" role="tablist" aria-label="Filter kategori artikel">
+        <button class="active" data-filter="all" type="button">Semua</button>
+        {categories.map((category) => (
+          <button data-filter={category} type="button">{category}</button>
+        ))}
+      </div>
+    </div>
+
+    <p class="empty-state is-hidden" data-empty>
+      Belum ada artikel yang cocok. Coba kata kunci atau kategori lain.
+    </p>
+
+    <div class="article-grid article-grid-wide" data-article-list>
+      {articles.map((article) => (
+        <div
+          data-card
+          data-category={article.data.category}
+          data-search-text={`${article.data.title} ${article.data.category} ${article.data.excerpt}`.toLowerCase()}
+        >
+          <ArticleCard slug={article.id} {...article.data} />
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    const buttons = document.querySelectorAll("[data-filter]");
+    const cards = document.querySelectorAll("[data-card]");
+    const search = document.querySelector("[data-search]");
+    const empty = document.querySelector("[data-empty]");
+    let activeFilter = "all";
+
+    function applyArticleFilters() {
+      const query = search instanceof HTMLInputElement ? search.value.trim().toLowerCase() : "";
+      let visibleCount = 0;
+
+      cards.forEach((card) => {
+        const category = card.getAttribute("data-category");
+        const text = card.getAttribute("data-search-text") ?? "";
+        const matchesCategory = activeFilter === "all" || category === activeFilter;
+        const matchesSearch = query.length === 0 || text.includes(query);
+        const isVisible = matchesCategory && matchesSearch;
+
+        card.classList.toggle("is-hidden", !isVisible);
+        if (isVisible) visibleCount += 1;
+      });
+
+      empty?.classList.toggle("is-hidden", visibleCount > 0);
+    }
+
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        activeFilter = button.getAttribute("data-filter") ?? "all";
+        buttons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+        applyArticleFilters();
+      });
+    });
+
+    search?.addEventListener("input", applyArticleFilters);
+  </script>
+
+  <script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+      const target = document.querySelector("#pagefind-search");
+      const script = document.createElement("script");
+      script.src = "/pagefind/pagefind-ui.js";
+      script.onload = () => {
+        if (window.PagefindUI) {
+          new window.PagefindUI({
+            element: "#pagefind-search",
+            showSubResults: true,
+            translations: {
+              placeholder: "Cari isi artikel...",
+              clear_search: "Bersihkan",
+              load_more: "Muat lagi",
+              search_label: "Cari artikel",
+              zero_results: "Tidak ada artikel yang cocok untuk [SEARCH_TERM]",
+            },
+          });
+        }
+      };
+      script.onerror = () => target?.classList.add("is-hidden");
+      document.body.appendChild(script);
+    });
+  </script>
+</BaseLayout>

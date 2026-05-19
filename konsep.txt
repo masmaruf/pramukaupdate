@@ -1,0 +1,1271 @@
+!-- Produk Digital - Pramuka Update (Modern) --
+!DOCTYPE html
+
+html lang=idhead
+meta charset=utf-8
+meta content=width=device-width, initial-scale=1.0 name=viewport
+titlePramuka Update - Produk Digitaltitle
+script src=httpscdn.tailwindcss.complugins=forms,container-queriesscript
+link href=httpsfonts.googleapis.comcss2family=Plus+Jakarta+Sanswght@400;500;600;700;800&amp;display=swap rel=stylesheet
+link href=httpsfonts.googleapis.comcss2family=Material+Symbols+Outlinedwght,FILL@100..700,0..1&amp;display=swap rel=stylesheet
+script id=tailwind-config
+        tailwind.config = {
+            darkMode class,
+            theme {
+                extend {
+                    colors {
+                        on-error-container #93000a,
+                        primary-fixed-dim #a5d0b9,
+                        background #ffffff,
+                        on-error #ffffff,
+                        outline-variant #c1c8c2,
+                        primary-fixed #c1ecd4,
+                        on-primary-fixed-variant #274e3d,
+                        surface-container-highest #e1e3e4,
+                        on-tertiary-container #d29895,
+                        on-primary #ffffff,
+                        on-tertiary-fixed-variant #673a39,
+                        surface-container-low #f3f4f5,
+                        primary #012d1d,
+                        tertiary #401b1b,
+                        inverse-primary #a5d0b9,
+                        tertiary-fixed #ffdad8,
+                        secondary #2c694e,
+                        surface-variant #e1e3e4,
+                        surface-container #edeeef,
+                        on-background #191c1d,
+                        surface #ffffff,
+                        primary-container #1b4332,
+                        on-tertiary #ffffff,
+                        on-secondary-container #316e52,
+                        surface-dim #d9dadb,
+                        surface-container-lowest #ffffff,
+                        on-tertiary-fixed #331111,
+                        outline #717973,
+                        surface-tint #3f6653,
+                        secondary-fixed-dim #95d4b3,
+                        on-secondary-fixed #002114,
+                        inverse-on-surface #f0f1f2,
+                        tertiary-container #5a302f,
+                        secondary-container #aeeecb,
+                        on-surface #191c1d,
+                        error-container #ffdad6,
+                        on-primary-fixed #002114,
+                        on-surface-variant #414844,
+                        tertiary-fixed-dim #f5b7b4,
+                        surface-container-high #e7e8e9,
+                        inverse-surface #2e3132,
+                        on-secondary-fixed-variant #0e5138,
+                        on-primary-container #86af99,
+                        error #ba1a1a,
+                        on-secondary #ffffff,
+                        surface-bright #f8f9fa,
+                        secondary-fixed #b1f0ce
+                    },
+                    borderRadius {
+                        DEFAULT 0.5rem,
+                        lg 0.5rem,
+                        xl 0.75rem,
+                        full 9999px
+                    },
+                    spacing {
+                        section-gap-mobile 48px,
+                        section-gap-desktop 80px,
+                        container-padding 24px,
+                        gutter 16px,
+                        base 8px
+                    },
+                    fontFamily {
+                        headline-lg-mobile [Plus Jakarta Sans],
+                        headline-display [Plus Jakarta Sans],
+                        headline-lg [Plus Jakarta Sans],
+                        headline-md [Plus Jakarta Sans],
+                        body-lg [Plus Jakarta Sans],
+                        body-md [Plus Jakarta Sans],
+                        label-md [Plus Jakarta Sans]
+                    },
+                    fontSize {
+                        headline-lg-mobile [28px, {lineHeight 1.2, fontWeight 700}],
+                        headline-display [48px, {lineHeight 1.1, letterSpacing -0.02em, fontWeight 800}],
+                        headline-lg [32px, {lineHeight 1.2, letterSpacing -0.01em, fontWeight 700}],
+                        headline-md [24px, {lineHeight 1.3, fontWeight 700}],
+                        body-lg [18px, {lineHeight 1.6, fontWeight 400}],
+                        body-md [16px, {lineHeight 1.6, fontWeight 400}],
+                        label-md [14px, {lineHeight 1.2, letterSpacing 0.05em, fontWeight 600}]
+                    }
+                }
+            }
+        }
+    script
+style
+        body {
+            background-color #ffffff;
+            color theme('colors.on-background');
+            font-family 'Plus Jakarta Sans', sans-serif;
+        }
+        .pb-safe {
+            padding-bottom env(safe-area-inset-bottom);
+        }
+    style
+head
+body class=antialiased min-h-screen flex flex-col
+!-- TopAppBar --
+header class=w-full top-0 sticky z-50 bg-white80 backdrop-blur-md border-b border-surface-container-high
+div class=flex justify-between items-center px-container-padding py-4 max-w-[1280px] mx-auto w-full
+div class=flex items-center gap-4
+span class=material-symbols-outlined text-primary cursor-pointer activeopacity-80 transition-all text-2xlmenuspan
+span class=font-headline-md text-primary tracking-tight uppercasePRAMUKA UPDATEspan
+div
+nav class=hidden mdflex gap-8 items-center
+a class=text-on-surface-variant font-label-md hovertext-primary transition-colors px-3 py-2 rounded-DEFAULT cursor-pointer activeopacity-80 href=#Articlesa
+a class=text-primary font-bold border-b-2 border-primary font-label-md px-3 py-2 cursor-pointer activeopacity-80 transition-all href=#Productsa
+a class=text-on-surface-variant font-label-md hovertext-primary transition-colors px-3 py-2 rounded-DEFAULT cursor-pointer activeopacity-80 href=#Classesa
+a class=text-on-surface-variant font-label-md hovertext-primary transition-colors px-3 py-2 rounded-DEFAULT cursor-pointer activeopacity-80 href=#Abouta
+nav
+button class=bg-primary text-on-primary font-label-md px-6 py-2.5 rounded-full hoverbg-primary90 transition-colors cursor-pointer activeopacity-80Join Nowbutton
+div
+header
+!-- Main Content Canvas --
+main class=flex-grow w-full max-w-[1280px] mx-auto px-container-padding py-section-gap-mobile mdpy-section-gap-desktop flex flex-col gap-12
+!-- Header Section --
+section class=max-w-3xl
+h1 class=font-headline-lg-mobile mdfont-headline-display text-primary mb-4Produk Digital untuk Pramuka yang Lebih Tertatah1
+p class=font-body-lg text-on-surface-variantTemplate administrasi, proposal, dan aset konten untuk mempermudah kerja Pembina dan pengurus.p
+section
+!-- Product Grid --
+section class=grid grid-cols-1 mdgrid-cols-2 gap-8
+!-- Product 1 --
+article class=bg-white rounded-xl overflow-hidden border border-surface-container-high hoverborder-primary20 transition-all group hovershadow-xl hovershadow-primary5
+div class=aspect-video w-full bg-surface-container-low overflow-hidden relative
+img alt=Template Administrasi Gugusdepan class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-700 src=httpslh3.googleusercontent.comaida-publicAB6AXuAZ8d3R8S0mMFQjTs9N68E5HJ3gnJqhtxDCmkVPCC5g-j9eT0IOsOsxqo701IoPZ5wmQ14MfygbIbwST2bJu5sreT2v3B_7eWf7ayqZE-CF3_rHHlI3qkhLFHnWy-UdC_fMTulrTayrAsWSkAdw_Re61vqgUw9moUFB0bD9jho60X4HyTAqhBsD4tkVfTbeDdcCdO2VDTSQK_QRTH_wTjoyxCOhh0eDqhvx2sQFT9raFDFWcEC7Nw1Ml9X5ZjV8GERQtjOi5k-zkH8
+span class=absolute top-4 left-4 bg-primary text-on-primary font-label-md px-3 py-1 rounded-full text-xs shadow-smBestsellerspan
+div
+div class=p-6 flex flex-col justify-between
+div
+h2 class=font-headline-md text-primary mb-2Template Administrasi Gugusdepanh2
+p class=font-body-md text-on-surface-variant mb-6Set lengkap dokumen administrasi standar kwartir, siap edit di Microsoft Word dan Google Docs.p
+div
+div class=flex items-center justify-between pt-6 border-t border-surface-container-high
+span class=font-headline-md text-secondaryRp 49.000span
+button class=bg-primary text-on-primary font-label-md px-5 py-2.5 rounded-full hoverbg-primary90 transition-colors
+                            Beli via WhatsApp
+                        button
+div
+div
+article
+!-- Product 2 --
+article class=bg-white rounded-xl overflow-hidden border border-surface-container-high hoverborder-primary20 transition-all group hovershadow-xl hovershadow-primary5
+div class=aspect-video w-full bg-surface-container-low overflow-hidden
+img alt=Template Administrasi Regu class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-700 src=httpslh3.googleusercontent.comaida-publicAB6AXuA-1HI5nBQZvr3LK2_I-Lysx1yIFdsZOtpwqYRrYMYb8UUh63_zx1RENYEBZHkvcXDhxIDHrcJ9UrsrZYwPG8xd9Y-H6MDwlTIS2SjIE0vjDkWAhoP926CbxV6GKhonTlCtcXI49SzE5MzHKuaq6U0M-7MPhNuHfGxxWSJiAKrMevKWh61jEs8EKNpxGBQZsgYNWE_INw9qHrJf6oJOmJ79xpCp7HBl0kqX4fCdFwHrTApjf1OKCAjtY6v65sFyIiMW93ZdILnmKFM
+div
+div class=p-6 flex flex-col justify-between
+div
+h2 class=font-headline-md text-primary mb-2Template Administrasi Reguh2
+p class=font-body-md text-on-surface-variant mb-6Format logbook, presensi, dan iuran regu yang praktis dan mudah digunakan oleh Pemimpin Regu.p
+div
+div class=flex items-center justify-between pt-6 border-t border-surface-container-high
+span class=font-headline-md text-secondaryRp 29.000span
+button class=bg-primary text-on-primary font-label-md px-5 py-2.5 rounded-full hoverbg-primary90 transition-colors
+                            Beli via WhatsApp
+                        button
+div
+div
+article
+!-- Product 3 --
+article class=bg-white rounded-xl overflow-hidden border border-surface-container-high hoverborder-primary20 transition-all group hovershadow-xl hovershadow-primary5
+div class=aspect-video w-full bg-surface-container-low overflow-hidden relative
+img alt=Template Buku SKU Digital class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-700 src=httpslh3.googleusercontent.comaida-publicAB6AXuB2-yMCqDKDR9mRAo6hxCOYME4WhDKENM7K-lNnTWVCLrn5CBBw5WEs2nGKLrYaiowsaou7UTKX2WEZrJQ1Q-dei9rWARdT5wI791bG4vN8Z5rsEIB-SNmghwWtdYo7Aef0qjLBb4jewscIeO9OaYY7wBFi9dPR4WR8qELlwML1ahTGJE30nge3ZNIW-LwTGRysZjS3miTPNFe4bFzfD68GSAe_ILCpNZQQG3UmapBYZfwJhf_l_kyllHnUgE8R93MeTELxdHtWRkE
+span class=absolute top-4 left-4 bg-secondary text-on-secondary font-label-md px-3 py-1 rounded-full text-xs shadow-smBaruspan
+div
+div class=p-6 flex flex-col justify-between
+div
+h2 class=font-headline-md text-primary mb-2Template Buku SKU Digitalh2
+p class=font-body-md text-on-surface-variant mb-6Tracker interaktif pencapaian SKU berbasis Notion, dirancang khusus untuk kemudahan pantauan Pembina.p
+div
+div class=flex items-center justify-between pt-6 border-t border-surface-container-high
+span class=font-headline-md text-secondaryRp 35.000span
+button class=bg-primary text-on-primary font-label-md px-5 py-2.5 rounded-full hoverbg-primary90 transition-colors
+                            Beli via WhatsApp
+                        button
+div
+div
+article
+!-- Product 4 --
+article class=bg-white rounded-xl overflow-hidden border border-surface-container-high hoverborder-primary20 transition-all group hovershadow-xl hovershadow-primary5
+div class=aspect-video w-full bg-surface-container-low overflow-hidden
+img alt=Template Mid Year Reset 2026 class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-700 src=httpslh3.googleusercontent.comaida-publicAB6AXuCuJ_YsNQdONOf5L_KtoZVvw33Ne-EWHQ7V4qbd93nQGGZHG0hBEZzKWcItC8arMaVLOuH--C23iAbxagpTp_MJkNhmqF9wFC21W5Pc8oOZFr7KXvoZDo3lj4s91mDWEeasYkXf30j4K-EpveSvMOBelMVVQkfsolEXbkLmWMGcjKpC51szAKpyOJpK5aqKfKZYMTiGdPDe2NhiolGCLXNgclbCldAtxJ2NLjq-pf6BBGv2jX_rZyRNR3D5z4JnCx4luymYendPWB0
+div
+div class=p-6 flex flex-col justify-between
+div
+h2 class=font-headline-md text-primary mb-2Template Mid Year Reset 2026h2
+p class=font-body-md text-on-surface-variant mb-6Panduan evaluasi program kerja dan perencanaan strategis semester genap untuk Dewan AmbalanRacana.p
+div
+div class=flex items-center justify-between pt-6 border-t border-surface-container-high
+span class=font-headline-md text-secondaryRp 25.000span
+button class=bg-primary text-on-primary font-label-md px-5 py-2.5 rounded-full hoverbg-primary90 transition-colors
+                            Beli via WhatsApp
+                        button
+div
+div
+article
+section
+main
+!-- Floating Action Button --
+button class=fixed bottom-24 right-6 mdbottom-12 mdright-12 bg-secondary text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center hoverscale-110 activescale-95 transition-all z-[60]
+span class=material-symbols-outlined text-3xlchatspan
+button
+!-- Footer --
+footer class=bg-surface-container-low w-full mt-12 border-t border-surface-container-high
+div class=grid grid-cols-1 mdgrid-cols-12 gap-8 px-container-padding py-12 max-w-[1280px] mx-auto w-full
+div class=mdcol-span-4 flex flex-col gap-4
+span class=font-headline-md text-primary tracking-tight uppercasePRAMUKA UPDATEspan
+p class=font-body-md text-on-surface-variantScouts for the Future.p
+p class=text-xs text-on-surface-variant mt-auto opacity-70© 2024 Pramuka Update. Scouts for the Future.p
+div
+div class=mdcol-span-8 flex flex-wrap gap-x-8 gap-y-4 mdjustify-end items-start
+a class=font-label-md text-on-surface-variant hovertext-primary transition-all href=#Articlesa
+a class=font-label-md text-primary font-bold href=#Productsa
+a class=font-label-md text-on-surface-variant hovertext-primary transition-all href=#Classesa
+a class=font-label-md text-on-surface-variant hovertext-primary transition-all href=#Abouta
+a class=font-label-md text-on-surface-variant hovertext-primary transition-all href=#Instagrama
+div
+div
+footer
+!-- BottomNavBar (Mobile Only) --
+nav class=fixed bottom-0 w-full mdhidden z-50 bg-white95 backdrop-blur-md border-t border-surface-container-high flex justify-around items-center h-16 px-4 pb-safe shadow-lg
+a class=flex flex-col items-center justify-center text-on-surface-variant70 activescale-90 transition-transform p-2 href=#
+span class=material-symbols-outlined text-2xlnewspaperspan
+span class=text-[10px] font-bold mt-0.5Feedspan
+a
+a class=flex flex-col items-center justify-center text-primary activescale-90 transition-transform p-2 href=#
+span class=material-symbols-outlined text-2xl style=font-variation-settings 'FILL' 1;shopping_bagspan
+span class=text-[10px] font-bold mt-0.5Shopspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant70 activescale-90 transition-transform p-2 href=#
+span class=material-symbols-outlined text-2xlschoolspan
+span class=text-[10px] font-bold mt-0.5Classesspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant70 activescale-90 transition-transform p-2 href=#
+span class=material-symbols-outlined text-2xlbookmarkspan
+span class=text-[10px] font-bold mt-0.5Savedspan
+a
+nav
+bodyhtml
+
+!-- Kelas Konten - Pramuka Update (Modern) --
+!DOCTYPE html
+
+html lang=idhead
+meta charset=utf-8
+meta content=width=device-width, initial-scale=1.0 name=viewport
+titleKelas 30 Hari Belajar Bikin Konten Pramuka - Pramuka Updatetitle
+script src=httpscdn.tailwindcss.complugins=forms,container-queriesscript
+link href=httpsfonts.googleapis.comcss2family=Material+Symbols+Outlinedwght,FILL@100..700,0..1&amp;display=swap rel=stylesheet
+link href=httpsfonts.googleapis.comcss2family=Plus+Jakarta+Sanswght@400;500;600;700;800&amp;display=swap rel=stylesheet
+script id=tailwind-config
+        tailwind.config = {
+            darkMode class,
+            theme {
+                extend {
+                    colors {
+                        on-error-container #93000a,
+                        primary-fixed-dim #a5d0b9,
+                        background #ffffff,
+                        on-error #ffffff,
+                        outline-variant #c1c8c2,
+                        primary-fixed #c1ecd4,
+                        on-primary-fixed-variant #274e3d,
+                        surface-container-highest #e1e3e4,
+                        on-tertiary-container #d29895,
+                        on-primary #ffffff,
+                        on-tertiary-fixed-variant #673a39,
+                        surface-container-low #f3f4f5,
+                        primary #012d1d,
+                        tertiary #401b1b,
+                        inverse-primary #a5d0b9,
+                        tertiary-fixed #ffdad8,
+                        secondary #2c694e,
+                        surface-variant #e1e3e4,
+                        surface-container #edeeef,
+                        on-background #191c1d,
+                        surface #f8f9fa,
+                        primary-container #1b4332,
+                        on-tertiary #ffffff,
+                        on-secondary-container #316e52,
+                        surface-dim #d9dadb,
+                        surface-container-lowest #ffffff,
+                        on-tertiary-fixed #331111,
+                        outline #717973,
+                        surface-tint #3f6653,
+                        secondary-fixed-dim #95d4b3,
+                        on-secondary-fixed #002114,
+                        inverse-on-surface #f0f1f2,
+                        tertiary-container #5a302f,
+                        secondary-container #aeeecb,
+                        on-surface #191c1d,
+                        error-container #ffdad6,
+                        on-primary-fixed #002114,
+                        on-surface-variant #414844,
+                        tertiary-fixed-dim #f5b7b4,
+                        surface-container-high #e7e8e9,
+                        inverse-surface #2e3132,
+                        on-secondary-fixed-variant #0e5138,
+                        on-primary-container #86af99,
+                        error #ba1a1a,
+                        on-secondary #ffffff,
+                        surface-bright #f8f9fa,
+                        secondary-fixed #b1f0ce,
+                        whatsapp #25D366
+                    },
+                    borderRadius {
+                        DEFAULT 0.25rem,
+                        lg 0.5rem,
+                        xl 0.75rem,
+                        full 9999px
+                    },
+                    spacing {
+                        section-gap-mobile 48px,
+                        section-gap-desktop 80px,
+                        container-padding 24px,
+                        gutter 16px,
+                        base 8px
+                    },
+                    fontFamily {
+                        sans [Plus Jakarta Sans, sans-serif],
+                        headline-lg-mobile [Plus Jakarta Sans],
+                        headline-display [Plus Jakarta Sans],
+                        headline-lg [Plus Jakarta Sans],
+                        headline-md [Plus Jakarta Sans],
+                        body-lg [Plus Jakarta Sans],
+                        body-md [Plus Jakarta Sans],
+                        label-md [Plus Jakarta Sans]
+                    },
+                    fontSize {
+                        headline-lg-mobile [28px, { lineHeight 1.2, fontWeight 700 }],
+                        headline-display [48px, { lineHeight 1.1, letterSpacing -0.02em, fontWeight 800 }],
+                        headline-lg [32px, { lineHeight 1.2, letterSpacing -0.01em, fontWeight 700 }],
+                        headline-md [24px, { lineHeight 1.3, fontWeight 700 }],
+                        body-lg [18px, { lineHeight 1.6, fontWeight 400 }],
+                        body-md [16px, { lineHeight 1.6, fontWeight 400 }],
+                        label-md [14px, { lineHeight 1.2, letterSpacing 0.05em, fontWeight 600 }]
+                    }
+                }
+            }
+        }
+    script
+style
+        body {
+            min-height max(884px, 100dvh);
+            font-family 'Plus Jakarta Sans', sans-serif;
+        }
+        .bento-grid {
+            display grid;
+            grid-template-columns repeat(1, 1fr);
+            gap 16px;
+        }
+        @media (min-width 768px) {
+            .bento-grid {
+                grid-template-columns repeat(4, 1fr);
+                grid-auto-rows 240px;
+            }
+        }
+    style
+head
+body class=bg-background text-on-background antialiased min-h-screen flex flex-col
+!-- TopAppBar --
+header class=bg-background80 backdrop-blur-md text-primary w-full top-0 sticky border-b border-outline10 z-50
+div class=flex justify-between items-center px-6 py-4 max-w-[1280px] mx-auto w-full
+div class=flex items-center gap-4
+button class=cursor-pointer activeopacity-80 transition-all text-primary mdhidden
+span class=material-symbols-outlined style=font-variation-settings 'FILL' 0;menuspan
+button
+a class=text-headline-md font-extrabold tracking-tighter href=#PRAMUKA UPDATEa
+div
+nav class=hidden mdflex gap-8 items-center
+a class=text-on-surface-variant font-medium hovertext-primary transition-colors py-2 href=#Feeda
+a class=text-on-surface-variant font-medium hovertext-primary transition-colors py-2 href=#Shopa
+a class=text-primary font-bold border-b-2 border-primary py-2 href=#Classesa
+nav
+button class=bg-primary text-on-primary font-bold px-6 py-2 rounded-lg hoveropacity-90 transition-all hidden mdblock
+                Join Now
+            button
+div
+header
+main class=flex-grow
+!-- Hero Section --
+section class=max-w-[1280px] mx-auto px-6 py-12 mdpy-24
+div class=grid grid-cols-1 mdgrid-cols-12 gap-12 items-center
+div class=mdcol-span-6 flex flex-col gap-6
+div class=bg-primary5 text-primary text-[12px] font-bold tracking-widest px-3 py-1 rounded-full inline-flex w-max items-center gap-2
+span class=w-2 h-2 rounded-full bg-primary animate-pulsespan
+                        ONLINE COURSE
+                    div
+h1 class=text-4xl mdtext-6xl font-extrabold text-primary leading-tightUpgrade Media Sosial Satuanmu.h1
+p class=text-lg mdtext-xl text-on-surface-variant leading-relaxed
+                        Kelas 30 Hari Belajar Bikin Konten Pramuka. Tingkatkan engagement, bangun reputasi, dan rekrut anggota baru melalui strategi konten digital yang terbukti berhasil.
+                    p
+div class=flex flex-col smflex-row gap-4 mt-2
+a class=bg-primary text-on-primary font-bold px-8 py-4 rounded-xl hovershadow-lg hover-translate-y-0.5 transition-all text-center inline-flex items-center justify-center gap-2 href=#pricing
+                            Daftar Sekarang
+                            span class=material-symbols-outlined text-[20px]arrow_forwardspan
+a
+a class=border-2 border-outline20 text-on-background font-bold px-8 py-4 rounded-xl hoverbg-surface transition-all text-center href=#curriculum
+                            Lihat Kurikulum
+                        a
+div
+div class=flex items-center gap-4 mt-2
+div class=flex -space-x-3
+img alt=Student avatar class=w-10 h-10 rounded-full border-2 border-white object-cover src=httpslh3.googleusercontent.comaida-publicAB6AXuDuAFOK6HFFAG6jqguS7c_jX4MB3ixHIyO8OIQ5AGBz57hyTUmU8FvTV4E3luQEKBvFHh8I_pMN6kMqPWVMjKZKAQTnwMGTxLSf-n03CIgg3T4wfANffxKEfep8ibikrlU7Ai-J9hzTWdyAwlE8-cwkAh-gaHbd3MoizblZfG7IgkH3gK4L9qRJGSfo9O4UeeZJnBoUFxWcaEoBf-H4WNbbrY5AWgCpi1egTjgO3idWIdzcPZzx81l_3D1z_RHG1Ilq0CdXZE-vQKM
+img alt=Student avatar class=w-10 h-10 rounded-full border-2 border-white object-cover src=httpslh3.googleusercontent.comaida-publicAB6AXuBU5IHEW4kidLXGLtE1hTybCaDk3vH0MuVA6zHe9Zv7gitsOfKYMb2XotMRxLUvIGi72yYc3hPWWkwQs8vcDyMKq2g8YLKXw7zFGuSEtXnAg3-kNmnDzTQJCCTgZ5rfqt8cp8US8V3zhJBLRE8OCTR3bsjIuOcJK58bQNmM_GgREL9WzCJII9tSon8I_sN2G3pzIs54W8VdHl96Ynxp3ssRklq00BEjqQNx1fhQzrzSxWqUU_VBbuDcF3oJzhe4w2luhC4LFwZWUHU
+img alt=Student avatar class=w-10 h-10 rounded-full border-2 border-white object-cover src=httpslh3.googleusercontent.comaida-publicAB6AXuBUvRaAbGJIyOBLRWfxdE8t0bBxgwRu-mUL6HnJ0dW2UYrA3qdDW3GUwEDtkD36kWisSUtHaxPPDCT4HXfeL_a7IKUfyJek7ZdYXHzl11_owmUhpf2nGjlwf7jJS6bFcu-8pb9tG910NScOqZkyymH8NiTnDdxuRt8ZmEk9Yp_Hf9uHd_DS7kwio0B4JPUs2c_uO456iEwBfvk_WugceQU2GuMyHWQ0ai3gx3MDKJDIVmQPyf1QZOgbRRVA32Txq8EXf2R2Zcyg0ME
+div class=w-10 h-10 rounded-full border-2 border-white bg-primary text-on-primary flex items-center justify-center font-bold text-[10px]
+                                500+
+                            div
+div
+p class=text-sm font-medium text-on-surface-variantTelah bergabung bulan inip
+div
+div
+div class=mdcol-span-6 relative
+div class=aspect-[43] rounded-3xl overflow-hidden bg-surface-container shadow-2xl
+img alt=Workspace with laptop and phone class=w-full h-full object-cover src=httpslh3.googleusercontent.comaida-publicAB6AXuDOOu600JbU7mj0QUL7s9L6lup-4idi-Qc-8P741fQ427AynncnrRIM1Tv84dzNgKCD3FrI87Bz97d7KuNEBFPSAtwzPGt7VpThI3DRiLjGX7fk08lgjFbzA__GXN8dYiJ1ZbNhYG_elkux5ry_YBcOkq0bhP7rPCiHLlxUQcKjTFx0owxFmTmKIColAnPqRN5FccsIm3ZT8YetpSy_c6djQMDeCr_8AVpQz8KEILahHo6T5MMZG4G1s51zCWjaCNbTwamOzAbgQkA
+div
+!-- Floating Badge --
+div class=absolute -bottom-6 -left-6 bg-white p-5 rounded-2xl shadow-xl border border-outline10 flex items-center gap-4 hidden smflex
+div class=w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center
+span class=material-symbols-outlined text-[24px]trending_upspan
+div
+div
+p class=font-extrabold text-primary300% Growthp
+p class=text-xs text-on-surface-variant font-mediumKenaikan followers rata-ratap
+div
+div
+div
+div
+section
+!-- For Who Section --
+section class=bg-surface py-20
+div class=max-w-[1280px] mx-auto px-6
+div class=text-center max-w-2xl mx-auto mb-16
+h2 class=text-3xl mdtext-4xl font-extrabold text-primary mb-4Cocok untuk Siapah2
+p class=text-on-surface-variant font-mediumKelas ini dirancang khusus untuk memenuhi kebutuhan berbagai peran dalam ekosistem Pramuka yang ingin aktif di medsos.p
+div
+div class=grid grid-cols-1 mdgrid-cols-3 gap-8
+!-- Card 1 --
+div class=bg-white p-8 rounded-2xl border border-outline10 hovershadow-xl transition-all flex flex-col gap-5 group
+div class=w-14 h-14 rounded-xl bg-secondary-container text-on-secondary-container flex items-center justify-center group-hoverscale-110 transition-transform
+span class=material-symbols-outlined text-3xlpersonspan
+div
+h3 class=text-2xl font-bold text-primaryPembinah3
+p class=text-on-surface-variant leading-relaxedMembangun citra positif gugus depan dan mendokumentasikan kegiatan untuk laporan dan promosi pangkalan.p
+div
+!-- Card 2 --
+div class=bg-white p-8 rounded-2xl border border-outline10 hovershadow-xl transition-all flex flex-col gap-5 group
+div class=w-14 h-14 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center group-hoverscale-110 transition-transform
+span class=material-symbols-outlined text-3xlgroupsspan
+div
+h3 class=text-2xl font-bold text-primaryDewan Kerjah3
+p class=text-on-surface-variant leading-relaxedMengelola media sosial kwartir agar lebih interaktif, relevan dengan Gen Z, dan informatif untuk anggota pramuka di wilayahnya.p
+div
+!-- Card 3 --
+div class=bg-white p-8 rounded-2xl border border-outline10 hovershadow-xl transition-all flex flex-col gap-5 group
+div class=w-14 h-14 rounded-xl bg-tertiary-container text-on-tertiary-container flex items-center justify-center group-hoverscale-110 transition-transform
+span class=material-symbols-outlined text-3xlcampaignspan
+div
+h3 class=text-2xl font-bold text-primaryAnggotah3
+p class=text-on-surface-variant leading-relaxedMeningkatkan personal branding sebagai Pramuka aktif, belajar skill digital marketing, dan menjadi kreator konten kepramukaan.p
+div
+div
+div
+section
+!-- Curriculum Section (Bento Grid) --
+section class=py-20 max-w-[1280px] mx-auto px-6 id=curriculum
+div class=mb-12
+h2 class=text-3xl mdtext-4xl font-extrabold text-primary mb-4Apa yang Dipelajarih2
+p class=text-on-surface-variant font-medium max-w-2xlKurikulum intensif selama 30 hari yang menggabungkan teori fundamental dan praktik langsung.p
+div
+div class=bento-grid
+!-- Item 1 (Wide) --
+div class=mdcol-span-2 mdrow-span-1 bg-surface-container p-8 rounded-3xl relative overflow-hidden flex flex-col justify-end group
+div class=absolute top-8 right-8 w-12 h-12 rounded-xl bg-primary text-on-primary flex items-center justify-center group-hoverrotate-12 transition-transform
+span class=material-symbols-outlinedstrategyspan
+div
+h3 class=text-2xl font-bold text-primary mb-2Strategi Kontenh3
+p class=text-on-surface-variantMemahami algoritma, menentukan pilar konten, dan membuat content calendar kepramukaan.p
+div
+!-- Item 2 (Square) --
+div class=mdcol-span-1 mdrow-span-1 bg-secondary-container p-8 rounded-3xl relative overflow-hidden flex flex-col justify-end group
+div class=absolute top-8 right-8 w-12 h-12 rounded-xl bg-secondary text-on-secondary flex items-center justify-center group-hoverrotate-12 transition-transform
+span class=material-symbols-outlineddesign_servicesspan
+div
+h3 class=text-xl font-bold text-primary mb-2Desain Canvah3
+p class=text-sm text-on-surface-variantMembuat grafis menarik dan profesional dengan mudah tanpa software rumit.p
+div
+!-- Item 3 (Tall) --
+div class=mdcol-span-1 mdrow-span-2 bg-primary p-8 rounded-3xl relative overflow-hidden flex flex-col group
+div class=mt-auto
+div class=w-12 h-12 rounded-xl bg-primary-container text-on-primary-container flex items-center justify-center mb-6 group-hoverscale-110 transition-transform
+span class=material-symbols-outlinededit_documentspan
+div
+h3 class=text-2xl font-bold text-on-primary mb-2Copywritingh3
+p class=text-on-primary70 leading-relaxedMenulis caption yang mengundang interaksi dan bercerita (storytelling) kegiatan Pramuka.p
+div
+div
+!-- Item 4 (Square) --
+div class=mdcol-span-1 mdrow-span-1 bg-tertiary-container10 p-8 rounded-3xl relative overflow-hidden flex flex-col justify-end group
+div class=absolute top-8 right-8 w-12 h-12 rounded-xl bg-tertiary text-on-tertiary flex items-center justify-center group-hoverrotate-12 transition-transform
+span class=material-symbols-outlinedgroup_addspan
+div
+h3 class=text-xl font-bold text-primary mb-2Manajemen Timh3
+p class=text-sm text-on-surface-variantMendelegasikan tugas dan membangun tim media di pangkalankwartir.p
+div
+!-- Item 5 (Wide) --
+div class=mdcol-span-2 mdrow-span-1 relative rounded-3xl overflow-hidden group
+img alt=Team collaborating class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-700 src=httpslh3.googleusercontent.comaida-publicAB6AXuCklXyS7nq0QI348LdeORBH9e_GtGoZW4qJje-yWH0_xHbK7F1qdP349qz9nNEjMoc9gBnAIvWVLQqL6RzDD3ELYDsxnCZNl7P0DB6dJTvRWKj7X3NDqpHR6SAvr8BbdDCWEAr7BlJmQYeechoVn91teyzg8RmhQM2HpQV8qJDb9lMEYeRwmjKkkGHYi2S4jbecxfyHy4Yu8R75Fd1IXMOw1SMm0Uxh84uNK2i5U6r1nBH7GSr40EPUWM1Ortq5lvdusbSIEPZ1fRQ
+div class=absolute inset-0 bg-gradient-to-t from-primary90 via-primary20 to-transparent flex flex-col justify-end p-8
+h3 class=text-2xl font-bold text-white mb-2Studi Kasus Nyatah3
+p class=text-white80Bedah akun-akun kepramukaan yang sukses di berbagai platform.p
+div
+div
+div
+section
+!-- Pricing & CTA Section --
+section class=bg-surface-container-low py-20 id=pricing
+div class=max-w-4xl mx-auto px-6 text-center
+div class=inline-block bg-error10 text-error text-[12px] font-extrabold tracking-widest px-4 py-2 rounded-full mb-8
+                    PENAWARAN TERBATAS
+                div
+h2 class=text-3xl mdtext-5xl font-extrabold text-primary mb-12Mulai Perjalanan Kreatormu Hari Inih2
+div class=bg-white p-8 mdp-16 rounded-[40px] border border-outline10 relative shadow-2xl
+!-- Best Value Tag --
+div class=absolute top-0 left-12 -translate-x-12 -translate-y-12 bg-primary text-on-primary text-[12px] font-bold tracking-widest px-8 py-3 rounded-full shadow-lg
+                        PROMO SPESIAL
+                    div
+div class=flex flex-col mdflex-row items-center justify-between gap-12
+div class=text-left flex-1
+h3 class=text-2xl mdtext-3xl font-extrabold text-primary mb-4Akses Kelas 30 Harih3
+p class=text-on-surface-variant mb-8 leading-relaxedTermasuk materi video, template desain, dan akses grup diskusi eksklusif.p
+ul class=flex flex-col gap-4
+li class=flex items-center gap-4 text-primary font-semibold
+span class=material-symbols-outlined text-secondarycheck_circlespan
+                                    30 Modul Pembelajaran
+                                li
+li class=flex items-center gap-4 text-primary font-semibold
+span class=material-symbols-outlined text-secondarycheck_circlespan
+                                    50+ Template Canva Kepramukaan
+                                li
+li class=flex items-center gap-4 text-primary font-semibold
+span class=material-symbols-outlined text-secondarycheck_circlespan
+                                    Sertifikat Digital Resmi
+                                li
+ul
+div
+div class=bg-surface p-10 rounded-3xl min-w-[300px] text-center border border-outline5 shadow-inner
+p class=text-on-surface-variant font-medium line-through mb-1Normal Rp 250.000p
+div class=flex items-baseline justify-center gap-1 mb-2
+span class=text-2xl font-bold text-primaryRpspan
+span class=text-6xl font-extrabold text-primary99rbspan
+div
+p class=text-xs font-bold text-on-surface-variant uppercase tracking-widest mb-10AKSES SEUMUR HIDUPp
+a class=bg-whatsapp text-white font-extrabold px-8 py-5 rounded-2xl hoverscale-105 activescale-95 transition-all w-full inline-flex items-center justify-center gap-3 shadow-lg shadow-whatsapp20 href=#
+svg class=w-6 h-6 fill-current viewbox=0 0 24 24 xmlns=httpwww.w3.org2000svgpath d=M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413zpathsvg
+                                Daftar via WhatsApp
+                            a
+div
+div
+div
+div
+section
+main
+!-- Footer --
+footer class=bg-white text-primary w-full border-t border-outline10
+div class=grid grid-cols-1 mdgrid-cols-12 gap-12 px-6 py-16 max-w-[1280px] mx-auto w-full
+div class=mdcol-span-4
+a class=text-2xl font-extrabold tracking-tighter mb-6 block href=#PRAMUKA UPDATEa
+p class=text-on-surface-variant font-medium© 2024 Pramuka Update. Scouts for the Future.p
+div class=flex gap-4 mt-6
+a class=w-10 h-10 rounded-full bg-surface flex items-center justify-center hoverbg-primary hovertext-white transition-all href=#
+span class=material-symbols-outlined text-[20px]publicspan
+a
+div
+div
+div class=mdcol-span-8 flex flex-wrap gap-x-12 gap-y-6 mdjustify-end
+div class=flex flex-col gap-4
+h4 class=font-bold text-primary uppercase text-xs tracking-widestResourcesh4
+a class=text-on-surface-variant font-medium hovertext-primary transition-all href=#Articlesa
+a class=text-on-surface-variant font-medium hovertext-primary transition-all href=#Productsa
+div
+div class=flex flex-col gap-4
+h4 class=font-bold text-primary uppercase text-xs tracking-widestCompanyh4
+a class=text-primary font-bold href=#Classesa
+a class=text-on-surface-variant font-medium hovertext-primary transition-all href=#Abouta
+div
+div class=flex flex-col gap-4
+h4 class=font-bold text-primary uppercase text-xs tracking-widestSocialh4
+a class=text-on-surface-variant font-medium hovertext-primary transition-all href=#Instagrama
+a class=text-on-surface-variant font-medium hovertext-primary transition-all href=#YouTubea
+div
+div
+div
+footer
+!-- FAB (Floating Action Button) --
+a class=fixed bottom-24 mdbottom-8 right-6 bg-primary text-on-primary w-14 h-14 rounded-2xl flex items-center justify-center shadow-2xl hoverscale-110 activescale-95 transition-all z-[60] group href=#pricing
+span class=material-symbols-outlined text-2xlshopping_cartspan
+span class=absolute right-full mr-4 bg-primary text-on-primary px-3 py-1.5 rounded-lg text-sm font-bold opacity-0 group-hoveropacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-xlDaftar Sekarangspan
+a
+!-- BottomNavBar (Mobile) --
+nav class=bg-white90 backdrop-blur-xl text-primary fixed bottom-0 w-full mdhidden z-50 border-t border-outline10 flex justify-around items-center h-20 px-4
+a class=flex flex-col items-center justify-center text-on-surface-variant60 activebg-surface transition-all rounded-xl w-16 h-16 href=#
+span class=material-symbols-outlined mb-1newspaperspan
+span class=text-[10px] font-boldFeedspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant60 activebg-surface transition-all rounded-xl w-16 h-16 href=#
+span class=material-symbols-outlined mb-1shopping_bagspan
+span class=text-[10px] font-boldShopspan
+a
+a class=flex flex-col items-center justify-center text-primary font-bold activebg-surface transition-all rounded-xl w-16 h-16 href=#
+span class=material-symbols-outlined mb-1 style=font-variation-settings 'FILL' 1;schoolspan
+span class=text-[10px] font-boldClassesspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant60 activebg-surface transition-all rounded-xl w-16 h-16 href=#
+span class=material-symbols-outlined mb-1bookmarkspan
+span class=text-[10px] font-boldSavedspan
+a
+nav
+bodyhtml
+
+!-- Artikel - Pramuka Update (Modern) --
+!DOCTYPE html
+
+html lang=idhead
+meta charset=utf-8
+meta content=width=device-width, initial-scale=1.0 name=viewport
+titleGagasan &amp; Inspirasi Pramuka - Pramuka Updatetitle
+script src=httpscdn.tailwindcss.complugins=forms,container-queriesscript
+link href=httpsfonts.googleapis.comcss2family=Material+Symbols+Outlinedwght,FILL@100..700,0..1&amp;display=swap rel=stylesheet
+link href=httpsfonts.googleapis.com rel=preconnect
+link crossorigin= href=httpsfonts.gstatic.com rel=preconnect
+link href=httpsfonts.googleapis.comcss2family=Plus+Jakarta+Sanswght@400;500;600;700;800&amp;display=swap rel=stylesheet
+script id=tailwind-config
+        tailwind.config = {
+            darkMode class,
+            theme {
+                extend {
+                    colors {
+                        on-error-container #93000a,
+                        primary-fixed-dim #a5d0b9,
+                        background #ffffff,
+                        on-error #ffffff,
+                        outline-variant #c1c8c2,
+                        primary-fixed #c1ecd4,
+                        on-primary-fixed-variant #274e3d,
+                        surface-container-highest #e1e3e4,
+                        on-tertiary-container #d29895,
+                        on-primary #ffffff,
+                        on-tertiary-fixed-variant #673a39,
+                        surface-container-low #f3f4f5,
+                        primary #012d1d,
+                        tertiary #401b1b,
+                        inverse-primary #a5d0b9,
+                        tertiary-fixed #ffdad8,
+                        secondary #2c694e,
+                        surface-variant #e1e3e4,
+                        surface-container #edeeef,
+                        on-background #191c1d,
+                        surface #ffffff,
+                        primary-container #1b4332,
+                        on-tertiary #ffffff,
+                        on-secondary-container #316e52,
+                        surface-dim #d9dadb,
+                        surface-container-lowest #ffffff,
+                        on-tertiary-fixed #331111,
+                        outline #717973,
+                        surface-tint #3f6653,
+                        secondary-fixed-dim #95d4b3,
+                        on-secondary-fixed #002114,
+                        inverse-on-surface #f0f1f2,
+                        tertiary-container #5a302f,
+                        secondary-container #aeeecb,
+                        on-surface #191c1d,
+                        error-container #ffdad6,
+                        on-primary-fixed #002114,
+                        on-surface-variant #414844,
+                        tertiary-fixed-dim #f5b7b4,
+                        surface-container-high #e7e8e9,
+                        inverse-surface #2e3132,
+                        on-secondary-fixed-variant #0e5138,
+                        on-primary-container #86af99,
+                        error #ba1a1a,
+                        on-secondary #ffffff,
+                        surface-bright #f8f9fa,
+                        secondary-fixed #b1f0ce
+                    },
+                    borderRadius {
+                        DEFAULT 0.5rem,
+                        lg 0.5rem,
+                        xl 0.75rem,
+                        full 9999px
+                    },
+                    spacing {
+                        section-gap-mobile 48px,
+                        section-gap-desktop 80px,
+                        container-padding 24px,
+                        gutter 16px,
+                        base 8px
+                    },
+                    fontFamily {
+                        headline-lg-mobile [Plus Jakarta Sans],
+                        headline-display [Plus Jakarta Sans],
+                        headline-lg [Plus Jakarta Sans],
+                        headline-md [Plus Jakarta Sans],
+                        body-lg [Plus Jakarta Sans],
+                        body-md [Plus Jakarta Sans],
+                        label-md [Plus Jakarta Sans]
+                    },
+                    fontSize {
+                        headline-lg-mobile [28px, { lineHeight 1.2, fontWeight 700 }],
+                        headline-display [48px, { lineHeight 1.1, letterSpacing -0.02em, fontWeight 800 }],
+                        headline-lg [32px, { lineHeight 1.2, letterSpacing -0.01em, fontWeight 700 }],
+                        headline-md [24px, { lineHeight 1.3, fontWeight 700 }],
+                        body-lg [18px, { lineHeight 1.6, fontWeight 400 }],
+                        body-md [16px, { lineHeight 1.6, fontWeight 400 }],
+                        label-md [14px, { lineHeight 1.2, letterSpacing 0.05em, fontWeight 600 }]
+                    }
+                }
+            }
+        }
+    script
+style
+        body {
+            min-height max(884px, 100dvh);
+            font-family 'Plus Jakarta Sans', sans-serif;
+        }
+    style
+head
+body class=bg-background text-on-background antialiased min-h-screen flex flex-col
+!-- TopAppBar --
+header class=w-full top-0 sticky bg-background border-b border-outline-variant z-40
+div class=flex justify-between items-center px-6 py-4 max-w-[1280px] mx-auto w-full
+div class=flex items-center gap-4 cursor-pointer activeopacity-80 transition-all
+span class=material-symbols-outlined text-primary data-icon=menumenuspan
+span class=font-headline-md text-headline-md font-extrabold text-primary tracking-tightPRAMUKA UPDATEspan
+div
+nav class=hidden mdflex gap-8 items-center
+a class=text-on-surface-variant font-label-md text-label-md hovertext-primary cursor-pointer activeopacity-80 transition-all href=#Feeda
+a class=text-primary font-bold border-b-2 border-primary pb-1 cursor-pointer activeopacity-80 transition-all href=#Articlesa
+a class=text-on-surface-variant font-label-md text-label-md hovertext-primary cursor-pointer activeopacity-80 transition-all href=#Classesa
+a class=text-on-surface-variant font-label-md text-label-md hovertext-primary cursor-pointer activeopacity-80 transition-all href=#Productsa
+nav
+button class=bg-primary text-on-primary px-6 py-2.5 rounded-lg font-label-md text-label-md hoveropacity-90 transition-opacity cursor-pointer activescale-95 hidden mdblock
+                Join Now
+            button
+span class=material-symbols-outlined text-primary mdhidden cursor-pointer activeopacity-80 transition-all data-icon=searchsearchspan
+div
+header
+main class=flex-grow w-full max-w-[1280px] mx-auto px-6 py-10
+!-- Header Section --
+section class=mb-10 flex flex-col mdflex-row justify-between items-start mditems-end gap-6
+div
+h1 class=font-headline-display text-headline-lg-mobile mdtext-headline-display text-primary mb-3Gagasan &amp; Inspirasi Pramukah1
+p class=font-body-lg text-body-lg text-on-surface-variant max-w-2xlOpini, wawasan, dan pandangan terkini seputar dunia Kepramukaan dari para ahli dan praktisi.p
+div
+div class=relative w-full mdw-auto mt-4 mdmt-0
+span class=material-symbols-outlined absolute left-3 top-12 -translate-y-12 text-outline data-icon=searchsearchspan
+input class=w-full mdw-64 pl-10 pr-4 py-3 bg-surface-container-low border border-outline-variant rounded-lg focusborder-primary focusoutline-none focusring-1 focusring-primary font-body-md text-body-md text-on-surface transition-all placeholdertext-outline placeholder=Cari artikel... type=text
+div
+section
+!-- Category Filter Chips --
+section class=mb-10 flex flex-wrap gap-3
+button class=px-5 py-2 rounded-full bg-primary text-on-primary font-label-md text-label-md border border-primary transition-allSemuabutton
+button class=px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-transparent hoverborder-outline transition-allOpinibutton
+button class=px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-transparent hoverborder-outline transition-allAdministrasibutton
+button class=px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-transparent hoverborder-outline transition-allGen Zbutton
+button class=px-5 py-2 rounded-full bg-surface-container text-on-surface-variant font-label-md text-label-md border border-transparent hoverborder-outline transition-allPembinabutton
+section
+!-- Featured Article --
+section class=mb-12 group cursor-pointer relative block
+div class=grid grid-cols-1 mdgrid-cols-12 gap-6 bg-surface-container-low rounded-xl overflow-hidden border border-outline-variant30 hoverborder-primary30 transition-all duration-300
+div class=mdcol-span-8 overflow-hidden relative
+img alt=Pramuka Campfire class=w-full h-[400px] object-cover transition-transform duration-700 group-hoverscale-105 data-alt=A group of young scouts in uniform sitting around a campfire in a lush forest clearing during dusk. The warm golden light from the fire illuminates their faces against the deep greens and blues of the surrounding woods. The atmosphere is earnest, communal, and educational, capturing the essence of outdoor scouting activities in a modern editorial style. The color palette emphasizes rich earthy greens, warm firelight oranges, and deep forest shadows. src=httpslh3.googleusercontent.comaida-publicAB6AXuAUXbrtbMbXi4ZcpR3-iJZsKD2Q2bobc6_tzapb4f5rDZde0j1j-b20m61o-HTsd4hSfY0ZEuhWFyhEgZFgoPWu4SQKlkUlaIJUWzoKgXUSFLFi1E60yMicQbPel3ln4w0Yv-H7tWYgUlsYftlu9TUWeiUhsD4H6llJvbcCNELnUBa13n8sR4dlhHY2YgRMmKIF_LXDBQwIZfHaasD-KQqU3zl20X-Z5z-cB0V3317KvUoktp9QiVRXzFBjKaBLx3J8jIUmxibrN40
+div class=absolute top-4 left-4 bg-primary text-on-primary px-3 py-1 font-label-md text-label-md rounded shadow-lg
+                        #Kepemimpinan
+                    div
+div
+div class=mdcol-span-4 flex flex-col justify-center p-8
+span class=font-label-md text-label-md text-secondary mb-3 uppercase tracking-widestArtikel Pilihanspan
+h2 class=font-headline-lg text-headline-lg-mobile mdtext-headline-lg text-primary mb-4 group-hovertext-secondary transition-colorsDampak Kegiatan Pramuka terhadap Mental Peserta Didikh2
+p class=font-body-md text-body-md text-on-surface-variant mb-8 line-clamp-3Bagaimana kegiatan alam terbuka dan dinamika kelompok dalam Pramuka membentuk ketahanan mental dan kecerdasan emosional generasi muda di era digital.p
+div class=flex items-center gap-3 mt-auto border-t border-outline-variant pt-6
+div class=w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-boldKAdiv
+div
+p class=font-label-md text-label-md text-on-surfaceKak Andip
+p class=text-[12px] text-outline12 Okt 2023 • 5 min readp
+div
+div
+div
+div
+section
+div class=h-px w-full bg-outline-variant mb-12div
+!-- Article List Grid --
+section class=grid grid-cols-1 mdgrid-cols-2 lggrid-cols-3 gap-8 mb-12
+!-- Article Card 1 --
+article class=flex flex-col group cursor-pointer bg-white rounded-xl border border-outline-variant30 hoverborder-primary transition-all p-4
+div class=relative overflow-hidden rounded-lg mb-4
+img alt=Navigation Skills class=w-full h-56 object-cover transition-transform duration-700 group-hoverscale-110 data-alt=A close-up shot of a scout leader's hands holding a compass over a detailed topographical map. The scene is lit by natural daylight filtering through trees, creating dappled shadows on the map. The aesthetic is practical, disciplined, and educational, focusing on navigation skills. The color palette features muted earthy browns, greens, and the metallic silver of the compass. src=httpslh3.googleusercontent.comaida-publicAB6AXuCS105mIotVF3wPXE8V49PSnCwwZAFNdS81FjbX07tM_cNC7BmGSMwiSQG2c1NZCC1kyIaTFLVB8_8laqO8VjbdSJ2-YhJ5bziz5uEsF0xbscRDVzlgQAshyMu2dQ6a4yEB8anzBYz_vZYfgzQ-3gjCWfnpUI7R5aC04VRyAEJe_ZRGSWtzQxvP89tz35TeQ8JzeG9gBfOCLpRfkuRoFqfO4gV82UleaZMP_N2bBUk26ELS-uJ5WV1bJycb1lYbatxLAib60082NU0
+div
+div class=flex gap-2 mb-2
+span class=text-secondary font-label-md text-[12px] uppercase tracking-wider font-boldPembinaspan
+div
+h3 class=font-headline-md text-headline-md text-primary mb-3 group-hovertext-secondary transition-colors line-clamp-2 leading-tightSistem Regu Pendidikan Kepemimpinan yang Sering Dilupakanh3
+p class=font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 flex-growMengkaji ulang efektivitas sistem regu sebagai kawah candradimuka kepemimpinan di gugus depan.p
+div class=text-[12px] text-outline mt-auto border-t border-outline-variant30 pt-3
+                    10 Okt 2023
+                div
+article
+!-- Article Card 2 --
+article class=flex flex-col group cursor-pointer bg-white rounded-xl border border-outline-variant30 hoverborder-primary transition-all p-4
+div class=relative overflow-hidden rounded-lg mb-4
+img alt=Gen Z Scout class=w-full h-56 object-cover transition-transform duration-700 group-hoverscale-110 data-alt=A modern teenage scout holding a smartphone while standing in a natural park setting, looking thoughtfully at the screen. The image contrasts traditional scouting attire with modern technology. The lighting is bright and airy, typical of a sunny afternoon. The style is contemporary editorial, highlighting the intersection of youth culture and legacy organizations. Colors are vibrant greens and bright daylight. src=httpslh3.googleusercontent.comaida-publicAB6AXuAu3VSkBr3OmPAwDhLJLffpp7DlJDsbZQhDxbqixGLK8h5R5HYpqmwmQtGprrDTsLtXVY1RQJLNxHuLBzIuTtR6X56gzUxzLmEWii_SXiXrBr3UWLo5r63HBjhsNtefLby7p0WUW1Ll1piivKHSXUNvDEmlElTk9DZ4gDWQzT39DjgHyQq31_ChariNpbuDMLe4HG9-KAsaHqVoCEgfjVteJiAaBlLZvadRKwSWmHQp6uW60iup0uRD0Z9Kla037JVR0FPsGB-I9TM
+div
+div class=flex gap-2 mb-2
+span class=text-secondary font-label-md text-[12px] uppercase tracking-wider font-boldGen Zspan
+div
+h3 class=font-headline-md text-headline-md text-primary mb-3 group-hovertext-secondary transition-colors line-clamp-2 leading-tightRelevansi SKU di Mata Generasi Alpha dan Zh3
+p class=font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 flex-growMenyesuaikan metode pencapaian Syarat Kecakapan Umum agar lebih menarik bagi generasi digital native.p
+div class=text-[12px] text-outline mt-auto border-t border-outline-variant30 pt-3
+                    08 Okt 2023
+                div
+article
+!-- Article Card 3 --
+article class=flex flex-col group cursor-pointer bg-white rounded-xl border border-outline-variant30 hoverborder-primary transition-all p-4
+div class=relative overflow-hidden rounded-lg mb-4
+img alt=Administration class=w-full h-56 object-cover transition-transform duration-700 group-hoverscale-110 data-alt=A neat stack of administrative papers, a clipboard, and a pen resting on a wooden desk. The composition is clean, organized, and professional, reflecting the administrative side of scouting organizations. Soft, diffused lighting creates a calm and focused atmosphere. The color palette is composed of warm wood tones, crisp white paper, and subtle neutral shadows. src=httpslh3.googleusercontent.comaida-publicAB6AXuAz1_fqAPDzGp4--nij0GKYXPBUXG4icZWwDSUaOL7Foc3CrI0-A2mIsfO0MzQrmOSXexwFDig4XWnk1BccxsL4FLG0_0rgsABnPv8FJaJ026CBGsZJ3o38bFpCKoJV6-Y0pg-so28UWqUp0tlhR1nUy12UTkgS52DeW6o2n-O53qo9Qy-ZlN3AQDtV_xEx7Jui_5OzjtzSZlijo0lviKno4KdYCRLfX8MvpYaJGIt58s5YxBjmfVyUkdp67BJzWypFSGtSiWu9Yx0
+div
+div class=flex gap-2 mb-2
+span class=text-secondary font-label-md text-[12px] uppercase tracking-wider font-boldAdministrasispan
+div
+h3 class=font-headline-md text-headline-md text-primary mb-3 group-hovertext-secondary transition-colors line-clamp-2 leading-tightDigitalisasi Administrasi Gugus Depan Sebuah Keharusanh3
+p class=font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 flex-growMeninggalkan tumpukan kertas menuju pengelolaan data anggota dan kegiatan berbasis cloud.p
+div class=text-[12px] text-outline mt-auto border-t border-outline-variant30 pt-3
+                    05 Okt 2023
+                div
+article
+!-- Article Card 4 --
+article class=flex flex-col group cursor-pointer bg-white rounded-xl border border-outline-variant30 hoverborder-primary transition-all p-4
+div class=relative overflow-hidden rounded-lg mb-4
+img alt=Jamboree Event class=w-full h-56 object-cover transition-transform duration-700 group-hoverscale-110 data-alt=A wide shot of a large scouting jamboree field with numerous colorful tents set up in rows. A cloudy but bright sky serves as the backdrop. The scene conveys scale, community, and event organization. The editorial style is documentary, capturing the reality of large-scale outdoor gatherings. The color palette mixes vibrant tent colors against muted grass and gray skies. src=httpslh3.googleusercontent.comaida-publicAB6AXuDv-z5tqXChgk90tcMfJ-Q-VU6XZ4Ef7AqprT4mv1xEUJXkfV5UX_Fn6GWz0_YwNjL9T1L9aLKVxFm0j-OVpLwVQua5RVBivG5Xi5Q3QiY07zl88gwFnpIgUq8QFblxmeRItVcwfub3KulZT1WtddNjTmkjpJS2Q0-SsJEZm-OvLXm4TtEjsrYu6SnU9rl_XI2rHGZ0ySD34Rxor_VttMHNN9q9OrrGdTPqa3XblOmPqboK_cNaNt8B7vuQMUE-AnSl_bhQnEBAVyk
+div
+div class=flex gap-2 mb-2
+span class=text-secondary font-label-md text-[12px] uppercase tracking-wider font-boldOpinispan
+div
+h3 class=font-headline-md text-headline-md text-primary mb-3 group-hovertext-secondary transition-colors line-clamp-2 leading-tightEvaluasi Penyelenggaraan Raimuna Nasionalh3
+p class=font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 flex-growCatatan kritis penyelenggaraan kegiatan tingkat nasional dan dampaknya bagi daerah.p
+div class=text-[12px] text-outline mt-auto border-t border-outline-variant30 pt-3
+                    01 Okt 2023
+                div
+article
+!-- Article Card 5 --
+article class=flex flex-col group cursor-pointer bg-white rounded-xl border border-outline-variant30 hoverborder-primary transition-all p-4
+div class=relative overflow-hidden rounded-lg mb-4
+img alt=Knot Tying class=w-full h-56 object-cover transition-transform duration-700 group-hoverscale-110 data-alt=A close-up view of hands tying a complex knot with thick manila rope. The focus is sharp on the texture of the rope and the precision of the hands, blurring the background. The style is instructive and detailed, emphasizing traditional scouting skills. The color palette focuses on the warm tan of the rope and neutral background tones. src=httpslh3.googleusercontent.comaida-publicAB6AXuDSlezc8kSpyKlykcbH-FCjAxkTO5_IPgIRdTHrDOjptVcA_z69mV6Do3j4S3GL_SwPCm32-K7Ckwvgng5kzGmM62_d55_qDhjBx2TliqEUPbE1F7SA44r4Ojsk26bLurGhQJTIuAVfyHMtE57MBEbyOtQYivXo0fgCenOilBAbB-blBnPGyipl8Q0yWC8-4zhBseQx81JfvWIuxrWRiBoo5fHa-ciLvzKi-gi4RnaK2yvM5t2kwF530BDVBReLwYiE-LyBFOBBu-o
+div
+div class=flex gap-2 mb-2
+span class=text-secondary font-label-md text-[12px] uppercase tracking-wider font-boldPioneringspan
+div
+h3 class=font-headline-md text-headline-md text-primary mb-3 group-hovertext-secondary transition-colors line-clamp-2 leading-tightFilosofi Simpul Mati dalam Kehidupan Bermasyarakath3
+p class=font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 flex-growLebih dari sekadar teknik mengikat, pionering menyimpan makna mendalam tentang ikatan sosial.p
+div class=text-[12px] text-outline mt-auto border-t border-outline-variant30 pt-3
+                    28 Sep 2023
+                div
+article
+!-- Article Card 6 --
+article class=flex flex-col group cursor-pointer bg-white rounded-xl border border-outline-variant30 hoverborder-primary transition-all p-4
+div class=relative overflow-hidden rounded-lg mb-4
+img alt=Leader Meeting class=w-full h-56 object-cover transition-transform duration-700 group-hoverscale-110 data-alt=A diverse group of scout leaders engaged in a serious discussion around a rustic wooden table indoors. Papers and notebooks are spread out. The lighting is soft and focused, creating a sense of serious deliberation and planning. The editorial aesthetic is mature and professional, avoiding childish tropes. The color palette is dominated by warm wood tones and muted uniform colors. src=httpslh3.googleusercontent.comaida-publicAB6AXuANP5hX38KSVl3dQcIbrJPCuxecSs6GsYfcSZOL89P9LphLL5kkgQ5XUvicT0Cc3OfVgMF7P1zNH4nqChAq-ezmCIGcB_AduXOHr354Swil-140Pi0oC8sHLYDUmAe80Zesgpy8lC_fE_Lgd83DC78jsuXFxajcrJ2gzIlmMFedYIedV5EXDMjbyVlH44p_fSGXf-WpbJAJsLvux_mH389Eq-bWJ9Su2uIpTaoTiumZFceo37UswnR1gSs-XdmUIt3PVX6E_CD-KWA
+div
+div class=flex gap-2 mb-2
+span class=text-secondary font-label-md text-[12px] uppercase tracking-wider font-boldPembinaspan
+div
+h3 class=font-headline-md text-headline-md text-primary mb-3 group-hovertext-secondary transition-colors line-clamp-2 leading-tightMembangun Karakter Melalui Metode Kepramukaan yang Autentikh3
+p class=font-body-md text-body-md text-on-surface-variant mb-4 line-clamp-2 flex-growKembali ke akar pemikiran Baden Powell dalam konteks masyarakat modern Indonesia.p
+div class=text-[12px] text-outline mt-auto border-t border-outline-variant30 pt-3
+                    25 Sep 2023
+                div
+article
+section
+!-- Load More Button --
+div class=flex justify-center mt-12 mb-20 mdmb-12
+button class=px-10 py-3.5 rounded-lg border-2 border-primary text-primary font-label-md text-label-md hoverbg-primary hovertext-on-primary transition-all activescale-95
+                Muat Lebih Banyak
+            button
+div
+main
+!-- Floating Action Button --
+button class=fixed bottom-24 right-6 mdbottom-12 mdright-12 w-14 h-14 bg-primary text-on-primary rounded-full shadow-2xl flex items-center justify-center cursor-pointer hoverscale-110 activescale-90 transition-all z-50 group
+span class=material-symbols-outlined text-[28px] data-icon=addaddspan
+span class=absolute right-full mr-4 bg-primary text-on-primary px-3 py-1 rounded text-sm opacity-0 group-hoveropacity-100 transition-opacity whitespace-nowrap pointer-events-none shadow-lgBuat Artikelspan
+button
+!-- Footer --
+footer class=w-full mt-auto bg-surface-container-low border-t border-outline-variant
+div class=grid grid-cols-1 mdgrid-cols-12 gap-8 px-6 py-12 max-w-[1280px] mx-auto w-full text-primary
+div class=mdcol-span-4 flex flex-col gap-4
+span class=font-headline-md text-headline-md text-primary font-extrabold tracking-tightPRAMUKA UPDATEspan
+p class=text-on-surface-variant font-label-md text-[14px]© 2024 Pramuka Update. Scouts for the Future.p
+div
+div class=mdcol-span-8 flex flex-wrap gap-x-12 gap-y-6 mdjustify-end items-start transition-all duration-200
+a class=text-primary font-bold hoverunderline decoration-primary underline-offset-4 href=#Articlesa
+a class=text-on-surface-variant hovertext-primary hoverunderline decoration-primary underline-offset-4 href=#Productsa
+a class=text-on-surface-variant hovertext-primary hoverunderline decoration-primary underline-offset-4 href=#Classesa
+a class=text-on-surface-variant hovertext-primary hoverunderline decoration-primary underline-offset-4 href=#Abouta
+a class=text-on-surface-variant hovertext-primary hoverunderline decoration-primary underline-offset-4 href=#Instagrama
+div
+div
+footer
+!-- BottomNavBar (Mobile Only) --
+nav class=fixed bottom-0 w-full mdhidden z-50 bg-white95 backdrop-blur-md border-t border-outline-variant shadow-[0_-4px_12px_rgba(0,0,0,0.05)]
+div class=flex justify-around items-center h-20 w-full px-4 text-[12px] font-label-md text-on-surface-variant
+a class=flex flex-col items-center justify-center gap-1 activebg-surface-container-low p-2 rounded-xl transition-all href=#
+span class=material-symbols-outlined text-[24px] data-icon=newspapernewspaperspan
+spanFeedspan
+a
+a class=flex flex-col items-center justify-center gap-1 text-primary font-bold activebg-surface-container-low p-2 rounded-xl transition-all href=#
+span class=material-symbols-outlined text-[24px] data-icon=school style=font-variation-settings 'FILL' 1;schoolspan
+spanArticlesspan
+a
+a class=flex flex-col items-center justify-center gap-1 activebg-surface-container-low p-2 rounded-xl transition-all href=#
+span class=material-symbols-outlined text-[24px] data-icon=shopping_bagshopping_bagspan
+spanShopspan
+a
+a class=flex flex-col items-center justify-center gap-1 activebg-surface-container-low p-2 rounded-xl transition-all href=#
+span class=material-symbols-outlined text-[24px] data-icon=bookmarkbookmarkspan
+spanSavedspan
+a
+div
+nav
+bodyhtml
+
+!-- Beranda - Pramuka Update (Modern) --
+!DOCTYPE html
+
+html lang=idhead
+meta charset=utf-8
+meta content=width=device-width, initial-scale=1.0 name=viewport
+titlePramuka Update - Media Digital Pramukatitle
+!-- Material Symbols --
+link href=httpsfonts.googleapis.comcss2family=Material+Symbols+Outlinedwght,FILL@100..700,0..1&amp;display=swap rel=stylesheet
+link href=httpsfonts.googleapis.comcss2family=Plus+Jakarta+Sanswght@400;500;600;700;800&amp;display=swap rel=stylesheet
+!-- Tailwind CSS --
+script src=httpscdn.tailwindcss.complugins=forms,container-queriesscript
+!-- Tailwind Configuration --
+script id=tailwind-config
+        tailwind.config = {
+            darkMode class,
+            theme {
+                extend {
+                    colors {
+                        on-error-container #93000a,
+                        primary-fixed-dim #a5d0b9,
+                        background #ffffff,
+                        on-error #ffffff,
+                        outline-variant #c1c8c2,
+                        primary-fixed #c1ecd4,
+                        on-primary-fixed-variant #274e3d,
+                        surface-container-highest #e1e3e4,
+                        on-tertiary-container #d29895,
+                        on-primary #ffffff,
+                        on-tertiary-fixed-variant #673a39,
+                        surface-container-low #f3f4f5,
+                        primary #012d1d,
+                        tertiary #401b1b,
+                        inverse-primary #a5d0b9,
+                        tertiary-fixed #ffdad8,
+                        secondary #2c694e,
+                        surface-variant #e1e3e4,
+                        surface-container #edeeef,
+                        on-background #191c1d,
+                        surface #f8f9fa,
+                        primary-container #1b4332,
+                        on-tertiary #ffffff,
+                        on-secondary-container #316e52,
+                        surface-dim #d9dadb,
+                        surface-container-lowest #ffffff,
+                        on-tertiary-fixed #331111,
+                        outline #717973,
+                        surface-tint #3f6653,
+                        secondary-fixed-dim #95d4b3,
+                        on-secondary-fixed #002114,
+                        inverse-on-surface #f0f1f2,
+                        tertiary-container #5a302f,
+                        secondary-container #aeeecb,
+                        on-surface #191c1d,
+                        error-container #ffdad6,
+                        on-primary-fixed #002114,
+                        on-surface-variant #414844,
+                        tertiary-fixed-dim #f5b7b4,
+                        surface-container-high #e7e8e9,
+                        inverse-surface #2e3132,
+                        on-secondary-fixed-variant #0e5138,
+                        on-primary-container #86af99,
+                        error #ba1a1a,
+                        on-secondary #ffffff,
+                        surface-bright #f8f9fa,
+                        secondary-fixed #b1f0ce
+                    },
+                    borderRadius {
+                        DEFAULT 0.25rem,
+                        lg 0.5rem,
+                        xl 0.75rem,
+                        full 9999px
+                    },
+                    spacing {
+                        section-gap-mobile 48px,
+                        section-gap-desktop 80px,
+                        container-padding 24px,
+                        gutter 16px,
+                        base 8px
+                    },
+                    fontFamily {
+                        headline-lg-mobile [Plus Jakarta Sans],
+                        headline-display [Plus Jakarta Sans],
+                        headline-lg [Plus Jakarta Sans],
+                        headline-md [Plus Jakarta Sans],
+                        body-lg [Plus Jakarta Sans],
+                        body-md [Plus Jakarta Sans],
+                        label-md [Plus Jakarta Sans],
+                        display-lg [Plus Jakarta Sans],
+                        label-bold [Plus Jakarta Sans],
+                        caption [Plus Jakarta Sans]
+                    },
+                    fontSize {
+                        headline-lg-mobile [28px, {lineHeight 1.2, fontWeight 700}],
+                        headline-display [48px, {lineHeight 1.1, letterSpacing -0.02em, fontWeight 800}],
+                        headline-lg [32px, {lineHeight 1.2, letterSpacing -0.01em, fontWeight 700}],
+                        headline-md [24px, {lineHeight 1.3, fontWeight 700}],
+                        body-lg [18px, {lineHeight 1.6, fontWeight 400}],
+                        body-md [16px, {lineHeight 1.6, fontWeight 400}],
+                        label-md [14px, {lineHeight 1.2, letterSpacing 0.05em, fontWeight 600}],
+                        display-lg [48px, {lineHeight 1.1, letterSpacing -0.02em, fontWeight 800}],
+                        label-bold [14px, {lineHeight 20px, letterSpacing 0.05em, fontWeight 700}],
+                        caption [12px, {lineHeight 16px, fontWeight 500}]
+                    }
+                }
+            }
+        }
+    script
+style type=texttailwindcss
+        @layer utilities {
+            .material-symbols-outlined {
+                font-variation-settings 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            }
+        }
+        body {
+            @apply bg-background text-on-background font-body-md text-body-md pb-[80px] mdpb-0;
+        }
+    style
+style
+        body {
+            min-height max(884px, 100dvh);
+            font-family 'Plus Jakarta Sans', sans-serif;
+        }
+    style
+head
+body class=antialiased
+!-- TopAppBar --
+nav class=w-full top-0 sticky z-40 bg-background80 backdrop-blur-md border-b border-outline-variant20
+div class=flex justify-between items-center px-6 mdpx-16 py-4 max-w-[1280px] mx-auto w-full
+div class=flex items-center gap-4 cursor-pointer activeopacity-80 transition-all
+span class=material-symbols-outlined text-primarymenuspan
+div
+div class=font-headline-display text-headline-md font-extrabold text-primary tracking-tight
+                PRAMUKA UPDATE
+            div
+button class=font-label-md bg-primary text-on-primary px-4 py-2 rounded-lg hoverbg-primary-container transition-colors cursor-pointer activeopacity-80
+                Join Now
+            button
+div
+nav
+main class=max-w-[1280px] mx-auto
+!-- Hero Section --
+section class=px-6 mdpx-16 py-12 mdpy-24 grid grid-cols-4 mdgrid-cols-12 gap-8 items-center border-b border-outline-variant30
+div class=col-span-4 mdcol-span-6 flex flex-col gap-6 z-10 relative
+h1 class=font-headline-lg-mobile text-headline-lg-mobile mdtext-headline-display text-primary
+                    Pramuka Hari Ini Butuh Gagasan Baru
+                h1
+p class=font-body-lg text-body-lg text-on-surface-variant max-w-[500px]
+                    Media digital Pramuka untuk konten edukatif, kritik konstruktif, administrasi satuan, dan produk digital pembinaan.
+                p
+div class=flex flex-col smflex-row gap-4 mt-4
+button class=bg-primary text-on-primary font-label-bold text-label-bold px-8 py-3 rounded-lg hoverbg-primary-container transition-colors w-full smw-auto text-center
+                        Baca Artikel
+                    button
+button class=border border-primary text-primary font-label-bold text-label-bold px-8 py-3 rounded-lg hoverbg-surface-container-low transition-colors w-full smw-auto text-center
+                        Lihat Produk
+                    button
+button class=border border-outline text-on-surface-variant font-label-bold text-label-bold px-8 py-3 rounded-lg hoverbg-surface-container-highest transition-colors w-full smw-auto text-center
+                        Ikuti Kelas
+                    button
+div
+div
+div class=col-span-4 mdcol-span-6 mt-8 mdmt-0 relative
+div class=absolute -inset-4 bg-surface-container50 translate-x-4 translate-y-4 rounded-xl -z-10div
+img class=w-full h-[400px] mdh-[600px] object-cover rounded-xl border border-outline-variant20 shadow-sm data-alt=A modern editorial photograph of young adults in outdoor camping gear consulting a digital tablet in a dense, sunlit forest. src=httpslh3.googleusercontent.comaida-publicAB6AXuDfBYpNNQe80V7M06SZ2oqnafkagiXAQRZbIA0aNj4amzWiHtmejO398EHqWf47KCK--rOdKwzRQpZWbGx6SkEpLVpsnaMi-UKd4zkxuH88t3xIk-c-5JOrvXFUOIjiawQEo6WnFj9ECMporN4YMeuNGI2yQWBluW-o-DyoNJe2Zs7TxiHEAthqsA9LC_EWv-vT0V35HSFDaheuCNL0xBwUCl0hibHGDjwcegPgedIL_SlQLJsgj-i_1CDfQKp3xIeunViPExXTJDM
+div
+section
+!-- Artikel Terbaru (Bento Grid) --
+section class=px-6 mdpx-16 py-16 border-b border-outline-variant30
+div class=flex justify-between items-end mb-8
+h2 class=font-headline-md text-headline-md text-primaryArtikel Terbaruh2
+a class=font-label-md text-secondary hoverunderline underline-offset-4 href=#Lihat Semuaa
+div
+div class=grid grid-cols-4 mdgrid-cols-12 gap-6
+!-- Main Featured Article --
+article class=col-span-4 mdcol-span-8 bg-surface-container-low border border-outline-variant50 rounded-xl overflow-hidden flex flex-col group cursor-pointer hoverbg-surface-container transition-colors relative
+div class=h-[300px] mdh-[400px] overflow-hidden
+img class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-500 data-alt=A close-up, sophisticated flat-lay photograph of administrative documents. src=httpslh3.googleusercontent.comaida-publicAB6AXuAzCEWEUaaL4Ee7iHwty1zCDdXrOq-q9U2-XAZFu71rFIH9nOlpP9AMM5ImUeL8smZU9sRlVb5M7M_OaLzyYCDnju7d4-3Tc6y2yc4I0wHGiUytyb5vnIWdFfXARXdUKjHw7Q_BtdnTKLyMs2Mk9B4RKeYGplOkJ-UeXVBJpcFKV8kdj1LpNQ07qO-tuAF_AXVagIb9b5E5fCJbIsXt0AMyOlNZX-vGiNRd6g4gspeX23jgZBAgBaWmdiofA8r_RjksThBUI8UamZ0
+div
+div class=p-8 flex flex-col justify-between flex-grow
+div
+span class=inline-block px-3 py-1 bg-primary text-on-primary font-caption rounded-lg mb-4Administrasispan
+h3 class=font-headline-lg-mobile mdtext-headline-lg text-primary mb-2Administrasi Satuan Pramukah3
+p class=font-body-md text-body-md text-on-surface-variantPanduan komprehensif mengelola dokumen dan pencatatan kegiatan untuk efisiensi manajemen gugusdepan di era digital.p
+div
+div class=mt-6 flex items-center gap-2 font-caption text-outline
+span class=material-symbols-outlined text-[16px]schedulespan 5 Min Read
+                        div
+div
+article
+!-- Side Articles --
+div class=col-span-4 mdcol-span-4 flex flex-col gap-6
+article class=bg-surface-container-lowest border border-outline-variant50 rounded-xl overflow-hidden group cursor-pointer hoverbg-surface-container-low transition-colors flex flex-col flex-1
+div class=h-[180px] overflow-hidden
+img class=w-full h-full object-cover group-hoverscale-105 transition-transform duration-500 data-alt=A candid photograph of a diverse group of young adults. src=httpslh3.googleusercontent.comaida-publicAB6AXuAQo0dMVC5S-QQa3ApQOUFi00V1uHXOs2AnAm6u98Lnt9mdmRyiBdx0ZgRS2uptBiCcsyRj_Caxrlk1MuC9a38SIwqYyXb8FlwcxXKDCFkXgZq4wfPPdK6Oc8iPxjpG23zroOYrpBUiB6ZgAzfn0Su0d8eONJ-3YgFNYOGqixgFK3DxZ-xLpiiKY7ddJTddp2RzCkCLoL4UblNABsiIxkN3o-LVn8nji_YJ-Hc1YZ_mLwj9ggcREF8MBmV0J4VXI3VwuYZGysFvNJE
+div
+div class=p-5 flex flex-col flex-grow justify-between
+div
+span class=inline-block px-2 py-1 bg-secondary-container text-on-secondary-container font-caption rounded-lg mb-2Opinispan
+h3 class=font-headline-md text-headline-md text-primary leading-tight text-lgKenapa Pramuka Harus Memberi Ruang Anak Mudah3
+div
+div
+article
+article class=bg-surface-container-high border border-outline-variant50 rounded-xl overflow-hidden group cursor-pointer hoverbg-surface-container transition-colors flex flex-col flex-1
+div class=p-6 flex flex-col flex-grow justify-between
+div
+span class=inline-block px-2 py-1 bg-surface-container-lowest text-secondary border border-outline-variant50 font-caption rounded-lg mb-4Kritikspan
+h3 class=font-headline-md text-headline-md text-primary leading-tight text-lgKritik Konstruktif untuk Gerakan Pramukah3
+p class=font-body-md text-body-md text-on-surface-variant mt-2 line-clamp-2Mengevaluasi metode lama dan mencari pendekatan baru yang relevan.p
+div
+div class=mt-4 flex items-center gap-2 font-caption text-secondary
+                                Baca Selengkapnya span class=material-symbols-outlined text-[16px]arrow_forwardspan
+div
+div
+article
+div
+div
+section
+!-- Produk Digital Unggulan --
+section class=px-6 mdpx-16 py-16 border-b border-outline-variant30 bg-surface-container-low
+div class=flex justify-between items-end mb-8
+h2 class=font-headline-md text-headline-md text-primaryProduk Digital Unggulanh2
+div
+div class=grid grid-cols-4 mdgrid-cols-12 gap-6
+div class=col-span-4 mdcol-span-6 bg-background border border-outline-variant50 rounded-xl p-8 flex flex-col mdflex-row gap-8 relative overflow-hidden group hovershadow-lg transition-all
+div class=w-full mdw-13 h-[150px] mdh-auto bg-surface-container rounded-xl flex items-center justify-center relative z-10
+span class=material-symbols-outlined text-[48px] text-secondarydescriptionspan
+div
+div class=flex flex-col justify-center relative z-10
+h3 class=font-headline-md text-headline-md text-primary mb-2 text-xlTemplate Administrasih3
+p class=font-body-md text-body-md text-on-surface-variant mb-4Format surat, proposal, dan LPJ siap pakai untuk dewan ambalan.p
+button class=self-start text-secondary font-label-bold flex items-center gap-2 hovertext-primary transition-colors
+                            Lihat Detail span class=material-symbols-outlined text-[18px]shopping_cartspan
+button
+div
+div
+div class=col-span-4 mdcol-span-6 bg-background border border-outline-variant50 rounded-xl p-8 flex flex-col mdflex-row gap-8 relative overflow-hidden group hovershadow-lg transition-all
+div class=w-full mdw-13 h-[150px] mdh-auto bg-surface-container rounded-xl flex items-center justify-center relative z-10
+span class=material-symbols-outlined text-[48px] text-secondaryview_carouselspan
+div
+div class=flex flex-col justify-center relative z-10
+h3 class=font-headline-md text-headline-md text-primary mb-2 text-xlPaket Carouselh3
+p class=font-body-md text-body-md text-on-surface-variant mb-4Template desain media sosial estetik untuk akun ambalan.p
+button class=self-start text-secondary font-label-bold flex items-center gap-2 hovertext-primary transition-colors
+                            Lihat Detail span class=material-symbols-outlined text-[18px]shopping_cartspan
+button
+div
+div
+div
+section
+!-- Kelas Terbaru --
+section class=px-6 mdpx-16 py-16 border-b border-outline-variant30
+h2 class=font-headline-md text-headline-md text-primary mb-8Kelas Terbaruh2
+div class=w-full bg-primary text-on-primary rounded-2xl overflow-hidden flex flex-col mdflex-row shadow-2xl
+div class=w-full mdw-12 p-10 mdp-16 flex flex-col justify-center
+span class=inline-block px-4 py-1 bg-secondary-container text-on-secondary-container font-label-bold rounded-lg mb-6 self-start text-xs uppercase tracking-widerPendaftaran Dibukaspan
+h3 class=font-headline-display text-headline-lg-mobile mdtext-headline-lg mb-6 leading-tightKelas 30 Hari Belajar Bikin Kontenh3
+p class=font-body-lg text-body-lg text-primary-fixed-dim90 mb-10
+                        Ubah cara ambalanmu berkomunikasi. Pelajari copywriting, dasar desain editorial, dan strategi publikasi digital.
+                    p
+button class=bg-surface-container-lowest text-primary font-label-bold px-10 py-4 rounded-xl hoverbg-surface-container transition-colors self-start
+                        Daftar Sekarang
+                    button
+div
+div class=w-full mdw-12 h-[350px] mdh-auto relative
+img class=w-full h-full object-cover grayscale opacity-60 mix-blend-soft-light data-alt=A person's hands typing on a laptop. src=httpslh3.googleusercontent.comaida-publicAB6AXuCHnKyeacSL8kRg7LXcB_HownyhgwBi-Q77aNj3pb1mx1MJ10NhMtbGOx04UFiuY2Jb4j1StwyyvqceynDMAtkky_qVS6_gDf6OHcsjaeHmVrgFoYCfU9nXSqqS8LWkcaCM0a8XzxvHu6sXqqqLW-VGm2FKKOnevuI243_t_ysN96PP4fkSy3inClbMiMQRFBtYpoNWdpmr9cU4a4-fe_jlvB0-jk1d7LsY04CW5y0ctFWVRt6VxHjhM3n4PJusZDKot8jBKElULqE
+div class=absolute inset-0 bg-gradient-to-r from-primary to-transparent mdblock hiddendiv
+div
+div
+section
+!-- Instagram CTA --
+section class=px-6 mdpx-16 py-24 text-center flex flex-col items-center justify-center bg-white
+span class=material-symbols-outlined text-[64px] text-primary mb-6photo_cameraspan
+h2 class=font-headline-lg text-headline-lg-mobile mdtext-headline-lg text-primary max-w-[700px] mb-6
+                Bergabung dalam Diskusi Visual
+            h2
+p class=font-body-lg text-body-lg text-on-surface-variant max-w-[550px] mb-10
+                Ikuti update harian, kutipan editorial, dan inspirasi visual kegiatan kepramukaan modern di Instagram kami.
+            p
+button class=border-2 border-primary text-primary font-label-bold px-10 py-4 rounded-full hoverbg-primary hovertext-on-primary transition-all flex items-center gap-3
+                Follow @pramukaupdate span class=material-symbols-outlined text-[20px]arrow_outwardspan
+button
+section
+main
+!-- Footer --
+footer class=bg-surface-container-high w-full border-t border-outline-variant30
+div class=grid grid-cols-1 mdgrid-cols-12 gap-10 px-6 mdpx-16 py-16 max-w-[1280px] mx-auto w-full
+div class=col-span-1 mdcol-span-6 flex flex-col gap-4
+span class=font-headline-display text-headline-md text-primaryPRAMUKA UPDATEspan
+span class=font-body-md text-on-surface-variant© 2024 Pramuka Update. Scouts for the Future.span
+div
+div class=col-span-1 mdcol-span-6 flex flex-wrap gap-8 mdjustify-end items-start mt-4 mdmt-0
+a class=font-label-md text-on-surface-variant hovertext-primary transition-colors href=#Articlesa
+a class=font-label-md text-on-surface-variant hovertext-primary transition-colors href=#Productsa
+a class=font-label-md text-on-surface-variant hovertext-primary transition-colors href=#Classesa
+a class=font-label-md text-on-surface-variant hovertext-primary transition-colors href=#Abouta
+a class=font-label-md text-on-surface-variant hovertext-primary transition-colors href=#Instagrama
+div
+div
+footer
+!-- FAB --
+a class=fixed bottom-24 right-6 mdbottom-10 mdright-10 w-14 h-14 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-2xl z-50 hoverscale-110 activescale-95 transition-all group href=httpswa.me#
+span class=material-symbols-outlined text-[28px] group-hoverscale-110 transition-transform style=font-variation-settings 'FILL' 1;chatspan
+a
+!-- BottomNavBar (Mobile Only) --
+nav class=fixed bottom-0 w-full mdhidden z-40 bg-background95 backdrop-blur-md border-t border-outline-variant20 shadow-[0_-4px_20px_rgba(0,0,0,0.05)]
+div class=flex justify-around items-center h-20 w-full px-4
+a class=flex flex-col items-center justify-center text-primary href=#
+span class=material-symbols-outlined style=font-variation-settings 'FILL' 1;newspaperspan
+span class=font-caption mt-1Feedspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant60 href=#
+span class=material-symbols-outlinedshopping_bagspan
+span class=font-caption mt-1Shopspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant60 href=#
+span class=material-symbols-outlinedschoolspan
+span class=font-caption mt-1Classesspan
+a
+a class=flex flex-col items-center justify-center text-on-surface-variant60 href=#
+span class=material-symbols-outlinedbookmarkspan
+span class=font-caption mt-1Savedspan
+a
+div
+nav
+bodyhtml

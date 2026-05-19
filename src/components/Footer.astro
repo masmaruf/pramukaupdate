@@ -1,0 +1,16 @@
+---
+import { navItems } from "../data/site";
+---
+
+<footer class="footer">
+  <div class="shell footer-inner">
+    <div>
+      <strong>PRAMUKA UPDATE</strong>
+      <p>Scouts for the Future.</p>
+    </div>
+    <div class="footer-links">
+      {navItems.map((item) => <a href={item.href}>{item.label}</a>)}
+      <a href="#">Instagram</a>
+    </div>
+  </div>
+</footer>

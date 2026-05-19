@@ -1,0 +1,22 @@
+---
+interface Props {
+  slug: string;
+  title: string;
+  category: string;
+  excerpt: string;
+  readTime: string;
+  image: string;
+}
+
+const { slug, title, category, excerpt, readTime, image } = Astro.props;
+---
+
+<article class="card article-card">
+  <img src={image} alt="" loading="lazy" />
+  <div class="card-body">
+    <span class="eyebrow">{category}</span>
+    <h3><a href={`/artikel/${slug}`}>{title}</a></h3>
+    <p>{excerpt}</p>
+    <small>{readTime}</small>
+  </div>
+</article>

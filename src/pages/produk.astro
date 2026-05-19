@@ -1,0 +1,22 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProductCard from "../components/ProductCard.astro";
+import { products } from "../data/site";
+---
+
+<BaseLayout title="Produk Digital | Pramuka Update">
+  <section class="page-hero shell">
+    <span class="eyebrow">Produk digital</span>
+    <h1>Alat bantu untuk satuan yang ingin lebih tertata.</h1>
+    <p>
+      Template, tracker, dan perangkat kerja praktis untuk pembina, pengurus,
+      dan dewan satuan yang ingin mengurangi beban administratif.
+    </p>
+  </section>
+
+  <section class="section shell">
+    <div class="product-grid product-grid-full">
+      {products.map((product) => <ProductCard {...product} />)}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,49 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { curriculum } from "../data/site";
+---
+
+<BaseLayout title="Kelas | Pramuka Update">
+  <section class="page-hero shell class-hero">
+    <span class="eyebrow">Kelas konten</span>
+    <h1>30 hari membangun akun Pramuka yang punya suara.</h1>
+    <p>
+      Bukan sekadar belajar unggah. Kelas ini membantu timmu menemukan sudut
+      pandang, ritme produksi, dan sistem visual yang bisa dijaga dalam jangka panjang.
+    </p>
+    <div class="actions">
+      <a class="button button-solid" href="#">Daftar sekarang</a>
+      <a class="button button-outline" href="#kurikulum">Lihat kurikulum</a>
+    </div>
+  </section>
+
+  <section class="section shell trio">
+    <article class="mini-card">
+      <span>01</span>
+      <h2>Untuk pembina</h2>
+      <p>Yang ingin akun satuannya lebih hidup, bukan hanya formal.</p>
+    </article>
+    <article class="mini-card">
+      <span>02</span>
+      <h2>Untuk dewan ambalan</h2>
+      <p>Yang butuh sistem kerja konten agar tidak selalu mulai dari nol.</p>
+    </article>
+    <article class="mini-card">
+      <span>03</span>
+      <h2>Untuk tim media</h2>
+      <p>Yang ingin naik kelas dari sekadar posting menjadi membangun narasi.</p>
+    </article>
+  </section>
+
+  <section class="section section-tint" id="kurikulum">
+    <div class="shell curriculum">
+      <div>
+        <span class="eyebrow">Kurikulum</span>
+        <h2>Ringkas, praktis, lalu langsung dipakai.</h2>
+      </div>
+      <ol>
+        {curriculum.map((item) => <li>{item}</li>)}
+      </ol>
+    </div>
+  </section>
+</BaseLayout>
