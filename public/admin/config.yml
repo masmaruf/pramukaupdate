@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: OWNER/REPO
+  repo: masmaruf/pramukaupdate
   branch: main
 
 local_backend: true
