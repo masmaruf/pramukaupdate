@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -44,7 +45,7 @@ const { Content } = await render(article);
         <span>{article.data.readTime}</span>
       </div>
     </header>
-    <img src={article.data.image} alt="" />
+    <OptimizedImage src={article.data.image} alt="" width={1400} height={820} />
     <div class="prose">
       <Content />
     </div>

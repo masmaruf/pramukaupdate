@@ -2,7 +2,7 @@
 title: "Kritik Konstruktif untuk Gerakan Pramuka"
 category: "Kritik"
 excerpt: "Mengevaluasi metode lama tanpa kehilangan hormat pada sejarah yang membentuknya."
-image: "https://lh3.googleusercontent.com/aida-public/AB6AXuDfBYpNNQe80V7M06SZ2oqnafkagiXAQRZbIA0aNj4amzWiHtmejO398EHqWf47KCK--rOdKwzRQpZWbGx6SkEpLVpsnaMi-UKd4zkxuH88t3xIk-c-5JOrvXFUOIjiawQEo6WnFj9ECMporN4YMeuNGI2yQWBluW-o-DyoNJe2Zs7TxiHEAthqsA9LC_EWv-vT0V35HSFDaheuCNL0xBwUCl0hibHGDjwcegPgedIL_SlQLJsgj-i_1CDfQKp3xIeunViPExXTJDM"
+image: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee"
 publishedAt: 2026-05-03
 readTime: "6 menit"
 featured: false

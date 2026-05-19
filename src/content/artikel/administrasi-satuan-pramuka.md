@@ -2,7 +2,7 @@
 title: "Administrasi Satuan Pramuka"
 category: "Administrasi"
 excerpt: "Panduan mengelola dokumen, proposal, dan pencatatan kegiatan agar gugusdepan bekerja lebih rapi di era digital."
-image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAzCEWEUaaL4Ee7iHwty1zCDdXrOq-q9U2-XAZFu71rFIH9nOlpP9AMM5ImUeL8smZU9sRlVb5M7M_OaLzyYCDnju7d4-3Tc6y2yc4I0wHGiUytyb5vnIWdFfXARXdUKjHw7Q_BtdnTKLyMs2Mk9B4RKeYGplOkJ-UeXVBJpcFKV8kdj1LpNQ07qO-tuAF_AXVagIb9b5E5fCJbIsXt0AMyOlNZX-vGiNRd6g4gspeX23jgZBAgBaWmdiofA8r_RjksThBUI8UamZ0"
+image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85"
 publishedAt: 2026-05-10
 readTime: "5 menit"
 featured: true

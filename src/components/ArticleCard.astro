@@ -1,4 +1,6 @@
 ---
+import OptimizedImage from "./OptimizedImage.astro";
+
 interface Props {
   slug: string;
   title: string;
@@ -12,7 +14,7 @@ const { slug, title, category, excerpt, readTime, image } = Astro.props;
 ---
 
 <article class="card article-card">
-  <img src={image} alt="" loading="lazy" />
+  <OptimizedImage src={image} alt="" width={900} height={600} />
   <div class="card-body">
     <span class="eyebrow">{category}</span>
     <h3><a href={`/artikel/${slug}`}>{title}</a></h3>

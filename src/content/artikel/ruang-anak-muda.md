@@ -2,7 +2,7 @@
 title: "Kenapa Pramuka Harus Memberi Ruang Anak Muda"
 category: "Opini"
 excerpt: "Gerakan yang panjang umur selalu tahu kapan harus mewariskan ruang, bukan hanya aturan."
-image: "https://lh3.googleusercontent.com/aida-public/AB6AXuAQo0dMVC5S-QQa3ApQOUFi00V1uHXOs2AnAm6u98Lnt9mdmRyiBdx0ZgRS2uptBiCcsyRj_Caxrlk1MuC9a38SIwqYyXb8FlwcxXKDCFkXgZq4wfPPdK6Oc8iPxjpG23zroOYrpBUiB6ZgAzfn0Su0d8eONJ-3YgFNYOGqixgFK3DxZ-xLpiiKY7ddJTddp2RzCkCLoL4UblNABsiIxkN3o-LVn8nji_YJ-Hc1YZ_mLwj9ggcREF8MBmV0J4VXI3VwuYZGysFvNJE"
+image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac"
 publishedAt: 2026-05-07
 readTime: "4 menit"
 featured: false

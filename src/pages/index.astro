@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import ProductCard from "../components/ProductCard.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
 import { products } from "../data/site";
 import { getCollection } from "astro:content";
 
@@ -27,7 +28,14 @@ const featuredArticle = articles.find((article) => article.data.featured) ?? art
       </div>
     </div>
     <div class="hero-visual">
-      <img src={featuredArticle.data.image} alt="Kegiatan Pramuka modern di alam terbuka" />
+      <OptimizedImage
+        src={featuredArticle.data.image}
+        alt="Kegiatan Pramuka modern di alam terbuka"
+        width={1200}
+        height={1400}
+        loading="eager"
+        fetchpriority="high"
+      />
     </div>
   </section>
 
