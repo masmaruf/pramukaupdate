@@ -20,17 +20,34 @@ const {
   loading = "lazy",
   fetchpriority = "auto",
 } = Astro.props;
+
+const isRemoteImage = src.startsWith("http://") || src.startsWith("https://");
 ---
 
-<Image
-  src={src}
-  alt={alt}
-  width={width}
-  height={height}
-  class={className}
-  loading={loading}
-  fetchpriority={fetchpriority}
-  decoding="async"
-  format="webp"
-  quality={82}
-/>
+{
+  isRemoteImage ? (
+    <Image
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding="async"
+      format="webp"
+      quality={82}
+    />
+  ) : (
+    <img
+      src={src}
+      alt={alt}
+      width={width}
+      height={height}
+      class={className}
+      loading={loading}
+      fetchpriority={fetchpriority}
+      decoding="async"
+    />
+  )
+}

@@ -1,0 +1,8 @@
+﻿<svg width="1200" height="800" viewBox="0 0 1200 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="800" fill="#052F23"/>
+  <circle cx="980" cy="170" r="240" fill="#AEEECB" fill-opacity="0.16"/>
+  <circle cx="220" cy="640" r="280" fill="#F5C542" fill-opacity="0.16"/>
+  <path d="M250 250C370 160 530 170 650 270C770 370 930 380 1050 290" stroke="#AEEECB" stroke-width="24" stroke-linecap="round"/>
+  <path d="M250 410C380 330 500 340 620 430C760 535 910 520 1040 430" stroke="#F8F5EA" stroke-width="20" stroke-linecap="round" opacity="0.82"/>
+  <text x="90" y="104" fill="#AEEECB" font-family="Arial, sans-serif" font-size="30" font-weight="700" letter-spacing="5">OPINI</text>
+</svg>

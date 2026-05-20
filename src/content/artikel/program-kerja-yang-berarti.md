@@ -2,7 +2,7 @@
 title: "Menyusun Program Kerja yang Tidak Sekadar Ramai"
 category: "Pembinaan"
 excerpt: "Cara memilih kegiatan yang benar-benar menumbuhkan, bukan cuma memenuhi kalender."
-image: "https://images.unsplash.com/photo-1497366811353-6870744d04b2"
+image: "/covers/pembinaan.svg"
 publishedAt: 2026-04-28
 readTime: "7 menit"
 featured: false
