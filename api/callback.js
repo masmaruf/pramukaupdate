@@ -7,13 +7,19 @@ function escapeHtml(value) {
     .replaceAll("'", "&#039;");
 }
 
+function getCallbackUrl(origin) {
+  return process.env.OAUTH_CALLBACK_URL || `${origin}/api/callback`;
+}
+
 function renderHandoff({ token, error, origin }) {
   const provider = "github";
   const status = token ? "success" : "error";
-  const content = token || error || "OAuth failed";
+  const content = token
+    ? { token, provider }
+    : { message: error || "OAuth failed", provider };
   const safeDisplay = token
     ? "Login GitHub berhasil. Kamu bisa menutup jendela ini."
-    : `Login GitHub gagal: ${escapeHtml(content)}`;
+    : `Login GitHub gagal: ${escapeHtml(content.message)}`;
 
   return `<!doctype html>
 <html lang="id">
@@ -27,7 +33,7 @@ function renderHandoff({ token, error, origin }) {
     <script>
       (function () {
         var origin = ${JSON.stringify(origin)};
-        var message = ${JSON.stringify(`authorization:${provider}:${status}:${content}`)};
+        var message = ${JSON.stringify(`authorization:${provider}:${status}:`)} + ${JSON.stringify(JSON.stringify(content))};
 
         function receiveMessage(event) {
           if (event.origin !== origin) return;
@@ -45,6 +51,7 @@ function renderHandoff({ token, error, origin }) {
 
 export default async function handler(req, res) {
   const origin = process.env.OAUTH_ORIGIN || process.env.ORIGIN || "https://pramukaupdate.id";
+  const callbackUrl = getCallbackUrl(origin);
   const clientId = process.env.OAUTH_CLIENT_ID;
   const clientSecret = process.env.OAUTH_CLIENT_SECRET;
   const code = req.query?.code;
@@ -76,6 +83,7 @@ export default async function handler(req, res) {
         client_id: clientId,
         client_secret: clientSecret,
         code,
+        redirect_uri: callbackUrl,
       }),
     });
 

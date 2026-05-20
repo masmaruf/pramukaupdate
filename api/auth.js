@@ -2,6 +2,10 @@ function getOrigin(req) {
   return process.env.OAUTH_ORIGIN || process.env.ORIGIN || "https://pramukaupdate.id";
 }
 
+function getCallbackUrl(origin) {
+  return process.env.OAUTH_CALLBACK_URL || `${origin}/api/callback`;
+}
+
 export default function handler(req, res) {
   const clientId = process.env.OAUTH_CLIENT_ID;
 
@@ -11,7 +15,7 @@ export default function handler(req, res) {
   }
 
   const origin = getOrigin(req);
-  const callbackUrl = process.env.OAUTH_CALLBACK_URL || `${origin}/api/callback`;
+  const callbackUrl = getCallbackUrl(origin);
   const scopes = process.env.OAUTH_SCOPES || "repo,user";
   const state = Math.random().toString(36).slice(2);
 
