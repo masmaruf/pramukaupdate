@@ -32,6 +32,7 @@ body {
     linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
   color: var(--ink);
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  overflow-x: hidden;
 }
 
 a {
@@ -97,6 +98,7 @@ nav a:hover,
   padding: 0 20px;
   border-radius: 999px;
   font-weight: 700;
+  text-align: center;
 }
 
 .button-solid {
@@ -654,10 +656,62 @@ nav a:hover,
 }
 
 @media (max-width: 860px) {
+  body {
+    background:
+      radial-gradient(circle at top, rgba(174, 238, 203, 0.32), transparent 20rem),
+      linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  }
+
+  .shell {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .topbar {
+    position: sticky;
+  }
+
   .topbar-inner {
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 16px 0;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+    min-height: auto;
+    padding: 14px 0;
+  }
+
+  .brand {
+    font-size: 1.05rem;
+  }
+
+  .primary-nav {
+    width: 100%;
+    gap: 8px;
+    overflow-x: auto;
+    padding: 2px 0 8px;
+    scrollbar-width: none;
+  }
+
+  .primary-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .primary-nav a {
+    flex: 0 0 auto;
+    padding: 9px 12px;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.78);
+    font-size: 0.86rem;
+    font-weight: 700;
+  }
+
+  .primary-nav a.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: white;
+  }
+
+  .topbar .button {
+    display: none;
   }
 
   .hero,
@@ -673,7 +727,8 @@ nav a:hover,
   }
 
   .hero {
-    padding-top: 40px;
+    gap: 24px;
+    padding-top: 28px;
   }
 
   .hero > div:first-child::before {
@@ -685,7 +740,8 @@ nav a:hover,
   }
 
   .hero-visual img {
-    height: 360px;
+    height: 300px;
+    border-radius: 22px;
   }
 
   .product-card {
@@ -699,7 +755,116 @@ nav a:hover,
   .section,
   .page-hero,
   .article-detail {
-    padding: 48px 0;
+    padding: 42px 0;
+  }
+
+  .hero h1,
+  .page-hero h1,
+  .article-detail h1 {
+    font-size: clamp(2rem, 11vw, 2.65rem);
+    line-height: 1.08;
+  }
+
+  .hero p,
+  .page-hero p,
+  .article-detail header p {
+    font-size: 1rem;
+    line-height: 1.72;
+  }
+
+  .actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .button {
+    width: 100%;
+    min-height: 50px;
+  }
+
+  .signal-strip {
+    border-radius: 22px;
+    padding: 16px;
+  }
+
+  .section-head {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .article-card img {
+    height: 210px;
+  }
+
+  .card-body,
+  .mini-card {
+    padding: 20px;
+  }
+
+  .product-mark {
+    min-height: 92px;
+  }
+
+  .product-meta {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .product-meta a {
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 999px;
+    background: var(--surface);
+    text-align: center;
+  }
+
+  .pagefind-shell {
+    padding: 20px;
+    border-radius: 24px;
+  }
+
+  .pagefind-ui__form {
+    margin-top: 12px !important;
+  }
+
+  .search-box input {
+    min-height: 50px;
+  }
+
+  .chip-row {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+
+  .chip-row::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chip-row button,
+  .chip-row span {
+    flex: 0 0 auto;
+  }
+
+  .article-detail > img {
+    height: 260px;
+    border-radius: 22px;
+  }
+
+  .article-meta,
+  .breadcrumb ol {
+    gap: 10px;
+  }
+
+  .prose {
+    font-size: 1rem;
+    line-height: 1.82;
+  }
+
+  .curriculum ol {
+    padding-left: 20px;
   }
 
   .spotlight {
@@ -712,5 +877,34 @@ nav a:hover,
     flex-direction: column;
     justify-content: center;
     padding: 28px 0;
+  }
+
+  .footer-links {
+    gap: 12px;
+  }
+
+  .fab {
+    right: 16px;
+    bottom: 16px;
+    width: 52px;
+    height: 52px;
+  }
+}
+
+@media (max-width: 420px) {
+  .shell {
+    width: min(100% - 24px, 1180px);
+  }
+
+  .hero-visual img {
+    height: 240px;
+  }
+
+  .article-card img {
+    height: 190px;
+  }
+
+  .spotlight {
+    border-radius: 24px;
   }
 }
