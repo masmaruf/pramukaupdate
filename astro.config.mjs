@@ -7,7 +7,7 @@ import keystatic from "@keystatic/astro";
 
 export default defineConfig({
   site: "https://pramukaupdate.id",
-  output: "hybrid",
+  output: "static",
   adapter: vercel(),
   integrations: [mdx(), react(), sitemap(), keystatic()],
   image: {

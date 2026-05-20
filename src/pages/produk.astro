@@ -1,22 +1,166 @@
----
+﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import OptimizedImage from "../components/OptimizedImage.astro";
 import ProductCard from "../components/ProductCard.astro";
 import { products } from "../data/site";
 ---
 
-<BaseLayout title="Produk Digital | Pramuka Update">
-  <section class="page-hero shell">
+<BaseLayout
+  title="Produk Digital | Pramuka Update"
+  description="Template administrasi, tracker SKU, dan perangkat kerja digital untuk pembina serta satuan Pramuka yang ingin lebih tertata."
+>
+  <section class="page-hero product-hero shell">
     <span class="eyebrow">Produk digital</span>
-    <h1>Alat bantu untuk satuan yang ingin lebih tertata.</h1>
+    <h1>Template siap pakai untuk satuan yang ingin bekerja lebih rapi.</h1>
     <p>
-      Template, tracker, dan perangkat kerja praktis untuk pembina, pengurus,
-      dan dewan satuan yang ingin mengurangi beban administratif.
+      Bukan sekadar file kosong. Setiap produk dirancang sebagai alat bantu kerja:
+      ada struktur, contoh penggunaan, dan alur yang bisa langsung dipakai oleh
+      pembina, dewan, atau pengurus satuan.
     </p>
+    <div class="actions">
+      <a class="button button-solid" href="#produk-unggulan">Lihat produk</a>
+      <a class="button button-outline" href="https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20ingin%20konsultasi%20produk%20digital%20yang%20cocok%20untuk%20satuan%20saya.">Konsultasi via WhatsApp</a>
+    </div>
   </section>
 
-  <section class="section shell">
+  <section class="shell product-proof" aria-label="Keunggulan produk PramukaUpdate">
+    <div>
+      <strong>Siap edit</strong>
+      <span>Google Docs, Sheets, PDF, dan versi cetak.</span>
+    </div>
+    <div>
+      <strong>Bahasa satuan</strong>
+      <span>Dibuat dekat dengan kebutuhan Pramuka, bukan template kantor generik.</span>
+    </div>
+    <div>
+      <strong>Ringan dipakai</strong>
+      <span>Struktur praktis agar pengurus baru tidak mulai dari nol.</span>
+    </div>
+  </section>
+
+  <section id="produk-unggulan" class="section shell">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Katalog</span>
+        <h2>Pilih alat bantu yang paling dekat dengan masalah satuanmu.</h2>
+      </div>
+      <a href="#faq-produk">Baca FAQ</a>
+    </div>
     <div class="product-grid product-grid-full">
       {products.map((product) => <ProductCard {...product} />)}
+    </div>
+  </section>
+
+  <section class="section product-detail-list">
+    <div class="shell">
+      {products.map((product, index) => (
+        <article id={product.id} class="product-detail-block">
+          <div class="product-detail-visual">
+            <OptimizedImage src={product.image} alt="" width={1200} height={840} />
+          </div>
+
+          <div class="product-detail-copy">
+            <div class="product-kicker">
+              <span class="eyebrow">Produk {String(index + 1).padStart(2, "0")}</span>
+              {product.badge && <span class="pill">{product.badge}</span>}
+            </div>
+            <h2>{product.title}</h2>
+            <p>{product.description}</p>
+
+            <div class="product-buy-box">
+              <div>
+                <span>Harga</span>
+                <strong>{product.price}</strong>
+              </div>
+              <a class="button button-solid" href={product.whatsappUrl}>{product.ctaLabel}</a>
+            </div>
+
+            <dl class="product-specs">
+              <div>
+                <dt>Cocok untuk</dt>
+                <dd>{product.bestFor}</dd>
+              </div>
+              <div>
+                <dt>Format</dt>
+                <dd>{product.format}</dd>
+              </div>
+              <div>
+                <dt>Pengiriman</dt>
+                <dd>{product.delivery}</dd>
+              </div>
+            </dl>
+          </div>
+
+          <div class="product-package card">
+            <div class="card-body">
+              <span class="eyebrow">Isi paket</span>
+              <ul class="check-list">
+                {product.includes.map((item) => <li>{item}</li>)}
+              </ul>
+            </div>
+          </div>
+
+          <div class="product-preview card">
+            <div class="card-body">
+              <span class="eyebrow">Preview template</span>
+              <div class="preview-stack">
+                {product.previews.map((item) => (
+                  <div>
+                    <span>↗</span>
+                    <p>{item}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div class="product-faq card">
+            <div class="card-body">
+              <span class="eyebrow">FAQ produk</span>
+              {product.faq.map((item) => (
+                <details>
+                  <summary>{item.question}</summary>
+                  <p>{item.answer}</p>
+                </details>
+              ))}
+            </div>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section id="faq-produk" class="section shell product-general-faq">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Pertanyaan umum</span>
+        <h2>Sebelum membeli, ini yang biasanya ditanyakan.</h2>
+      </div>
+    </div>
+    <div class="faq-grid">
+      <details open>
+        <summary>Bagaimana cara membeli produk?</summary>
+        <p>Klik tombol WhatsApp pada produk yang kamu pilih. Tim PramukaUpdate akan mengirim instruksi pembayaran dan link akses setelah konfirmasi.</p>
+      </details>
+      <details>
+        <summary>Apakah file bisa dipakai berkali-kali?</summary>
+        <p>Bisa untuk kebutuhan internal satuanmu. Untuk dibagikan ulang atau dijual kembali, perlu izin tertulis dari PramukaUpdate.</p>
+      </details>
+      <details>
+        <summary>Kalau saya bingung memilih produk?</summary>
+        <p>Pilih konsultasi via WhatsApp. Ceritakan kondisi satuanmu, lalu kami bantu arahkan produk yang paling relevan.</p>
+      </details>
+    </div>
+  </section>
+
+  <section class="shell spotlight product-cta">
+    <div>
+      <span class="pill">Butuh arahan?</span>
+      <h2>Kalau satuanmu belum tahu mulai dari mana, mulai dari masalah yang paling sering berulang.</h2>
+      <p>
+        Administrasi tercecer, progres SKU sulit dipantau, atau program kerja mulai kehilangan arah—pilih produk dari rasa sakit yang paling nyata.
+      </p>
+      <a class="button button-light" href="https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20ingin%20dibantu%20memilih%20produk%20digital%20yang%20paling%20cocok.">Tanya produk yang cocok</a>
     </div>
   </section>
 </BaseLayout>
