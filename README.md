@@ -1,6 +1,6 @@
 # PramukaUpdate
 
-Website Astro untuk PramukaUpdate: media digital Pramuka, artikel editorial, produk digital, kelas, Decap CMS, Pagefind search, dan sitemap resmi Astro.
+Website Astro untuk PramukaUpdate: media digital Pramuka, artikel editorial, produk digital, kelas, Keystatic CMS, Pagefind search, dan sitemap resmi Astro.
 
 ## Local development
 
@@ -9,8 +9,29 @@ npm install
 npm run dev
 ```
 
+Buka dashboard CMS di:
+
+```text
+http://127.0.0.1:4321/keystatic
+```
+
+Rute lama `/admin` otomatis diarahkan ke `/keystatic`.
+
 ## Build
 
 ```bash
 npm run build
+```
+
+## Keystatic GitHub mode
+
+Keystatic menggunakan repo `masmaruf/pramukaupdate` dan membuat branch konten dengan prefix `cms/`.
+
+Untuk production di Vercel, salin environment variable Keystatic dari proses setup GitHub App:
+
+```text
+KEYSTATIC_GITHUB_CLIENT_ID=
+KEYSTATIC_GITHUB_CLIENT_SECRET=
+KEYSTATIC_SECRET=
+PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=
 ```

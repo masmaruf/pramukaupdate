@@ -1,4 +1,5 @@
 ---
+const target = "/keystatic";
 ---
 
 <!doctype html>
@@ -6,15 +7,14 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="robots" content="noindex" />
-    <title>Pramuka Update CMS</title>
+    <meta name="robots" content="noindex, nofollow" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <title>Menuju Keystatic CMS | PramukaUpdate</title>
   </head>
-  <body data-pagefind-ignore>
+  <body>
+    <p>CMS PramukaUpdate sekarang pindah ke <a href={target}>Keystatic</a>.</p>
     <script is:inline>
-      if (location.pathname === "/admin") {
-        history.replaceState(null, "", "/admin/");
-      }
+      window.location.replace("/keystatic");
     </script>
-    <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
   </body>
 </html>
