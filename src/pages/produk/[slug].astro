@@ -3,6 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
 import { getCollection } from "astro:content";
+import { absoluteUrl, breadcrumbSchema, productSchema } from "../../lib/seo";
 
 export async function getStaticPaths() {
   const products = await getCollection("produk");
@@ -17,9 +18,25 @@ const products = (await getCollection("produk")).sort((a, b) => a.data.order - b
 const otherProducts = products.filter((item) => item.id !== product.id).slice(0, 3);
 const title = `${product.data.title} | Produk PramukaUpdate`;
 const description = product.data.description;
+const site = Astro.site ?? Astro.url;
+const productUrl = absoluteUrl(`/produk/${product.id}`, site);
+const productImage = absoluteUrl(product.data.image, site);
+const productJsonLd = productSchema({
+  title: product.data.title,
+  description: product.data.description,
+  url: productUrl,
+  image: productImage,
+  price: product.data.price,
+  category: product.data.category,
+});
+const breadcrumbJsonLd = breadcrumbSchema([
+  { label: "Beranda", href: absoluteUrl("/", site) },
+  { label: "Produk", href: absoluteUrl("/produk", site) },
+  { label: product.data.title, href: productUrl },
+]);
 ---
 
-<BaseLayout title={title} description={description} image={product.data.image}>
+<BaseLayout title={title} description={description} image={product.data.image} jsonLd={[productJsonLd, breadcrumbJsonLd]}>
   <article class="product-page shell">
     <Breadcrumb
       items={[

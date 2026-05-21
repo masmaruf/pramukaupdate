@@ -4,6 +4,7 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
 import { getCollection, render } from "astro:content";
 import { getDisplayReadTime, getPopularArticles } from "../../lib/articles";
+import { absoluteUrl, articleSchema, breadcrumbSchema } from "../../lib/seo";
 
 export async function getStaticPaths() {
   const articles = await getCollection("artikel");
@@ -32,6 +33,21 @@ const shareText = encodeURIComponent(`${article.data.title} — Pramuka Update`)
 const shareUrl = encodeURIComponent(canonical);
 const tableOfContents = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const readTime = getDisplayReadTime(article);
+const site = Astro.site ?? Astro.url;
+const articleUrl = absoluteUrl(`/artikel/${article.id}`, site);
+const articleImage = absoluteUrl(ogImage, site);
+const articleJsonLd = articleSchema({
+  title: article.data.title,
+  description: article.data.excerpt,
+  url: articleUrl,
+  image: articleImage,
+  publishedAt: article.data.publishedAt,
+});
+const breadcrumbJsonLd = breadcrumbSchema([
+  { label: "Beranda", href: absoluteUrl("/", site) },
+  { label: "Artikel", href: absoluteUrl("/artikel", site) },
+  { label: article.data.title, href: articleUrl },
+]);
 ---
 
 <BaseLayout
@@ -39,6 +55,7 @@ const readTime = getDisplayReadTime(article);
   description={article.data.excerpt}
   image={ogImage}
   type="article"
+  jsonLd={[articleJsonLd, breadcrumbJsonLd]}
 >
   <article class="article-detail shell">
     <Breadcrumb
