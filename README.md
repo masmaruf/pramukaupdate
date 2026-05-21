@@ -1,4 +1,4 @@
-# PramukaUpdate
+﻿# PramukaUpdate
 
 Website Astro untuk PramukaUpdate: media digital Pramuka, artikel editorial, produk digital, kelas, Keystatic CMS, Pagefind search, dan sitemap resmi Astro.
 
@@ -27,7 +27,13 @@ npm run build
 
 Keystatic menggunakan repo `masmaruf/pramukaupdate` dan membuat branch konten dengan prefix `cms/`.
 
-Untuk production di Vercel, salin environment variable Keystatic dari proses setup GitHub App:
+Panduan setup lengkap ada di:
+
+```text
+docs/keystatic-github-setup.md
+```
+
+Environment variables yang diperlukan:
 
 ```text
 KEYSTATIC_GITHUB_CLIENT_ID=
