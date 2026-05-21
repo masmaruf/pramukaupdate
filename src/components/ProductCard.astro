@@ -35,9 +35,9 @@ const {
 <article class="card product-card">
   <a class="product-media" href={id ? `/produk/${id}` : "/produk"} aria-label={`Lihat detail ${title}`}>
     {image ? <OptimizedImage src={image} alt="" width={900} height={630} /> : <span>↗</span>}
-    {badge && <span class="product-badge">{badge}</span>}
   </a>
   <div class="product-card-body">
+    {badge && <span class="product-badge">{badge}</span>}
     <a class="product-title" href={id ? `/produk/${id}` : "/produk"}>{title}</a>
     <p>{description}</p>
     <div class="product-meta">
