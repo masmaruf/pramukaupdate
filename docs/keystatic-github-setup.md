@@ -38,6 +38,7 @@ KEYSTATIC_GITHUB_CLIENT_ID=
 KEYSTATIC_GITHUB_CLIENT_SECRET=
 KEYSTATIC_SECRET=
 PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=
+KEYSTATIC_PUBLIC_URL=https://pramukaupdate.id
 ```
 
 `KEYSTATIC_SECRET` wajib minimal 32 karakter.
@@ -51,6 +52,7 @@ KEYSTATIC_GITHUB_CLIENT_ID=isi_dari_keystatic
 KEYSTATIC_GITHUB_CLIENT_SECRET=isi_dari_keystatic
 KEYSTATIC_SECRET=isi_dari_keystatic
 PUBLIC_KEYSTATIC_GITHUB_APP_SLUG=isi_dari_keystatic
+KEYSTATIC_PUBLIC_URL=https://pramukaupdate.id
 ```
 
 Jangan commit `.env`.
@@ -94,6 +96,7 @@ KEYSTATIC_GITHUB_CLIENT_ID
 KEYSTATIC_GITHUB_CLIENT_SECRET
 KEYSTATIC_SECRET
 PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+KEYSTATIC_PUBLIC_URL
 ```
 
 Gunakan environment: **Production**, **Preview**, dan **Development** kalau tersedia.
@@ -132,7 +135,18 @@ KEYSTATIC_GITHUB_CLIENT_ID
 KEYSTATIC_GITHUB_CLIENT_SECRET
 KEYSTATIC_SECRET
 PUBLIC_KEYSTATIC_GITHUB_APP_SLUG
+KEYSTATIC_PUBLIC_URL
 ```
+
+### Production mengirim `redirect_uri=https://localhost/...`
+
+Pastikan Vercel punya env:
+
+```text
+KEYSTATIC_PUBLIC_URL=https://pramukaupdate.id
+```
+
+Project ini punya route login khusus di `/api/keystatic/github/login` agar callback production dipaksa memakai domain publik, bukan origin internal Vercel.
 
 ### Tombol login muncul terus
 
