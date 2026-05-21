@@ -1,4 +1,5 @@
 ﻿const whatsappBase = "https://wa.me/";
+const paymentBase = "https://formulir.com";
 
 function productWhatsAppLink(productName: string) {
   const text = encodeURIComponent(
@@ -6,6 +7,10 @@ function productWhatsAppLink(productName: string) {
   );
 
   return `${whatsappBase}?text=${text}`;
+}
+
+function productPaymentLink(productId: string) {
+  return `${paymentBase}/pramukaupdate?produk=${productId}`;
 }
 
 export const navItems = [
@@ -51,6 +56,8 @@ export const products = [
       },
     ],
     ctaLabel: "Beli template gudep",
+    paymentLabel: "Bayar via Formulir.com",
+    paymentUrl: productPaymentLink("administrasi-gugusdepan"),
     whatsappUrl: productWhatsAppLink("Template Administrasi Gugusdepan"),
   },
   {
@@ -86,6 +93,8 @@ export const products = [
       },
     ],
     ctaLabel: "Beli template regu",
+    paymentLabel: "Bayar via Formulir.com",
+    paymentUrl: productPaymentLink("administrasi-regu"),
     whatsappUrl: productWhatsAppLink("Template Administrasi Regu"),
   },
   {
@@ -122,6 +131,8 @@ export const products = [
       },
     ],
     ctaLabel: "Beli tracker SKU",
+    paymentLabel: "Bayar via Formulir.com",
+    paymentUrl: productPaymentLink("buku-sku-digital"),
     whatsappUrl: productWhatsAppLink("Template Buku SKU Digital"),
   },
   {
@@ -157,6 +168,8 @@ export const products = [
       },
     ],
     ctaLabel: "Beli reset kit",
+    paymentLabel: "Bayar via Formulir.com",
+    paymentUrl: productPaymentLink("mid-year-reset-2026"),
     whatsappUrl: productWhatsAppLink("Template Mid Year Reset 2026"),
   },
 ];

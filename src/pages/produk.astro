@@ -72,7 +72,10 @@ import { products } from "../data/site";
                 <span>Harga</span>
                 <strong>{product.price}</strong>
               </div>
-              <a class="button button-solid" href={product.whatsappUrl}>{product.ctaLabel}</a>
+              <div class="product-buy-actions">
+                <a class="button button-solid" href={product.paymentUrl} target="_blank" rel="noreferrer">{product.paymentLabel}</a>
+                <a class="button button-outline" href={product.whatsappUrl}>{product.ctaLabel}</a>
+              </div>
             </div>
 
             <dl class="product-specs">

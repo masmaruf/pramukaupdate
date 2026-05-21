@@ -14,12 +14,13 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content } = await render(article);
+const ogImage = `/og/${article.id}.svg`;
 ---
 
 <BaseLayout
   title={`${article.data.title} | Pramuka Update`}
   description={article.data.excerpt}
-  image={article.data.image}
+  image={ogImage}
   type="article"
 >
   <article class="article-detail shell">

@@ -9,6 +9,8 @@ interface Props {
   image?: string;
   badge?: string;
   ctaLabel?: string;
+  paymentLabel?: string;
+  paymentUrl?: string;
   whatsappUrl?: string;
   bestFor?: string;
 }
@@ -21,6 +23,8 @@ const {
   image,
   badge,
   ctaLabel = "Beli via WhatsApp",
+  paymentLabel = "Bayar via Formulir.com",
+  paymentUrl,
   whatsappUrl = "#",
   bestFor,
 } = Astro.props;
@@ -37,7 +41,10 @@ const {
     {bestFor && <small>{bestFor}</small>}
     <div class="product-meta">
       <strong>{price}</strong>
-      <a href={whatsappUrl}>{ctaLabel}</a>
+      <div class="product-actions">
+        {paymentUrl && <a class="product-pay-link" href={paymentUrl} target="_blank" rel="noreferrer">{paymentLabel}</a>}
+        <a href={whatsappUrl}>{ctaLabel}</a>
+      </div>
     </div>
   </div>
 </article>
