@@ -1,4 +1,4 @@
-import { collection, config, fields } from "@keystatic/core";
+import { collection, config, fields, singleton } from "@keystatic/core";
 
 const categories = [
   { label: "Administrasi", value: "Administrasi" },
@@ -32,6 +32,26 @@ export default config({
   },
   ui: {
     brand: { name: "PramukaUpdate CMS" },
+  },
+  singletons: {
+    pengaturan: singleton({
+      label: "Pengaturan Website",
+      path: "src/content/settings/site",
+      format: "json",
+      entryLayout: "form",
+      schema: {
+        whatsappNumber: fields.text({
+          label: "Nomor WhatsApp",
+          description: "Gunakan format lokal atau internasional. Contoh: 0859106516377",
+          defaultValue: "0859106516377",
+        }),
+        whatsappDefaultMessage: fields.text({
+          label: "Pesan default WhatsApp",
+          multiline: true,
+          defaultValue: "Halo PramukaUpdate, saya ingin bertanya.",
+        }),
+      },
+    }),
   },
   collections: {
     artikel: collection({

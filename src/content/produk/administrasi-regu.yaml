@@ -12,7 +12,7 @@ order: 2
 ctaLabel: Beli template regu
 paymentLabel: Bayar via Formulir.com
 paymentUrl: https://formulir.com/pramukaupdate?produk=administrasi-regu
-whatsappUrl: https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Administrasi%20Regu.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
+whatsappUrl: https://wa.me/62859106516377?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Administrasi%20Regu.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
 includes:
   - Logbook latihan mingguan regu
   - Presensi anggota dan catatan keaktifan
@@ -28,4 +28,5 @@ faq:
     answer: Bisa, karena bahasanya sengaja dibuat sederhana. Pembina tetap bisa mendampingi di awal.
   - question: Apakah perlu aplikasi khusus?
     answer: Tidak. Cukup Google Sheets atau file PDF untuk dicetak.
+
 

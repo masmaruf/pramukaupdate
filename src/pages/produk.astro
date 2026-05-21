@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProductCard from "../components/ProductCard.astro";
 import { getCollection } from "astro:content";
+import { whatsappUrl } from "../lib/contact";
 
 const products = (await getCollection("produk"))
   .sort((a, b) => a.data.order - b.data.order)
@@ -26,7 +27,7 @@ const productCategories = [...new Set(products.map((product) => product.category
     </p>
     <div class="actions">
       <a class="button button-solid" href="#produk-unggulan">Lihat produk</a>
-      <a class="button button-outline" href="https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20ingin%20konsultasi%20produk%20digital%20yang%20cocok%20untuk%20satuan%20saya.">Konsultasi via WhatsApp</a>
+      <a class="button button-outline" href={whatsappUrl("Halo PramukaUpdate, saya ingin konsultasi produk digital yang cocok untuk satuan saya.")}>Konsultasi via WhatsApp</a>
     </div>
   </section>
 
@@ -104,7 +105,7 @@ const productCategories = [...new Set(products.map((product) => product.category
       <p>
         Administrasi tercecer, progres SKU sulit dipantau, atau program kerja mulai kehilangan arah—pilih produk dari rasa sakit yang paling nyata.
       </p>
-      <a class="button button-light" href="https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20ingin%20dibantu%20memilih%20produk%20digital%20yang%20paling%20cocok.">Tanya produk yang cocok</a>
+      <a class="button button-light" href={whatsappUrl("Halo PramukaUpdate, saya ingin dibantu memilih produk digital yang paling cocok.")}>Tanya produk yang cocok</a>
     </div>
   </section>
 

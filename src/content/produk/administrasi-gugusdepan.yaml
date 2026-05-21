@@ -12,7 +12,7 @@ order: 1
 ctaLabel: Beli template gudep
 paymentLabel: Bayar via Formulir.com
 paymentUrl: https://formulir.com/pramukaupdate?produk=administrasi-gugusdepan
-whatsappUrl: https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Administrasi%20Gugusdepan.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
+whatsappUrl: https://wa.me/62859106516377?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Administrasi%20Gugusdepan.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
 includes:
   - Template program kerja tahunan dan semester
   - Format proposal kegiatan dan laporan pertanggungjawaban
@@ -28,4 +28,5 @@ faq:
     answer: Bisa. Semua file dibuat agar mudah diganti nama sekolah, nomor gudep, logo, dan struktur pengurus.
   - question: Cocok untuk gudep sekolah dasar sampai SMA?
     answer: Cocok. Isinya dibuat umum, lalu bisa disesuaikan dengan tingkat Siaga, Penggalang, Penegak, atau Pandega.
+
 

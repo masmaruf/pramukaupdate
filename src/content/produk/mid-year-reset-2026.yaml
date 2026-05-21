@@ -12,7 +12,7 @@ order: 4
 ctaLabel: Beli reset kit
 paymentLabel: Bayar via Formulir.com
 paymentUrl: https://formulir.com/pramukaupdate?produk=mid-year-reset-2026
-whatsappUrl: https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Mid%20Year%20Reset%202026.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
+whatsappUrl: https://wa.me/62859106516377?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Mid%20Year%20Reset%202026.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
 includes:
   - Worksheet evaluasi kegiatan semester berjalan
   - Pemetaan program yang lanjut, berhenti, atau diperbaiki
@@ -28,4 +28,5 @@ faq:
     answer: Bisa, tetapi contoh dan bahasanya dibuat dekat dengan kebutuhan satuan Pramuka.
   - question: Apakah ini materi kelas atau template?
     answer: Ini template kerja. Bisa langsung dipakai untuk rapat evaluasi internal.
+
 

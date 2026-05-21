@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { whatsappUrl } from "../lib/contact";
 ---
 
 <BaseLayout
@@ -20,7 +21,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <span>Produk</span>
       <h2>Konsultasi template</h2>
       <p>Ceritakan kebutuhan satuanmu, lalu kami bantu arahkan produk yang paling cocok.</p>
-      <a class="button button-solid" href="https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20ingin%20konsultasi%20produk%20digital.">WhatsApp produk</a>
+      <a class="button button-solid" href={whatsappUrl("Halo PramukaUpdate, saya ingin konsultasi produk digital.")}>WhatsApp produk</a>
     </article>
     <article class="mini-card">
       <span>Redaksi</span>
