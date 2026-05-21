@@ -9,21 +9,12 @@ const categories = [
   { label: "Editorial", value: "Editorial" },
 ];
 
-const covers = [
-  { label: "Administrasi", value: "/covers/administrasi.svg" },
-  { label: "Opini", value: "/covers/opini.svg" },
-  { label: "Kritik", value: "/covers/kritik.svg" },
-  { label: "Konten Pramuka", value: "/covers/konten-pramuka.svg" },
-  { label: "Pembinaan", value: "/covers/pembinaan.svg" },
-  { label: "Editorial", value: "/covers/editorial.svg" },
-];
-
-const productImages = [
-  { label: "Administrasi Gugusdepan", value: "/products/administrasi-gugusdepan.svg" },
-  { label: "Administrasi Regu", value: "/products/administrasi-regu.svg" },
-  { label: "Buku SKU Digital", value: "/products/buku-sku-digital.svg" },
-  { label: "Mid Year Reset", value: "/products/mid-year-reset.svg" },
-];
+const sanitizeImageName = (filename: string) =>
+  filename
+    .toLowerCase()
+    .replace(/\.[^/.]+$/, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
 
 export default config({
   storage: {
@@ -56,10 +47,13 @@ export default config({
           multiline: true,
           validation: { length: { min: 40, max: 180 } },
         }),
-        image: fields.select({
-          label: "Cover kategori",
-          options: covers,
-          defaultValue: "/covers/editorial.svg",
+        image: fields.image({
+          label: "Cover artikel",
+          description:
+            "Upload gambar cover artikel. File disimpan di GitHub pada public/uploads/artikel dan ikut terdeploy ke Vercel.",
+          directory: "public/uploads/artikel",
+          publicPath: "/uploads/artikel/",
+          validation: { isRequired: true },
         }),
         publishedAt: fields.date({
           label: "Tanggal terbit",
@@ -77,7 +71,11 @@ export default config({
           label: "Isi artikel",
           extension: "md",
           options: {
-            image: false,
+            image: {
+              directory: "public/uploads/artikel/isi",
+              publicPath: "/uploads/artikel/isi/",
+              transformFilename: sanitizeImageName,
+            },
           },
         }),
       },
@@ -95,10 +93,13 @@ export default config({
         }),
         price: fields.text({ label: "Harga", defaultValue: "Rp" }),
         badge: fields.text({ label: "Badge", defaultValue: "" }),
-        image: fields.select({
+        image: fields.image({
           label: "Gambar produk",
-          options: productImages,
-          defaultValue: "/products/administrasi-gugusdepan.svg",
+          description:
+            "Upload gambar produk berbentuk kotak agar rapi di katalog marketplace. File disimpan di GitHub pada public/uploads/produk.",
+          directory: "public/uploads/produk",
+          publicPath: "/uploads/produk/",
+          validation: { isRequired: true },
         }),
         description: fields.text({
           label: "Deskripsi",
