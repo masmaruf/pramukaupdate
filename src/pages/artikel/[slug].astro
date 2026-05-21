@@ -13,7 +13,7 @@ export async function getStaticPaths() {
 }
 
 const { article } = Astro.props;
-const { Content } = await render(article);
+const { Content, headings } = await render(article);
 const ogImage = `/og/${article.id}.svg`;
 const allArticles = (await getCollection("artikel")).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
@@ -28,6 +28,7 @@ const recommendations = relatedArticles.length ? relatedArticles : fallbackRelat
 const canonical = new URL(`/artikel/${article.id}`, Astro.site ?? Astro.url).toString();
 const shareText = encodeURIComponent(`${article.data.title} — Pramuka Update`);
 const shareUrl = encodeURIComponent(canonical);
+const tableOfContents = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 ---
 
 <BaseLayout
@@ -57,12 +58,40 @@ const shareUrl = encodeURIComponent(canonical);
           })}
         </span>
         <span>{article.data.readTime}</span>
+        <span>Redaksi PramukaUpdate</span>
       </div>
     </header>
     <OptimizedImage src={article.data.image} alt="" width={1400} height={820} />
+    <section class="article-editor-note">
+      <span class="eyebrow">Catatan redaksi</span>
+      <p>
+        Tulisan ini disusun untuk membantu pembina, pengurus, dan anggota Pramuka
+        membaca persoalan satuan dengan lebih jernih, praktis, dan tetap santun.
+      </p>
+    </section>
+    {tableOfContents.length > 0 && (
+      <nav class="article-toc" aria-label="Daftar isi artikel">
+        <span class="eyebrow">Daftar isi</span>
+        <ol>
+          {tableOfContents.map((heading) => (
+            <li class={`toc-depth-${heading.depth}`}>
+              <a href={`#${heading.slug}`}>{heading.text}</a>
+            </li>
+          ))}
+        </ol>
+      </nav>
+    )}
     <div class="prose">
       <Content />
     </div>
+    <section class="article-product-cta">
+      <div>
+        <span class="eyebrow">Alat bantu satuan</span>
+        <h2>Butuh template yang membantu satuan bekerja lebih rapi?</h2>
+        <p>Lihat template administrasi, tracker SKU, dan paket kerja digital yang bisa langsung dipakai.</p>
+      </div>
+      <a class="button button-solid" href="/produk">Lihat produk</a>
+    </section>
     <section class="article-share-box" aria-label="Bagikan artikel">
       <div>
         <span class="eyebrow">Bagikan</span>

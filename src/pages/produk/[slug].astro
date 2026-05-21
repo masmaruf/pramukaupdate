@@ -1,0 +1,157 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import OptimizedImage from "../../components/OptimizedImage.astro";
+import { getCollection } from "astro:content";
+
+export async function getStaticPaths() {
+  const products = await getCollection("produk");
+  return products.map((product) => ({
+    params: { slug: product.id },
+    props: { product },
+  }));
+}
+
+const { product } = Astro.props;
+const products = (await getCollection("produk")).sort((a, b) => a.data.order - b.data.order);
+const otherProducts = products.filter((item) => item.id !== product.id).slice(0, 3);
+const title = `${product.data.title} | Produk PramukaUpdate`;
+const description = product.data.description;
+---
+
+<BaseLayout title={title} description={description} image={product.data.image}>
+  <article class="product-page shell">
+    <Breadcrumb
+      items={[
+        { label: "Beranda", href: "/" },
+        { label: "Produk", href: "/produk" },
+        { label: product.data.title },
+      ]}
+    />
+
+    <section class="product-page-hero">
+      <div class="product-page-copy">
+        <div class="product-kicker">
+          <span class="eyebrow">Produk digital</span>
+          {product.data.badge && <span class="pill">{product.data.badge}</span>}
+        </div>
+        <h1>{product.data.title}</h1>
+        <p>{product.data.description}</p>
+
+        <div class="product-buy-box product-page-buy">
+          <div>
+            <span>Harga</span>
+            <strong>{product.data.price}</strong>
+          </div>
+          <div class="product-buy-actions">
+            <a class="button button-solid" href={product.data.paymentUrl} target="_blank" rel="noreferrer">
+              {product.data.paymentLabel}
+            </a>
+            <a class="button button-outline" href={product.data.whatsappUrl}>{product.data.ctaLabel}</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-page-visual">
+        <OptimizedImage src={product.data.image} alt="" width={1300} height={900} />
+      </div>
+    </section>
+
+    <section class="product-page-grid">
+      <div class="card">
+        <div class="card-body">
+          <span class="eyebrow">Isi paket</span>
+          <ul class="check-list">
+            {product.data.includes.map((item) => <li>{item}</li>)}
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-body">
+          <span class="eyebrow">Preview template</span>
+          <div class="preview-stack">
+            {product.data.previews.map((item) => (
+              <div>
+                <span>↗</span>
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div class="card product-page-spec">
+        <div class="card-body">
+          <span class="eyebrow">Detail pemakaian</span>
+          <dl class="product-specs">
+            <div>
+              <dt>Cocok untuk</dt>
+              <dd>{product.data.bestFor}</dd>
+            </div>
+            <div>
+              <dt>Format</dt>
+              <dd>{product.data.format}</dd>
+            </div>
+            <div>
+              <dt>Pengiriman</dt>
+              <dd>{product.data.delivery}</dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </section>
+
+    <section class="section product-page-faq">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">FAQ produk</span>
+          <h2>Yang perlu jelas sebelum membeli.</h2>
+        </div>
+      </div>
+      <div class="faq-grid">
+        {product.data.faq.map((item) => (
+          <details>
+            <summary>{item.question}</summary>
+            <p>{item.answer}</p>
+          </details>
+        ))}
+      </div>
+    </section>
+
+    <section class="spotlight product-cta">
+      <div>
+        <span class="pill">Siap dipakai</span>
+        <h2>Kalau produk ini cocok dengan masalah satuanmu, mulai dari sini.</h2>
+        <p>Pembelian diarahkan ke Formulir.com. Kalau masih ragu, tanya dulu lewat WhatsApp agar tidak salah pilih.</p>
+        <div class="actions">
+          <a class="button button-light" href={product.data.paymentUrl} target="_blank" rel="noreferrer">
+            {product.data.paymentLabel}
+          </a>
+          <a class="button button-outline button-on-dark" href={product.data.whatsappUrl}>{product.data.ctaLabel}</a>
+        </div>
+      </div>
+    </section>
+
+    {otherProducts.length > 0 && (
+      <section class="section">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Produk lain</span>
+            <h2>Mungkin satuanmu juga butuh ini.</h2>
+          </div>
+          <a href="/produk">Semua produk</a>
+        </div>
+        <div class="related-grid">
+          {otherProducts.map((item) => (
+            <a class="related-card" href={`/produk/${item.id}`}>
+              <span>{item.data.badge || "Produk"}</span>
+              <strong>{item.data.title}</strong>
+              <small>{item.data.price}</small>
+            </a>
+          ))}
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>

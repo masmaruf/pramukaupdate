@@ -81,7 +81,7 @@ const products = (await getCollection("produk"))
               </div>
               <div class="product-buy-actions">
                 <a class="button button-solid" href={product.paymentUrl} target="_blank" rel="noreferrer">{product.paymentLabel}</a>
-                <a class="button button-outline" href={product.whatsappUrl}>{product.ctaLabel}</a>
+                <a class="button button-outline" href={`/produk/${product.id}`}>Lihat detail</a>
               </div>
             </div>
 

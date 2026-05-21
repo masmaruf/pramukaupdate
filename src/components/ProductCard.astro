@@ -31,7 +31,7 @@ const {
 ---
 
 <article class="card product-card">
-  <a class="product-media" href={id ? `/produk#${id}` : "/produk"} aria-label={`Lihat detail ${title}`}>
+  <a class="product-media" href={id ? `/produk/${id}` : "/produk"} aria-label={`Lihat detail ${title}`}>
     {image ? <OptimizedImage src={image} alt="" width={900} height={630} /> : <span>↗</span>}
   </a>
   <div class="card-body">
@@ -43,7 +43,7 @@ const {
       <strong>{price}</strong>
       <div class="product-actions">
         {paymentUrl && <a class="product-pay-link" href={paymentUrl} target="_blank" rel="noreferrer">{paymentLabel}</a>}
-        <a href={whatsappUrl}>{ctaLabel}</a>
+        <a href={id ? `/produk/${id}` : whatsappUrl}>Detail produk</a>
       </div>
     </div>
   </div>

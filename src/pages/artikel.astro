@@ -7,6 +7,7 @@ const articles = (await getCollection("artikel")).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
 const categories = [...new Set(articles.map((article) => article.data.category))];
+const featuredArticles = articles.filter((article) => article.data.featured).slice(0, 3);
 ---
 
 <BaseLayout
@@ -23,6 +24,22 @@ const categories = [...new Set(articles.map((article) => article.data.category))
       ingin Pramuka tetap relevan tanpa kehilangan akarnya.
     </p>
   </section>
+
+  {featuredArticles.length > 0 && (
+    <section class="section section-tint">
+      <div class="shell">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Pilihan redaksi</span>
+            <h2>Tulisan yang paling mewakili arah PramukaUpdate.</h2>
+          </div>
+        </div>
+        <div class="article-grid">
+          {featuredArticles.map((article) => <ArticleCard slug={article.id} {...article.data} />)}
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section shell">
     <div class="pagefind-shell">
