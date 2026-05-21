@@ -46,20 +46,35 @@ const products = (await getCollection("produk"))
   </section>
 
   <section id="produk-unggulan" class="section shell">
-    <div class="section-head">
+    <div class="section-head marketplace-head">
       <div>
-        <span class="eyebrow">Katalog</span>
-        <h2>Pilih alat bantu yang paling dekat dengan masalah satuanmu.</h2>
+        <span class="eyebrow">Marketplace PramukaUpdate</span>
+        <h2>Produk digital siap pakai</h2>
       </div>
-      <a href="#faq-produk">Baca FAQ</a>
+      <div class="marketplace-sort">
+        <span>{products.length} produk</span>
+        <a href="#faq-produk">FAQ pembelian</a>
+      </div>
     </div>
-    <div class="product-grid product-grid-full">
+    <div class="marketplace-toolbar">
+      <span>Semua</span>
+      <span>Administrasi</span>
+      <span>SKU</span>
+      <span>Program kerja</span>
+    </div>
+    <div class="product-grid product-grid-full marketplace-grid">
       {products.map((product) => <ProductCard {...product} />)}
     </div>
   </section>
 
-  <section class="section product-detail-list">
+  <section class="section product-detail-list product-detail-list-compact">
     <div class="shell">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Preview detail</span>
+          <h2>Lihat ringkasan tiap produk sebelum masuk halaman detail.</h2>
+        </div>
+      </div>
       {products.map((product, index) => (
         <article id={product.id} class="product-detail-block">
           <div class="product-detail-visual">
