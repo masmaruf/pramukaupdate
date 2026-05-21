@@ -10,6 +10,15 @@ export default defineConfig({
   output: "static",
   adapter: vercel(),
   integrations: [mdx(), react(), sitemap(), keystatic()],
+  vite: {
+    optimizeDeps: {
+      exclude: [
+        "@keystatic/astro/api",
+        "@keystatic/astro/internal/keystatic-api.js",
+        "@keystatic/astro/internal/keystatic-astro-page.astro",
+      ],
+    },
+  },
   image: {
     domains: ["lh3.googleusercontent.com", "images.unsplash.com"],
   },
