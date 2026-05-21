@@ -9,6 +9,14 @@ const categories = [
   { label: "Editorial", value: "Editorial" },
 ];
 
+const productCategories = [
+  { label: "Administrasi", value: "Administrasi" },
+  { label: "SKU", value: "SKU" },
+  { label: "Program Kerja", value: "Program Kerja" },
+  { label: "Evaluasi", value: "Evaluasi" },
+  { label: "Pembinaan", value: "Pembinaan" },
+];
+
 const sanitizeImageName = (filename: string) =>
   filename
     .toLowerCase()
@@ -90,6 +98,11 @@ export default config({
         title: fields.slug({
           name: { label: "Nama produk" },
           slug: { label: "Slug" },
+        }),
+        category: fields.select({
+          label: "Kategori produk",
+          options: productCategories,
+          defaultValue: "Administrasi",
         }),
         price: fields.text({ label: "Harga", defaultValue: "Rp" }),
         badge: fields.text({ label: "Badge", defaultValue: "" }),

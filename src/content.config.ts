@@ -18,6 +18,7 @@ const produk = defineCollection({
   loader: glob({ pattern: "**/*.yaml", base: "./src/content/produk" }),
   schema: z.object({
     title: z.string(),
+    category: z.string().default("Administrasi"),
     price: z.string(),
     badge: z.string().optional().default(""),
     image: z.string(),

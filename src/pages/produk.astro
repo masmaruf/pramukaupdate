@@ -10,6 +10,7 @@ const products = (await getCollection("produk"))
     id: product.id,
     ...product.data,
   }));
+const productCategories = [...new Set(products.map((product) => product.category))];
 ---
 
 <BaseLayout
@@ -56,14 +57,21 @@ const products = (await getCollection("produk"))
         <a href="#faq-produk">FAQ pembelian</a>
       </div>
     </div>
-    <div class="marketplace-toolbar">
-      <span>Semua</span>
-      <span>Administrasi</span>
-      <span>SKU</span>
-      <span>Program kerja</span>
+    <div class="marketplace-toolbar" role="tablist" aria-label="Filter kategori produk">
+      <button class="active" type="button" data-product-filter="all">Semua</button>
+      {productCategories.map((category) => (
+        <button type="button" data-product-filter={category}>{category}</button>
+      ))}
     </div>
+    <p class="empty-state is-hidden" data-product-empty>
+      Belum ada produk di kategori ini. Coba kategori lain atau konsultasi via WhatsApp.
+    </p>
     <div class="product-grid product-grid-full marketplace-grid">
-      {products.map((product) => <ProductCard {...product} />)}
+      {products.map((product) => (
+        <div data-product-card data-category={product.category}>
+          <ProductCard {...product} />
+        </div>
+      ))}
     </div>
   </section>
 
@@ -188,4 +196,29 @@ const products = (await getCollection("produk"))
       <a class="button button-light" href="https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20ingin%20dibantu%20memilih%20produk%20digital%20yang%20paling%20cocok.">Tanya produk yang cocok</a>
     </div>
   </section>
+
+  <script>
+    const productButtons = document.querySelectorAll("[data-product-filter]");
+    const productCards = document.querySelectorAll("[data-product-card]");
+    const productEmpty = document.querySelector("[data-product-empty]");
+
+    productButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const active = button.getAttribute("data-product-filter") ?? "all";
+        let visible = 0;
+
+        productButtons.forEach((item) => item.classList.remove("active"));
+        button.classList.add("active");
+
+        productCards.forEach((card) => {
+          const category = card.getAttribute("data-category");
+          const shouldShow = active === "all" || category === active;
+          card.classList.toggle("is-hidden", !shouldShow);
+          if (shouldShow) visible += 1;
+        });
+
+        productEmpty?.classList.toggle("is-hidden", visible > 0);
+      });
+    });
+  </script>
 </BaseLayout>

@@ -4,6 +4,7 @@ import OptimizedImage from "./OptimizedImage.astro";
 interface Props {
   id?: string;
   title: string;
+  category?: string;
   price: string;
   description: string;
   image?: string;
@@ -18,6 +19,7 @@ interface Props {
 const {
   id,
   title,
+  category = "Produk",
   price,
   description,
   image,
@@ -40,7 +42,7 @@ const {
     <p>{description}</p>
     <div class="product-meta">
       <strong>{price}</strong>
-      <span>Digital • Siap edit</span>
+      <span>{category} • Digital</span>
     </div>
     <div class="product-actions">
       {paymentUrl && <a class="product-pay-link" href={paymentUrl} target="_blank" rel="noreferrer">{paymentLabel}</a>}

@@ -1,4 +1,5 @@
-﻿title: Template Administrasi Gugusdepan
+title: Template Administrasi Gugusdepan
+category: Administrasi
 price: Rp49.000
 badge: Best seller
 image: /products/administrasi-gugusdepan.svg
@@ -27,3 +28,4 @@ faq:
     answer: Bisa. Semua file dibuat agar mudah diganti nama sekolah, nomor gudep, logo, dan struktur pengurus.
   - question: Cocok untuk gudep sekolah dasar sampai SMA?
     answer: Cocok. Isinya dibuat umum, lalu bisa disesuaikan dengan tingkat Siaga, Penggalang, Penegak, atau Pandega.
+

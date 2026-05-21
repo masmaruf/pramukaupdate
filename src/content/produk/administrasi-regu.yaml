@@ -1,4 +1,5 @@
-﻿title: Template Administrasi Regu
+title: Template Administrasi Regu
+category: Administrasi
 price: Rp29.000
 badge: ""
 image: /products/administrasi-regu.svg
@@ -27,3 +28,4 @@ faq:
     answer: Bisa, karena bahasanya sengaja dibuat sederhana. Pembina tetap bisa mendampingi di awal.
   - question: Apakah perlu aplikasi khusus?
     answer: Tidak. Cukup Google Sheets atau file PDF untuk dicetak.
+

@@ -1,4 +1,5 @@
-﻿title: Template Buku SKU Digital
+title: Template Buku SKU Digital
+category: SKU
 price: Rp35.000
 badge: Baru
 image: /products/buku-sku-digital.svg
@@ -27,3 +28,4 @@ faq:
     answer: Tidak. Template ini alat bantu pemantauan, sementara ketentuan resmi tetap mengikuti aturan satuan dan kwartir.
   - question: Bisa dipakai untuk banyak anggota?
     answer: Bisa. File bisa diduplikasi dan disesuaikan untuk kebutuhan satu regu, kelas, atau satuan.
+
