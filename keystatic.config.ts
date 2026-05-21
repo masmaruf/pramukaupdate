@@ -9,6 +9,13 @@ const categories = [
   { label: "Editorial", value: "Editorial" },
 ];
 
+const articleTypes = [
+  { label: "Berita", value: "Berita" },
+  { label: "Opini", value: "Opini" },
+  { label: "Panduan", value: "Panduan" },
+  { label: "Editorial", value: "Editorial" },
+];
+
 const productCategories = [
   { label: "Administrasi", value: "Administrasi" },
   { label: "SKU", value: "SKU" },
@@ -66,9 +73,18 @@ export default config({
           slug: { label: "Slug" },
         }),
         category: fields.select({
-          label: "Kategori",
+          label: "Rubrik",
           options: categories,
           defaultValue: "Pembinaan",
+        }),
+        type: fields.select({
+          label: "Label artikel",
+          options: articleTypes,
+          defaultValue: "Panduan",
+        }),
+        author: fields.text({
+          label: "Penulis / Redaksi",
+          defaultValue: "Redaksi PramukaUpdate",
         }),
         excerpt: fields.text({
           label: "Ringkasan",
@@ -86,6 +102,10 @@ export default config({
         publishedAt: fields.date({
           label: "Tanggal terbit",
           defaultValue: { kind: "today" },
+        }),
+        updatedAt: fields.date({
+          label: "Tanggal update",
+          description: "Opsional. Isi jika artikel diperbarui setelah terbit.",
         }),
         readTime: fields.text({
           label: "Waktu baca",

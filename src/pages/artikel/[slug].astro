@@ -4,6 +4,7 @@ import Breadcrumb from "../../components/Breadcrumb.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
 import { getCollection, render } from "astro:content";
 import { getDisplayReadTime, getPopularArticles } from "../../lib/articles";
+import { rubricSlug } from "../../lib/rubrics";
 import { absoluteUrl, articleSchema, breadcrumbSchema } from "../../lib/seo";
 
 export async function getStaticPaths() {
@@ -33,6 +34,9 @@ const shareText = encodeURIComponent(`${article.data.title} — Pramuka Update`)
 const shareUrl = encodeURIComponent(canonical);
 const tableOfContents = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
 const readTime = getDisplayReadTime(article);
+const updatedAt = article.data.updatedAt ?? article.data.publishedAt;
+const readAlsoArticle =
+  relatedArticles[0] ?? allArticles.find((item) => item.id !== article.id) ?? null;
 const site = Astro.site ?? Astro.url;
 const articleUrl = absoluteUrl(`/artikel/${article.id}`, site);
 const articleImage = absoluteUrl(ogImage, site);
@@ -42,6 +46,7 @@ const articleJsonLd = articleSchema({
   url: articleUrl,
   image: articleImage,
   publishedAt: article.data.publishedAt,
+  updatedAt,
 });
 const breadcrumbJsonLd = breadcrumbSchema([
   { label: "Beranda", href: absoluteUrl("/", site) },
@@ -66,10 +71,14 @@ const breadcrumbJsonLd = breadcrumbSchema([
       ]}
     />
     <header>
-      <span class="eyebrow">{article.data.category}</span>
+      <div class="article-label-row">
+        <span class="eyebrow category-badge">{article.data.type}</span>
+        <a class="rubric-link" href={`/rubrik/${rubricSlug(article.data.category)}`}>{article.data.category}</a>
+      </div>
       <h1>{article.data.title}</h1>
       <p>{article.data.excerpt}</p>
       <div class="article-meta">
+        <span>{article.data.author}</span>
         <span>
           {article.data.publishedAt.toLocaleDateString("id-ID", {
             day: "numeric",
@@ -77,8 +86,14 @@ const breadcrumbJsonLd = breadcrumbSchema([
             year: "numeric",
           })}
         </span>
+        <span>
+          Update {updatedAt.toLocaleDateString("id-ID", {
+            day: "numeric",
+            month: "long",
+            year: "numeric",
+          })}
+        </span>
         <span>{readTime}</span>
-        <span>Redaksi PramukaUpdate</span>
       </div>
     </header>
     <OptimizedImage src={article.data.image} alt="" width={1400} height={820} />
@@ -100,6 +115,12 @@ const breadcrumbJsonLd = breadcrumbSchema([
           ))}
         </ol>
       </nav>
+    )}
+    {readAlsoArticle && (
+      <aside class="read-also-box" aria-label="Baca juga">
+        <span class="eyebrow">Baca juga</span>
+        <a href={`/artikel/${readAlsoArticle.id}`}>{readAlsoArticle.data.title}</a>
+      </aside>
     )}
     <div class="prose">
       <Content />
@@ -127,8 +148,8 @@ const breadcrumbJsonLd = breadcrumbSchema([
     <section class="related-articles" aria-label="Artikel terkait">
       <div class="section-head">
         <div>
-          <span class="eyebrow">Lanjut baca</span>
-          <h2>Artikel terkait</h2>
+          <span class="eyebrow">Rubrik {article.data.category}</span>
+          <h2>Artikel terkait berdasarkan rubrik.</h2>
         </div>
         <a href="/artikel">Semua artikel</a>
       </div>

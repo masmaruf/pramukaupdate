@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+import { getDisplayReadTime } from "../../lib/articles";
+import { getRubrics, rubricSlug } from "../../lib/rubrics";
+import { absoluteUrl, breadcrumbSchema } from "../../lib/seo";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("artikel");
+  return getRubrics(articles).map((rubric) => ({
+    params: { slug: rubric.slug },
+    props: { rubric },
+  }));
+}
+
+const { rubric } = Astro.props;
+const articles = (await getCollection("artikel"))
+  .filter((article) => rubricSlug(article.data.category) === rubric.slug)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+const featured = articles[0];
+const site = Astro.site ?? Astro.url;
+const rubricUrl = absoluteUrl(`/rubrik/${rubric.slug}`, site);
+const breadcrumbJsonLd = breadcrumbSchema([
+  { label: "Beranda", href: absoluteUrl("/", site) },
+  { label: "Artikel", href: absoluteUrl("/artikel", site) },
+  { label: `Rubrik ${rubric.label}`, href: rubricUrl },
+]);
+---
+
+<BaseLayout
+  title={`Rubrik ${rubric.label} | Pramuka Update`}
+  description={`Kumpulan artikel rubrik ${rubric.label} dari PramukaUpdate.`}
+  jsonLd={breadcrumbJsonLd}
+>
+  <section class="page-hero shell rubrik-hero">
+    <Breadcrumb
+      items={[
+        { label: "Beranda", href: "/" },
+        { label: "Artikel", href: "/artikel" },
+        { label: `Rubrik ${rubric.label}` },
+      ]}
+    />
+    <span class="eyebrow">Rubrik</span>
+    <h1>{rubric.label}</h1>
+    <p>
+      Arsip tulisan PramukaUpdate dalam rubrik {rubric.label}. Dibuat agar pembaca
+      bisa mengikuti topik tertentu dengan lebih rapi.
+    </p>
+  </section>
+
+  {featured && (
+    <section class="section section-tint">
+      <div class="shell rubrik-featured">
+        <div>
+          <span class="eyebrow category-badge">{featured.data.type}</span>
+          <h2><a href={`/artikel/${featured.id}`}>{featured.data.title}</a></h2>
+          <p>{featured.data.excerpt}</p>
+          <small>{featured.data.author} • {getDisplayReadTime(featured)}</small>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="section shell">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">{articles.length} artikel</span>
+        <h2>Arsip {rubric.label}</h2>
+      </div>
+      <a href="/artikel">Semua artikel</a>
+    </div>
+    <div class="article-grid article-grid-wide">
+      {articles.map((article) => (
+        <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

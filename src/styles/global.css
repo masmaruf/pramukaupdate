@@ -901,6 +901,50 @@ nav a:hover,
   margin-bottom: 24px;
 }
 
+.rubrik-strip {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 20px;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: white;
+}
+
+.rubrik-strip > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.rubrik-strip a {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  padding: 10px 13px;
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--primary);
+  font-weight: 800;
+}
+
+.rubrik-strip small {
+  color: var(--muted);
+}
+
+.article-label-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+.rubric-link {
+  color: var(--brown);
+  font-size: 0.82rem;
+  font-weight: 800;
+}
+
 .editorial-dashboard {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
@@ -1131,6 +1175,7 @@ nav a:hover,
 
 .article-meta {
   display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   color: var(--muted);
   font-size: 0.92rem;
@@ -1148,12 +1193,27 @@ nav a:hover,
 
 .article-editor-note,
 .article-toc,
+.read-also-box,
 .article-product-cta {
   margin: 26px 0;
   padding: 22px;
   border: 1px solid var(--line);
   border-radius: 24px;
   background: white;
+}
+
+.read-also-box {
+  display: grid;
+  gap: 8px;
+  border-left: 5px solid var(--brown);
+  background: var(--cream);
+}
+
+.read-also-box a {
+  color: var(--primary);
+  font-size: 1.08rem;
+  font-weight: 900;
+  line-height: 1.4;
 }
 
 .article-editor-note p,
@@ -1245,6 +1305,37 @@ nav a:hover,
 
 .related-card-warm {
   background: var(--cream);
+}
+
+.rubrik-hero {
+  max-width: 860px;
+}
+
+.rubrik-featured {
+  padding: 34px;
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  background: white;
+}
+
+.rubrik-featured h2 {
+  max-width: 820px;
+  margin: 12px 0;
+  color: var(--primary);
+  font-size: clamp(1.7rem, 3vw, 2.7rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+}
+
+.rubrik-featured p {
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.75;
+}
+
+.rubrik-featured small {
+  color: var(--muted);
+  font-weight: 800;
 }
 
 .related-card span,

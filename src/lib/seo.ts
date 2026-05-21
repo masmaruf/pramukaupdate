@@ -28,12 +28,14 @@ export function articleSchema({
   url,
   image,
   publishedAt,
+  updatedAt,
 }: {
   title: string;
   description: string;
   url: string;
   image: string;
   publishedAt: Date;
+  updatedAt?: Date;
 }): JsonLd {
   return {
     "@context": "https://schema.org",
@@ -42,7 +44,7 @@ export function articleSchema({
     description,
     image,
     datePublished: publishedAt.toISOString(),
-    dateModified: publishedAt.toISOString(),
+    dateModified: (updatedAt ?? publishedAt).toISOString(),
     author: {
       "@type": "Organization",
       name: "Redaksi PramukaUpdate",

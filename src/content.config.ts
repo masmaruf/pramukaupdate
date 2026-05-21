@@ -6,9 +6,12 @@ const artikel = defineCollection({
   schema: z.object({
     title: z.string(),
     category: z.string(),
+    type: z.string().default("Panduan"),
+    author: z.string().default("Redaksi PramukaUpdate"),
     excerpt: z.string(),
     image: z.string(),
     publishedAt: z.date(),
+    updatedAt: z.date().nullable().optional(),
     readTime: z.string(),
     featured: z.boolean().default(false),
   }),
