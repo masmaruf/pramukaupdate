@@ -1,6 +1,5 @@
 ﻿---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import OptimizedImage from "../components/OptimizedImage.astro";
 import ProductCard from "../components/ProductCard.astro";
 import { getCollection } from "astro:content";
 
@@ -71,94 +70,6 @@ const productCategories = [...new Set(products.map((product) => product.category
         <div data-product-card data-category={product.category}>
           <ProductCard {...product} />
         </div>
-      ))}
-    </div>
-  </section>
-
-  <section class="section product-detail-list product-detail-list-compact">
-    <div class="shell">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Preview detail</span>
-          <h2>Lihat ringkasan tiap produk sebelum masuk halaman detail.</h2>
-        </div>
-      </div>
-      {products.map((product, index) => (
-        <article id={product.id} class="product-detail-block">
-          <div class="product-detail-visual">
-            <OptimizedImage src={product.image} alt="" width={1200} height={840} />
-          </div>
-
-          <div class="product-detail-copy">
-            <div class="product-kicker">
-              <span class="eyebrow">Produk {String(index + 1).padStart(2, "0")}</span>
-              {product.badge && <span class="pill">{product.badge}</span>}
-            </div>
-            <h2>{product.title}</h2>
-            <p>{product.description}</p>
-
-            <div class="product-buy-box">
-              <div>
-                <span>Harga</span>
-                <strong>{product.price}</strong>
-              </div>
-              <div class="product-buy-actions">
-                <a class="button button-solid" href={product.paymentUrl} target="_blank" rel="noreferrer">{product.paymentLabel}</a>
-                <a class="button button-outline" href={`/produk/${product.id}`}>Lihat detail</a>
-              </div>
-            </div>
-
-            <dl class="product-specs">
-              <div>
-                <dt>Cocok untuk</dt>
-                <dd>{product.bestFor}</dd>
-              </div>
-              <div>
-                <dt>Format</dt>
-                <dd>{product.format}</dd>
-              </div>
-              <div>
-                <dt>Pengiriman</dt>
-                <dd>{product.delivery}</dd>
-              </div>
-            </dl>
-          </div>
-
-          <div class="product-package card">
-            <div class="card-body">
-              <span class="eyebrow">Isi paket</span>
-              <ul class="check-list">
-                {product.includes.map((item) => <li>{item}</li>)}
-              </ul>
-            </div>
-          </div>
-
-          <div class="product-preview card">
-            <div class="card-body">
-              <span class="eyebrow">Preview template</span>
-              <div class="preview-stack">
-                {product.previews.map((item) => (
-                  <div>
-                    <span>↗</span>
-                    <p>{item}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
-
-          <div class="product-faq card">
-            <div class="card-body">
-              <span class="eyebrow">FAQ produk</span>
-              {product.faq.map((item) => (
-                <details>
-                  <summary>{item.question}</summary>
-                  <p>{item.answer}</p>
-                </details>
-              ))}
-            </div>
-          </div>
-        </article>
       ))}
     </div>
   </section>
