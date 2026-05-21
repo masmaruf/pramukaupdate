@@ -1,14 +1,19 @@
 :root {
-  --bg: #fbfcfa;
-  --surface: #f1f4f0;
-  --surface-strong: #e3ebe4;
+  --bg: #fffaf0;
+  --surface: #f5efe2;
+  --surface-strong: #eadfc9;
   --ink: #191c1d;
-  --muted: #53605a;
-  --line: #d7ddd8;
+  --muted: #62584a;
+  --line: #ded2bc;
   --primary: #012d1d;
   --secondary: #2c694e;
   --accent: #aeeecb;
   --warm: #f4eadc;
+  --brown: #7b4b2a;
+  --brown-soft: #b98252;
+  --cream: #fff4dd;
+  --red: #c62828;
+  --white: #ffffff;
 }
 
 * {
@@ -29,6 +34,7 @@ body {
   margin: 0;
   background:
     radial-gradient(circle at top left, rgba(174, 238, 203, 0.35), transparent 28rem),
+    radial-gradient(circle at top right, rgba(123, 75, 42, 0.12), transparent 24rem),
     linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
   color: var(--ink);
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
@@ -193,8 +199,16 @@ nav a:hover,
 
 .pill {
   padding: 8px 12px;
-  background: var(--accent);
+  background: linear-gradient(135deg, var(--accent), #fff);
+  border: 1px solid rgba(44, 105, 78, 0.14);
   color: var(--primary);
+}
+
+.category-badge {
+  padding: 7px 11px;
+  border: 1px solid rgba(123, 75, 42, 0.18);
+  background: var(--cream);
+  color: var(--brown);
 }
 
 .actions {
@@ -875,6 +889,99 @@ nav a:hover,
   margin-bottom: 24px;
 }
 
+.editorial-dashboard {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 20px;
+}
+
+.article-rank-panel {
+  padding: 28px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  background: var(--primary);
+  color: white;
+}
+
+.article-rank-panel .section-head {
+  margin-bottom: 18px;
+}
+
+.article-rank-panel h2 {
+  color: white;
+}
+
+.article-rank-panel .eyebrow {
+  color: var(--accent);
+}
+
+.article-rank-panel-light {
+  background: white;
+  color: var(--ink);
+}
+
+.article-rank-panel-light h2 {
+  color: var(--primary);
+}
+
+.article-rank-panel-light .eyebrow {
+  color: var(--secondary);
+}
+
+.ranked-list {
+  display: grid;
+  gap: 12px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  counter-reset: ranked;
+}
+
+.ranked-list li {
+  counter-increment: ranked;
+}
+
+.ranked-list a {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 4px 12px;
+  align-items: start;
+  padding: 14px;
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.article-rank-panel-light .ranked-list a {
+  background: var(--surface);
+}
+
+.ranked-list a::before {
+  content: counter(ranked, decimal-leading-zero);
+  grid-row: span 3;
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.article-rank-panel-light .ranked-list a::before {
+  color: var(--brown);
+}
+
+.ranked-list span,
+.ranked-list small {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.article-rank-panel-light .ranked-list span,
+.article-rank-panel-light .ranked-list small {
+  color: var(--muted);
+}
+
+.ranked-list strong {
+  line-height: 1.35;
+}
+
 .search-box {
   display: grid;
   gap: 8px;
@@ -1124,6 +1231,10 @@ nav a:hover,
   background: white;
 }
 
+.related-card-warm {
+  background: var(--cream);
+}
+
 .related-card span,
 .next-article-card span {
   color: var(--secondary);
@@ -1278,12 +1389,23 @@ nav a:hover,
   bottom: 24px;
   display: grid;
   place-items: center;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(255, 255, 255, 0.48);
+  border-radius: 16px;
   background: var(--secondary);
   color: white;
-  box-shadow: 0 20px 40px rgba(1, 45, 29, 0.22);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  opacity: 0.86;
+  box-shadow: 0 14px 30px rgba(1, 45, 29, 0.18);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.fab:hover {
+  opacity: 1;
+  transform: translateY(-2px);
 }
 
 @media (max-width: 860px) {
@@ -1348,6 +1470,7 @@ nav a:hover,
   .hero,
   .article-grid,
   .article-grid-wide,
+  .editorial-dashboard,
   .product-grid,
   .product-grid-full,
   .product-page-hero,
@@ -1580,8 +1703,8 @@ nav a:hover,
   .fab {
     right: 16px;
     bottom: 16px;
-    width: 52px;
-    height: 52px;
+    width: 46px;
+    height: 46px;
   }
 }
 

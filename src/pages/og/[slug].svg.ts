@@ -38,12 +38,16 @@ function renderOgImage({ title, category, excerpt }: { title: string; category: 
   return `<?xml version="1.0" encoding="UTF-8"?>
 <svg width="1200" height="630" viewBox="0 0 1200 630" fill="none" xmlns="http://www.w3.org/2000/svg">
   <rect width="1200" height="630" fill="#012D1D"/>
-  <circle cx="1060" cy="80" r="230" fill="#AEEECB" fill-opacity="0.18"/>
-  <circle cx="130" cy="570" r="270" fill="#F5C542" fill-opacity="0.15"/>
-  <path d="M900 420L1030 290L1110 368" stroke="#AEEECB" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" opacity="0.74"/>
-  <rect x="72" y="70" width="1056" height="490" rx="42" fill="#F8F5EA" fill-opacity="0.07" stroke="#AEEECB" stroke-opacity="0.38" stroke-width="2"/>
-  <text x="104" y="128" fill="#AEEECB" font-family="Arial, sans-serif" font-size="28" font-weight="700" letter-spacing="5">PRAMUKAUPDATE</text>
-  <rect x="104" y="162" width="${Math.min(450, 120 + category.length * 16)}" height="46" rx="23" fill="#AEEECB"/>
+  <rect x="0" y="0" width="1200" height="18" fill="#C62828"/>
+  <rect x="0" y="18" width="1200" height="18" fill="#FFFFFF"/>
+  <circle cx="1060" cy="90" r="240" fill="#AEEECB" fill-opacity="0.16"/>
+  <circle cx="116" cy="574" r="292" fill="#7B4B2A" fill-opacity="0.24"/>
+  <path d="M892 424L1032 284L1124 376" stroke="#AEEECB" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" opacity="0.72"/>
+  <path d="M926 472H1108" stroke="#FFF4DD" stroke-width="14" stroke-linecap="round" opacity="0.35"/>
+  <rect x="72" y="76" width="1056" height="484" rx="42" fill="#FFF4DD" fill-opacity="0.075" stroke="#AEEECB" stroke-opacity="0.35" stroke-width="2"/>
+  <text x="104" y="130" fill="#AEEECB" font-family="Arial, sans-serif" font-size="28" font-weight="800" letter-spacing="5">PRAMUKAUPDATE</text>
+  <text x="820" y="130" fill="#FFF4DD" font-family="Arial, sans-serif" font-size="22" font-weight="700">Scouts for the Future</text>
+  <rect x="104" y="162" width="${Math.min(450, 120 + category.length * 16)}" height="46" rx="23" fill="#FFF4DD"/>
   <text x="128" y="193" fill="#012D1D" font-family="Arial, sans-serif" font-size="20" font-weight="700">${escapeXml(category)}</text>
   ${titleLines
     .map(
@@ -58,6 +62,8 @@ function renderOgImage({ title, category, excerpt }: { title: string; category: 
     )
     .join("\n  ")}
   <text x="104" y="520" fill="#AEEECB" font-family="Arial, sans-serif" font-size="22" font-weight="700">pramukaupdate.id</text>
+  <rect x="104" y="542" width="180" height="7" rx="3.5" fill="#C62828"/>
+  <rect x="292" y="542" width="180" height="7" rx="3.5" fill="#FFFFFF" fill-opacity="0.86"/>
 </svg>`;
 }
 

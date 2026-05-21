@@ -16,7 +16,7 @@ const { slug, title, category, excerpt, readTime, image } = Astro.props;
 <article class="card article-card">
   <OptimizedImage src={image} alt="" width={900} height={600} />
   <div class="card-body">
-    <span class="eyebrow">{category}</span>
+    <span class="eyebrow category-badge">{category}</span>
     <h3><a href={`/artikel/${slug}`}>{title}</a></h3>
     <p>{excerpt}</p>
     <small>{readTime}</small>

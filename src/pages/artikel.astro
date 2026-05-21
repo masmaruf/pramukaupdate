@@ -2,12 +2,15 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
+import { getDisplayReadTime, getPopularArticles } from "../lib/articles";
 
 const articles = (await getCollection("artikel")).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
 const categories = [...new Set(articles.map((article) => article.data.category))];
 const featuredArticles = articles.filter((article) => article.data.featured).slice(0, 3);
+const popularArticles = getPopularArticles(articles, 5);
+const latestArticles = articles.slice(0, 5);
 ---
 
 <BaseLayout
@@ -35,11 +38,61 @@ const featuredArticles = articles.filter((article) => article.data.featured).sli
           </div>
         </div>
         <div class="article-grid">
-          {featuredArticles.map((article) => <ArticleCard slug={article.id} {...article.data} />)}
+          {featuredArticles.map((article) => (
+            <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
+          ))}
         </div>
       </div>
     </section>
   )}
+
+  <section class="section shell editorial-dashboard">
+    <div class="article-rank-panel">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Artikel populer</span>
+          <h2>Mulai dari tulisan yang paling layak dibaca dulu.</h2>
+        </div>
+      </div>
+      <ol class="ranked-list">
+        {popularArticles.map((article) => (
+          <li>
+            <a href={`/artikel/${article.id}`}>
+              <span>{article.data.category}</span>
+              <strong>{article.data.title}</strong>
+              <small>{getDisplayReadTime(article)}</small>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+
+    <div class="article-rank-panel article-rank-panel-light">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Terbaru</span>
+          <h2>Catatan paling baru dari redaksi.</h2>
+        </div>
+      </div>
+      <ol class="ranked-list">
+        {latestArticles.map((article) => (
+          <li>
+            <a href={`/artikel/${article.id}`}>
+              <span>
+                {article.data.publishedAt.toLocaleDateString("id-ID", {
+                  day: "numeric",
+                  month: "short",
+                  year: "numeric",
+                })}
+              </span>
+              <strong>{article.data.title}</strong>
+              <small>{getDisplayReadTime(article)}</small>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
 
   <section class="section shell">
     <div class="pagefind-shell">
@@ -80,7 +133,7 @@ const featuredArticles = articles.filter((article) => article.data.featured).sli
           data-category={article.data.category}
           data-search-text={`${article.data.title} ${article.data.category} ${article.data.excerpt}`.toLowerCase()}
         >
-          <ArticleCard slug={article.id} {...article.data} />
+          <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
         </div>
       ))}
     </div>
