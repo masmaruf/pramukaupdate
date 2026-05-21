@@ -15,6 +15,19 @@ export async function getStaticPaths() {
 const { article } = Astro.props;
 const { Content } = await render(article);
 const ogImage = `/og/${article.id}.svg`;
+const allArticles = (await getCollection("artikel")).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const currentIndex = allArticles.findIndex((item) => item.id === article.id);
+const nextArticle = allArticles[currentIndex + 1] ?? allArticles[0];
+const relatedArticles = allArticles
+  .filter((item) => item.id !== article.id && item.data.category === article.data.category)
+  .slice(0, 3);
+const fallbackRelated = allArticles.filter((item) => item.id !== article.id).slice(0, 3);
+const recommendations = relatedArticles.length ? relatedArticles : fallbackRelated;
+const canonical = new URL(`/artikel/${article.id}`, Astro.site ?? Astro.url).toString();
+const shareText = encodeURIComponent(`${article.data.title} — Pramuka Update`);
+const shareUrl = encodeURIComponent(canonical);
 ---
 
 <BaseLayout
@@ -50,5 +63,54 @@ const ogImage = `/og/${article.id}.svg`;
     <div class="prose">
       <Content />
     </div>
+    <section class="article-share-box" aria-label="Bagikan artikel">
+      <div>
+        <span class="eyebrow">Bagikan</span>
+        <h2>Bantu gagasan ini sampai ke satuan lain.</h2>
+      </div>
+      <div class="article-share-actions">
+        <a class="button button-solid" href={`https://wa.me/?text=${shareText}%20${shareUrl}`}>WhatsApp</a>
+        <a class="button button-outline" href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noreferrer">X/Twitter</a>
+        <button class="button button-ghost" type="button" data-copy-link={canonical}>Salin link</button>
+      </div>
+    </section>
+
+    <section class="related-articles" aria-label="Artikel terkait">
+      <div class="section-head">
+        <div>
+          <span class="eyebrow">Lanjut baca</span>
+          <h2>Artikel terkait</h2>
+        </div>
+        <a href="/artikel">Semua artikel</a>
+      </div>
+      <div class="related-grid">
+        {recommendations.map((item) => (
+          <a class="related-card" href={`/artikel/${item.id}`}>
+            <span>{item.data.category}</span>
+            <strong>{item.data.title}</strong>
+            <small>{item.data.readTime}</small>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    {nextArticle && nextArticle.id !== article.id && (
+      <a class="next-article-card" href={`/artikel/${nextArticle.id}`}>
+        <span>Artikel berikutnya</span>
+        <strong>{nextArticle.data.title}</strong>
+      </a>
+    )}
   </article>
+
+  <script>
+    const copyButton = document.querySelector("[data-copy-link]");
+    copyButton?.addEventListener("click", async () => {
+      const link = copyButton.getAttribute("data-copy-link") ?? window.location.href;
+      await navigator.clipboard?.writeText(link);
+      copyButton.textContent = "Link tersalin";
+      window.setTimeout(() => {
+        copyButton.textContent = "Salin link";
+      }, 1800);
+    });
+  </script>
 </BaseLayout>

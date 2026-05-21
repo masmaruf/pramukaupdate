@@ -2,7 +2,14 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import OptimizedImage from "../components/OptimizedImage.astro";
 import ProductCard from "../components/ProductCard.astro";
-import { products } from "../data/site";
+import { getCollection } from "astro:content";
+
+const products = (await getCollection("produk"))
+  .sort((a, b) => a.data.order - b.data.order)
+  .map((product) => ({
+    id: product.id,
+    ...product.data,
+  }));
 ---
 
 <BaseLayout

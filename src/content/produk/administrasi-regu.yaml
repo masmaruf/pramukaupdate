@@ -1,0 +1,29 @@
+﻿title: Template Administrasi Regu
+price: Rp29.000
+badge: ""
+image: /products/administrasi-regu.svg
+description: Logbook, presensi, iuran, pembagian tugas, dan catatan latihan yang praktis dipakai pemimpin regu tanpa terasa terlalu formal.
+bestFor: Pemimpin regu, pratama, dewan penggalang, dan pembina yang ingin melatih tanggung jawab kecil secara konsisten.
+format: Google Sheets, PDF cetak, dan panduan penggunaan
+delivery: Link akses dikirim setelah konfirmasi pembayaran
+featured: true
+order: 2
+ctaLabel: Beli template regu
+paymentLabel: Bayar via Formulir.com
+paymentUrl: https://formulir.com/pramukaupdate?produk=administrasi-regu
+whatsappUrl: https://wa.me/?text=Halo%20PramukaUpdate%2C%20saya%20tertarik%20dengan%20Template%20Administrasi%20Regu.%20Bisa%20minta%20info%20detail%20dan%20cara%20belinya%3F
+includes:
+  - Logbook latihan mingguan regu
+  - Presensi anggota dan catatan keaktifan
+  - Tracker iuran serta kebutuhan perlengkapan
+  - Template pembagian tugas piket dan kegiatan
+  - Catatan evaluasi singkat untuk pemimpin regu
+previews:
+  - Tampilan logbook satu halaman per latihan
+  - Sheet iuran sederhana dengan status pembayaran
+  - Kartu tugas regu siap cetak
+faq:
+  - question: Apakah anak-anak bisa menggunakannya sendiri?
+    answer: Bisa, karena bahasanya sengaja dibuat sederhana. Pembina tetap bisa mendampingi di awal.
+  - question: Apakah perlu aplikasi khusus?
+    answer: Tidak. Cukup Google Sheets atau file PDF untuk dicetak.
