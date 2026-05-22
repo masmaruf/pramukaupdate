@@ -33,20 +33,58 @@ const {
 ---
 
 <article class="card product-card">
-  <a class="product-media" href={id ? `/produk/${id}` : "/produk"} aria-label={`Lihat detail ${title}`}>
+  <a
+    class="product-media"
+    href={id ? `/produk/${id}` : "/produk"}
+    aria-label={`Lihat detail ${title}`}
+    data-analytics-event="product_detail_click"
+    data-analytics-product={id ?? title}
+    data-analytics-category={category}
+    data-analytics-placement="product_card_image"
+  >
     {image ? <OptimizedImage src={image} alt="" width={900} height={630} /> : <span>↗</span>}
   </a>
   <div class="product-card-body">
     {badge && <span class="product-badge">{badge}</span>}
-    <a class="product-title" href={id ? `/produk/${id}` : "/produk"}>{title}</a>
+    <a
+      class="product-title"
+      href={id ? `/produk/${id}` : "/produk"}
+      data-analytics-event="product_detail_click"
+      data-analytics-product={id ?? title}
+      data-analytics-category={category}
+      data-analytics-placement="product_card_title"
+    >
+      {title}
+    </a>
     <p>{description}</p>
     <div class="product-meta">
       <strong>{price}</strong>
       <span>{category} • Digital</span>
     </div>
     <div class="product-actions">
-      {paymentUrl && <a class="product-pay-link" href={paymentUrl} target="_blank" rel="noreferrer">{paymentLabel}</a>}
-      <a href={id ? `/produk/${id}` : whatsappUrl}>Detail</a>
+      {paymentUrl && (
+        <a
+          class="product-pay-link"
+          href={paymentUrl}
+          target="_blank"
+          rel="noreferrer"
+          data-analytics-event="product_payment_click"
+          data-analytics-product={id ?? title}
+          data-analytics-category={category}
+          data-analytics-placement="product_card"
+        >
+          {paymentLabel}
+        </a>
+      )}
+      <a
+        href={id ? `/produk/${id}` : whatsappUrl}
+        data-analytics-event="product_detail_click"
+        data-analytics-product={id ?? title}
+        data-analytics-category={category}
+        data-analytics-placement="product_card_detail"
+      >
+        Detail
+      </a>
     </div>
   </div>
 </article>

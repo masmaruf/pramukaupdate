@@ -40,7 +40,18 @@ const breadcrumbJsonLd = breadcrumbSchema([
 ]);
 ---
 
-<BaseLayout title={title} description={description} image={product.data.image} jsonLd={[productJsonLd, breadcrumbJsonLd]}>
+<BaseLayout
+  title={title}
+  description={description}
+  image={product.data.image}
+  analytics={{
+    contentType: "product",
+    contentId: product.id,
+    contentTitle: product.data.title,
+    category: product.data.category,
+  }}
+  jsonLd={[productJsonLd, breadcrumbJsonLd]}
+>
   <article class="product-page shell">
     <Breadcrumb
       items={[
@@ -65,10 +76,10 @@ const breadcrumbJsonLd = breadcrumbSchema([
             <strong>{product.data.price}</strong>
           </div>
           <div class="product-buy-actions">
-            <a class="button button-solid" href={product.data.paymentUrl} target="_blank" rel="noreferrer">
+            <a class="button button-solid" href={product.data.paymentUrl} target="_blank" rel="noreferrer" data-analytics-event="product_payment_click" data-analytics-product={product.id} data-analytics-category={product.data.category} data-analytics-placement="product_detail">
               {product.data.paymentLabel}
             </a>
-            <a class="button button-outline" href={productWhatsAppUrl}>{product.data.ctaLabel}</a>
+            <a class="button button-outline" href={productWhatsAppUrl} data-analytics-event="product_whatsapp_click" data-analytics-product={product.id} data-analytics-category={product.data.category} data-analytics-placement="product_detail">{product.data.ctaLabel}</a>
           </div>
         </div>
       </div>

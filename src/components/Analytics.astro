@@ -1,0 +1,154 @@
+---
+interface Props {
+  contentType?: "website" | "article" | "product" | "page";
+  contentId?: string;
+  contentTitle?: string;
+  category?: string;
+  author?: string;
+  publishedAt?: string;
+}
+
+const {
+  contentType = "page",
+  contentId = Astro.url.pathname,
+  contentTitle = "",
+  category = "",
+  author = "",
+  publishedAt = "",
+} = Astro.props;
+
+const endpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT ?? "";
+const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN ?? "";
+---
+
+{plausibleDomain && (
+  <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js"></script>
+)}
+
+<script
+  define:vars={{
+    endpoint,
+    contentType,
+    contentId,
+    contentTitle,
+    category,
+    author,
+    publishedAt,
+  }}
+>
+  const getTrafficSource = () => {
+    const params = new URLSearchParams(window.location.search);
+    const utmSource = params.get("utm_source");
+    const utmMedium = params.get("utm_medium");
+    const utmCampaign = params.get("utm_campaign");
+
+    if (utmSource || utmMedium || utmCampaign) {
+      return {
+        source: utmSource || "utm",
+        medium: utmMedium || "unknown",
+        campaign: utmCampaign || "",
+        referrer: document.referrer,
+      };
+    }
+
+    if (!document.referrer) {
+      return { source: "direct", medium: "none", campaign: "", referrer: "" };
+    }
+
+    const referrerUrl = new URL(document.referrer);
+    if (referrerUrl.hostname === window.location.hostname) {
+      return { source: "internal", medium: "site", campaign: "", referrer: document.referrer };
+    }
+
+    return {
+      source: referrerUrl.hostname.replace(/^www\./, ""),
+      medium: "referral",
+      campaign: "",
+      referrer: document.referrer,
+    };
+  };
+
+  const baseProperties = () => ({
+    content_type: contentType,
+    content_id: contentId,
+    content_title: contentTitle,
+    category,
+    author,
+    published_at: publishedAt,
+    path: window.location.pathname,
+    ...getTrafficSource(),
+  });
+
+  const sendToEndpoint = (name, properties) => {
+    if (!endpoint) return;
+    const payload = JSON.stringify({
+      name,
+      properties,
+      href: window.location.href,
+      sent_at: new Date().toISOString(),
+    });
+
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(endpoint, new Blob([payload], { type: "application/json" }));
+      return;
+    }
+
+    fetch(endpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+      keepalive: true,
+    }).catch(() => {});
+  };
+
+  window.pramukaAnalyticsTrack = (name, properties = {}) => {
+    const payload = { ...baseProperties(), ...properties };
+    const eventRecord = {
+      name,
+      properties: payload,
+      href: window.location.href,
+      sent_at: new Date().toISOString(),
+    };
+
+    try {
+      const key = "pramukaupdate:analytics";
+      const current = JSON.parse(window.localStorage.getItem(key) || "[]");
+      current.push(eventRecord);
+      window.localStorage.setItem(key, JSON.stringify(current.slice(-250)));
+    } catch {
+      // Local preview storage is optional; ignore browser privacy restrictions.
+    }
+
+    if (typeof window.va === "function") {
+      window.va("event", { name, data: payload });
+    }
+
+    if (typeof window.plausible === "function") {
+      window.plausible(name, { props: payload });
+    }
+
+    if (typeof window.gtag === "function") {
+      window.gtag("event", name, payload);
+    }
+
+    sendToEndpoint(name, payload);
+  };
+
+  window.pramukaAnalyticsTrack("content_view");
+
+  document.addEventListener("click", (event) => {
+    const target = event.target instanceof Element
+      ? event.target.closest("[data-analytics-event]")
+      : null;
+
+    if (!target) return;
+
+    const properties = {};
+    for (const [key, value] of Object.entries(target.dataset)) {
+      if (key === "analyticsEvent") continue;
+      properties[key.replace(/^analytics/, "").replace(/^[A-Z]/, (char) => char.toLowerCase())] = value;
+    }
+
+    window.pramukaAnalyticsTrack(target.dataset.analyticsEvent, properties);
+  });
+</script>

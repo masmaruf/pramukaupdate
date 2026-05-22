@@ -1,0 +1,220 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCollection } from "astro:content";
+import { getDisplayReadTime } from "../../lib/articles";
+import { getRubrics } from "../../lib/rubrics";
+
+const articles = (await getCollection("artikel")).sort(
+  (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
+);
+const rubrics = getRubrics(articles);
+const featuredCount = articles.filter((article) => article.data.featured).length;
+const latestArticles = articles.slice(0, 6);
+const trackingEvents = [
+  {
+    name: "content_view",
+    title: "Artikel paling dibaca",
+    description: "Dikirim setiap halaman dibuka. Gunakan content_id dan content_title untuk ranking artikel.",
+  },
+  {
+    name: "article_product_click",
+    title: "Klik produk dari artikel",
+    description: "Dikirim saat pembaca menekan CTA produk di halaman artikel.",
+  },
+  {
+    name: "article_share_click",
+    title: "Share artikel",
+    description: "Dikirim saat pembaca membagikan ke WhatsApp, X, atau menyalin link.",
+  },
+  {
+    name: "product_payment_click",
+    title: "Klik pembayaran produk",
+    description: "Dikirim saat pembaca membuka payment link produk digital.",
+  },
+  {
+    name: "product_detail_click",
+    title: "Klik detail produk",
+    description: "Dikirim saat pembaca membuka halaman detail produk dari kartu katalog.",
+  },
+  {
+    name: "traffic_source",
+    title: "Sumber trafik",
+    description: "Tersimpan sebagai properti source, medium, campaign, dan referrer pada setiap event.",
+  },
+];
+---
+
+<BaseLayout
+  title="Dashboard Performa Konten | Pramuka Update"
+  description="Dashboard editorial PramukaUpdate untuk membaca performa artikel, klik produk, dan sumber trafik."
+  noindex
+  pagefind={false}
+  analytics={{ contentType: "page", contentId: "redaksi-analytics", contentTitle: "Dashboard Performa Konten" }}
+>
+  <section class="page-hero shell analytics-hero">
+    <span class="eyebrow">Analytics editorial</span>
+    <h1>Dashboard performa konten PramukaUpdate.</h1>
+    <p>
+      Panel ini menyiapkan kerangka ukur: artikel paling dibaca, klik produk dari
+      artikel, sumber trafik, dan event berbagi. Angka live akan muncul di provider
+      analytics yang kamu aktifkan.
+    </p>
+  </section>
+
+  <section class="section shell analytics-grid">
+    <article class="analytics-card">
+      <span>Total artikel</span>
+      <strong>{articles.length}</strong>
+      <p>Konten aktif di koleksi artikel.</p>
+    </article>
+    <article class="analytics-card">
+      <span>Rubrik</span>
+      <strong>{rubrics.length}</strong>
+      <p>Topik editorial yang bisa dilacak.</p>
+    </article>
+    <article class="analytics-card">
+      <span>Unggulan</span>
+      <strong>{featuredCount}</strong>
+      <p>Artikel pilihan redaksi.</p>
+    </article>
+    <article class="analytics-card">
+      <span>Event aktif</span>
+      <strong>{trackingEvents.length}</strong>
+      <p>Event yang siap dikirim ke analytics.</p>
+    </article>
+  </section>
+
+  <section class="section shell analytics-panel">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Local preview</span>
+        <h2>Ringkasan event dari browser ini.</h2>
+      </div>
+      <button class="button button-outline" type="button" data-clear-local-analytics>Bersihkan data lokal</button>
+    </div>
+    <p class="muted">
+      Ini hanya data uji dari browser yang sedang dipakai. Untuk data semua pembaca,
+      hubungkan ke Plausible, Vercel Analytics, Google Analytics, atau endpoint sendiri.
+    </p>
+    <div class="analytics-grid analytics-grid-compact" data-local-analytics>
+      <article class="analytics-card">
+        <span>Views lokal</span>
+        <strong data-local-views>0</strong>
+        <p>Event content_view.</p>
+      </article>
+      <article class="analytics-card">
+        <span>Klik produk lokal</span>
+        <strong data-local-product-clicks>0</strong>
+        <p>Event article_product_click.</p>
+      </article>
+      <article class="analytics-card">
+        <span>Share lokal</span>
+        <strong data-local-shares>0</strong>
+        <p>Event article_share_click.</p>
+      </article>
+      <article class="analytics-card">
+        <span>Sumber terakhir</span>
+        <strong data-local-source>-</strong>
+        <p>Direct, referral, UTM, atau internal.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section shell analytics-panel">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Event map</span>
+        <h2>Yang sudah dilacak.</h2>
+      </div>
+    </div>
+    <div class="analytics-event-list">
+      {trackingEvents.map((event) => (
+        <article>
+          <code>{event.name}</code>
+          <div>
+            <strong>{event.title}</strong>
+            <p>{event.description}</p>
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section shell analytics-panel">
+    <div class="section-head">
+      <div>
+        <span class="eyebrow">Inventori editorial</span>
+        <h2>Artikel terbaru yang masuk pemantauan.</h2>
+      </div>
+      <a href="/artikel">Lihat arsip</a>
+    </div>
+    <div class="analytics-table" role="table" aria-label="Inventori artikel">
+      <div role="row" class="analytics-table-head">
+        <span>Artikel</span>
+        <span>Rubrik</span>
+        <span>Waktu baca</span>
+      </div>
+      {latestArticles.map((article) => (
+        <a role="row" href={`/artikel/${article.id}`}>
+          <span>{article.data.title}</span>
+          <span>{article.data.category}</span>
+          <span>{getDisplayReadTime(article)}</span>
+        </a>
+      ))}
+    </div>
+  </section>
+
+  <section class="section shell analytics-panel analytics-setup">
+    <div>
+      <span class="eyebrow">Setup production</span>
+      <h2>Agar dashboard punya angka nyata.</h2>
+      <p>
+        Tambahkan salah satu provider berikut. Script sudah otomatis mengirim event
+        ke provider yang tersedia.
+      </p>
+    </div>
+    <div class="analytics-setup-grid">
+      <article>
+        <strong>Plausible</strong>
+        <p>Isi environment variable <code>PUBLIC_PLAUSIBLE_DOMAIN=pramukaupdate.id</code>.</p>
+      </article>
+      <article>
+        <strong>Google Analytics</strong>
+        <p>Jika <code>gtag</code> sudah terpasang, event otomatis ikut terkirim.</p>
+      </article>
+      <article>
+        <strong>Custom endpoint</strong>
+        <p>Isi <code>PUBLIC_ANALYTICS_ENDPOINT</code> untuk menyimpan event ke database sendiri.</p>
+      </article>
+    </div>
+  </section>
+
+  <script>
+    const key = "pramukaupdate:analytics";
+    const readEvents = () => {
+      try {
+        return JSON.parse(window.localStorage.getItem(key) || "[]");
+      } catch {
+        return [];
+      }
+    };
+
+    const renderLocalAnalytics = () => {
+      const events = readEvents();
+      const latest = events.at(-1);
+      const count = (name) => events.filter((event) => event.name === name).length;
+
+      document.querySelector("[data-local-views]").textContent = String(count("content_view"));
+      document.querySelector("[data-local-product-clicks]").textContent = String(count("article_product_click"));
+      document.querySelector("[data-local-shares]").textContent = String(count("article_share_click"));
+      document.querySelector("[data-local-source]").textContent = latest?.properties?.source ?? "-";
+    };
+
+    document.querySelector("[data-clear-local-analytics]")?.addEventListener("click", () => {
+      window.localStorage.removeItem(key);
+      renderLocalAnalytics();
+    });
+
+    renderLocalAnalytics();
+  </script>
+</BaseLayout>

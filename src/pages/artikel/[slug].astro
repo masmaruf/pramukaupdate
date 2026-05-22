@@ -59,6 +59,14 @@ const breadcrumbJsonLd = breadcrumbSchema([
   description={article.data.excerpt}
   image={ogImage}
   type="article"
+  analytics={{
+    contentType: "article",
+    contentId: article.id,
+    contentTitle: article.data.title,
+    category: article.data.category,
+    author: article.data.author,
+    publishedAt: article.data.publishedAt.toISOString(),
+  }}
   jsonLd={[articleJsonLd, breadcrumbJsonLd]}
 >
   <article class="article-detail shell">
@@ -126,7 +134,17 @@ const breadcrumbJsonLd = breadcrumbSchema([
         <h2>Butuh template yang membantu satuan bekerja lebih rapi?</h2>
         <p>Butuh template administrasi? Lihat produk digital yang bisa langsung dipakai satuan.</p>
       </div>
-      <a class="button button-solid" href="/produk">Lihat produk</a>
+      <a
+        class="button button-solid"
+        href="/produk"
+        data-analytics-event="article_product_click"
+        data-analytics-article={article.id}
+        data-analytics-category={article.data.category}
+        data-analytics-target="/produk"
+        data-analytics-placement="article_cta"
+      >
+        Lihat produk
+      </a>
     </section>
     <section class="article-share-box" aria-label="Bagikan artikel">
       <div>
@@ -134,19 +152,19 @@ const breadcrumbJsonLd = breadcrumbSchema([
         <h2>Bagikan tulisan ini</h2>
       </div>
       <div class="article-share-actions">
-        <a class="share-button share-whatsapp" href={`https://wa.me/?text=${shareText}%20${shareUrl}`} aria-label="Bagikan ke WhatsApp">
+        <a class="share-button share-whatsapp" href={`https://wa.me/?text=${shareText}%20${shareUrl}`} aria-label="Bagikan ke WhatsApp" data-analytics-event="article_share_click" data-analytics-channel="whatsapp" data-analytics-article={article.id}>
           <svg viewBox="0 0 32 32" aria-hidden="true">
             <path fill="currentColor" d="M16.02 3.2A12.64 12.64 0 0 0 5.28 22.53L3.6 28.8l6.42-1.64A12.6 12.6 0 1 0 16.02 3.2Zm0 2.28a10.33 10.33 0 0 1 8.76 15.78 10.3 10.3 0 0 1-13.95 3.55l-.46-.27-3.82.97 1.02-3.72-.3-.48A10.35 10.35 0 0 1 16.02 5.48Zm-4.45 5.62c-.23 0-.6.08-.92.43-.31.35-1.2 1.18-1.2 2.88s1.23 3.34 1.4 3.57c.17.23 2.38 3.8 5.88 5.18 2.91 1.15 3.5.92 4.13.86.63-.06 2.04-.83 2.33-1.63.29-.8.29-1.49.2-1.63-.09-.15-.32-.23-.66-.4-.34-.18-2.04-1.01-2.35-1.12-.32-.12-.55-.18-.78.17-.23.34-.89 1.12-1.09 1.35-.2.23-.4.26-.74.09-.34-.18-1.45-.54-2.76-1.7-1.02-.91-1.7-2.03-1.9-2.37-.2-.35-.02-.54.15-.71.15-.15.34-.4.52-.6.17-.2.23-.34.34-.57.12-.23.06-.43-.03-.6-.09-.18-.78-1.88-1.07-2.58-.28-.67-.57-.58-.78-.59h-.66Z"/>
           </svg>
           <span>WhatsApp</span>
         </a>
-        <a class="share-button share-x" href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noreferrer" aria-label="Bagikan ke X">
+        <a class="share-button share-x" href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noreferrer" aria-label="Bagikan ke X" data-analytics-event="article_share_click" data-analytics-channel="x" data-analytics-article={article.id}>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M18.9 2h3.3l-7.2 8.23L23.5 22h-6.65l-5.2-6.8L5.7 22H2.4l7.7-8.8L2 2h6.82l4.7 6.22L18.9 2Zm-1.16 17.93h1.83L7.82 3.96H5.86l11.88 15.97Z"/>
           </svg>
           <span>X</span>
         </a>
-        <button class="share-button share-copy" type="button" data-copy-link={canonical} aria-label="Salin link artikel">
+        <button class="share-button share-copy" type="button" data-copy-link={canonical} aria-label="Salin link artikel" data-analytics-event="article_share_click" data-analytics-channel="copy" data-analytics-article={article.id}>
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path fill="currentColor" d="M8 7a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-1v-2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-5a2 2 0 0 0-2 2v1H8V7Zm-5 5a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-5Zm4-2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H7Z"/>
           </svg>
