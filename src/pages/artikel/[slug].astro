@@ -3,7 +3,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
 import { getCollection, render } from "astro:content";
-import { getDisplayReadTime, getPopularArticles } from "../../lib/articles";
+import { getDisplayReadTime } from "../../lib/articles";
 import { rubricSlug } from "../../lib/rubrics";
 import { absoluteUrl, articleSchema, breadcrumbSchema } from "../../lib/seo";
 
@@ -28,7 +28,6 @@ const relatedArticles = allArticles
   .slice(0, 3);
 const fallbackRelated = allArticles.filter((item) => item.id !== article.id).slice(0, 3);
 const recommendations = relatedArticles.length ? relatedArticles : fallbackRelated;
-const popularArticles = getPopularArticles(allArticles.filter((item) => item.id !== article.id), 3);
 const canonical = new URL(`/artikel/${article.id}`, Astro.site ?? Astro.url).toString();
 const shareText = encodeURIComponent(`${article.data.title} — Pramuka Update`);
 const shareUrl = encodeURIComponent(canonical);
@@ -97,16 +96,12 @@ const breadcrumbJsonLd = breadcrumbSchema([
       </div>
     </header>
     <OptimizedImage src={article.data.image} alt="" width={1400} height={820} />
-    <section class="article-editor-note">
-      <span class="eyebrow">Catatan redaksi</span>
-      <p>
-        Tulisan ini disusun untuk membantu pembina, pengurus, dan anggota Pramuka
-        membaca persoalan satuan dengan lebih jernih, praktis, dan tetap santun.
-      </p>
-    </section>
     {tableOfContents.length > 0 && (
-      <nav class="article-toc" aria-label="Daftar isi artikel">
-        <span class="eyebrow">Daftar isi</span>
+      <details class="article-toc" open={tableOfContents.length <= 4}>
+        <summary>
+          <span>Daftar isi</span>
+          <small>{tableOfContents.length} bagian</small>
+        </summary>
         <ol>
           {tableOfContents.map((heading) => (
             <li class={`toc-depth-${heading.depth}`}>
@@ -114,7 +109,7 @@ const breadcrumbJsonLd = breadcrumbSchema([
             </li>
           ))}
         </ol>
-      </nav>
+      </details>
     )}
     {readAlsoArticle && (
       <aside class="read-also-box" aria-label="Baca juga">
@@ -136,12 +131,27 @@ const breadcrumbJsonLd = breadcrumbSchema([
     <section class="article-share-box" aria-label="Bagikan artikel">
       <div>
         <span class="eyebrow">Bagikan</span>
-        <h2>Bantu gagasan ini sampai ke satuan lain.</h2>
+        <h2>Bagikan tulisan ini</h2>
       </div>
       <div class="article-share-actions">
-        <a class="button button-solid" href={`https://wa.me/?text=${shareText}%20${shareUrl}`}>WhatsApp</a>
-        <a class="button button-outline" href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noreferrer">X/Twitter</a>
-        <button class="button button-ghost" type="button" data-copy-link={canonical}>Salin link</button>
+        <a class="share-button share-whatsapp" href={`https://wa.me/?text=${shareText}%20${shareUrl}`} aria-label="Bagikan ke WhatsApp">
+          <svg viewBox="0 0 32 32" aria-hidden="true">
+            <path fill="currentColor" d="M16.02 3.2A12.64 12.64 0 0 0 5.28 22.53L3.6 28.8l6.42-1.64A12.6 12.6 0 1 0 16.02 3.2Zm0 2.28a10.33 10.33 0 0 1 8.76 15.78 10.3 10.3 0 0 1-13.95 3.55l-.46-.27-3.82.97 1.02-3.72-.3-.48A10.35 10.35 0 0 1 16.02 5.48Zm-4.45 5.62c-.23 0-.6.08-.92.43-.31.35-1.2 1.18-1.2 2.88s1.23 3.34 1.4 3.57c.17.23 2.38 3.8 5.88 5.18 2.91 1.15 3.5.92 4.13.86.63-.06 2.04-.83 2.33-1.63.29-.8.29-1.49.2-1.63-.09-.15-.32-.23-.66-.4-.34-.18-2.04-1.01-2.35-1.12-.32-.12-.55-.18-.78.17-.23.34-.89 1.12-1.09 1.35-.2.23-.4.26-.74.09-.34-.18-1.45-.54-2.76-1.7-1.02-.91-1.7-2.03-1.9-2.37-.2-.35-.02-.54.15-.71.15-.15.34-.4.52-.6.17-.2.23-.34.34-.57.12-.23.06-.43-.03-.6-.09-.18-.78-1.88-1.07-2.58-.28-.67-.57-.58-.78-.59h-.66Z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </a>
+        <a class="share-button share-x" href={`https://twitter.com/intent/tweet?text=${shareText}&url=${shareUrl}`} target="_blank" rel="noreferrer" aria-label="Bagikan ke X">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M18.9 2h3.3l-7.2 8.23L23.5 22h-6.65l-5.2-6.8L5.7 22H2.4l7.7-8.8L2 2h6.82l4.7 6.22L18.9 2Zm-1.16 17.93h1.83L7.82 3.96H5.86l11.88 15.97Z"/>
+          </svg>
+          <span>X</span>
+        </a>
+        <button class="share-button share-copy" type="button" data-copy-link={canonical} aria-label="Salin link artikel">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M8 7a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-1v-2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-5a2 2 0 0 0-2 2v1H8V7Zm-5 5a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-5Zm4-2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H7Z"/>
+          </svg>
+          <span>Salin</span>
+        </button>
       </div>
     </section>
 
@@ -164,24 +174,6 @@ const breadcrumbJsonLd = breadcrumbSchema([
       </div>
     </section>
 
-    <section class="related-articles" aria-label="Artikel populer">
-      <div class="section-head">
-        <div>
-          <span class="eyebrow">Populer</span>
-          <h2>Bacaan yang sering jadi pintu masuk.</h2>
-        </div>
-      </div>
-      <div class="related-grid">
-        {popularArticles.map((item) => (
-          <a class="related-card related-card-warm" href={`/artikel/${item.id}`}>
-            <span>{item.data.category}</span>
-            <strong>{item.data.title}</strong>
-            <small>{getDisplayReadTime(item)}</small>
-          </a>
-        ))}
-      </div>
-    </section>
-
     {nextArticle && nextArticle.id !== article.id && (
       <a class="next-article-card" href={`/artikel/${nextArticle.id}`}>
         <span>Artikel berikutnya</span>
@@ -195,9 +187,12 @@ const breadcrumbJsonLd = breadcrumbSchema([
     copyButton?.addEventListener("click", async () => {
       const link = copyButton.getAttribute("data-copy-link") ?? window.location.href;
       await navigator.clipboard?.writeText(link);
-      copyButton.textContent = "Link tersalin";
+      copyButton.classList.add("is-copied");
+      const label = copyButton.querySelector("span");
+      if (label) label.textContent = "Tersalin";
       window.setTimeout(() => {
-        copyButton.textContent = "Salin link";
+        copyButton.classList.remove("is-copied");
+        if (label) label.textContent = "Salin";
       }, 1800);
     });
   </script>
