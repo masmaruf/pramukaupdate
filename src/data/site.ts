@@ -1,9 +1,9 @@
-﻿export const navItems = [
+export const navItems = [
   { label: "Beranda", href: "/" },
   { label: "Artikel", href: "/artikel" },
   { label: "Produk", href: "/produk" },
   { label: "Kelas", href: "/kelas" },
-  { label: "About", href: "/about" },
+  { label: "Tentang", href: "/about" },
 ];
 
 export const curriculum = [

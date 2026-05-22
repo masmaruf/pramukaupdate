@@ -1,18 +1,83 @@
 ---
 import { navItems } from "../data/site";
+import { whatsappUrl } from "../lib/contact";
+
 const currentPath = Astro.url.pathname;
+
+const rubricItems = [
+  { label: "Administrasi", href: "/rubrik/administrasi" },
+  { label: "Opini", href: "/rubrik/opini" },
+  { label: "Konten Pramuka", href: "/rubrik/konten-pramuka" },
+  { label: "Pembinaan", href: "/rubrik/pembinaan" },
+  { label: "Kritik", href: "/rubrik/kritik" },
+];
+
+const isActive = (href: string) => {
+  if (href === "/") return currentPath === "/";
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+};
+
+const isRubricActive = currentPath.startsWith("/rubrik");
 ---
 
 <header class="topbar">
   <div class="shell topbar-inner">
-    <a class="brand" href="/">PRAMUKA UPDATE</a>
-    <nav class="primary-nav" aria-label="Navigasi utama">
+    <a class="brand" href="/" aria-label="PramukaUpdate">
+      <span class="brand-mark" aria-hidden="true">PU</span>
+      <span class="brand-copy">
+        <span class="brand-name"><strong>Pramuka</strong><em>Update</em></span>
+        <span class="brand-tagline">Media Edukasi & Informasi Pramuka</span>
+      </span>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu">
+      <span>Menu</span>
+      <i aria-hidden="true"></i>
+    </button>
+
+    <nav id="site-menu" class="primary-nav" aria-label="Navigasi utama">
       {navItems.map((item) => (
-        <a class={currentPath === item.href ? "active" : ""} href={item.href}>
-          {item.label}
-        </a>
+        <>
+          <a class={isActive(item.href) ? "active" : ""} href={item.href}>
+            {item.label}
+          </a>
+          {item.href === "/artikel" && (
+            <details class="nav-dropdown" open={isRubricActive}>
+              <summary class={isRubricActive ? "active" : ""}>Rubrik</summary>
+              <div class="nav-dropdown-panel">
+                {rubricItems.map((rubric) => (
+                  <a class={isActive(rubric.href) ? "active" : ""} href={rubric.href}>
+                    {rubric.label}
+                  </a>
+                ))}
+              </div>
+            </details>
+          )}
+        </>
       ))}
     </nav>
-    <a class="button button-solid" href="/kelas">Join now</a>
+
+    <div class="header-actions">
+      <a class="header-search" href="/artikel#pagefind-search">Cari</a>
+      <a class="button button-solid header-wa" href={whatsappUrl("Halo PramukaUpdate, saya ingin bertanya.")}>WhatsApp</a>
+    </div>
   </div>
 </header>
+
+<script>
+  const topbar = document.querySelector(".topbar");
+  const menuToggle = document.querySelector(".menu-toggle");
+  const siteMenu = document.querySelector("#site-menu");
+
+  menuToggle?.addEventListener("click", () => {
+    const isOpen = topbar?.classList.toggle("is-open") ?? false;
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+  });
+
+  siteMenu?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      topbar?.classList.remove("is-open");
+      menuToggle?.setAttribute("aria-expanded", "false");
+    });
+  });
+</script>
