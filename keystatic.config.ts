@@ -57,6 +57,34 @@ export default config({
           multiline: true,
           defaultValue: "Halo PramukaUpdate, saya ingin bertanya.",
         }),
+        redirects: fields.array(
+          fields.object({
+            from: fields.text({
+              label: "Dari URL",
+              description: "Contoh: /artikel-lama",
+            }),
+            to: fields.text({
+              label: "Ke URL",
+              description: "Contoh: /artikel/artikel-baru atau URL penuh.",
+            }),
+            status: fields.select({
+              label: "Status redirect",
+              options: [
+                { label: "301 Permanent", value: "301" },
+                { label: "302 Temporary", value: "302" },
+                { label: "307 Temporary", value: "307" },
+                { label: "308 Permanent", value: "308" },
+              ],
+              defaultValue: "301",
+            }),
+          }),
+          {
+            label: "Redirect manager",
+            description:
+              "Daftar redirect lama ke URL baru. Digunakan untuk membuat file _redirects saat build.",
+            itemLabel: (props) => `${props.fields.from.value} → ${props.fields.to.value}`,
+          },
+        ),
       },
     }),
   },
@@ -90,6 +118,20 @@ export default config({
           label: "Ringkasan",
           multiline: true,
           validation: { length: { min: 40, max: 180 } },
+        }),
+        seoTitle: fields.text({
+          label: "SEO title",
+          description: "Opsional. Jika kosong, judul artikel dipakai.",
+        }),
+        seoDescription: fields.text({
+          label: "SEO description",
+          description: "Opsional. Jika kosong, ringkasan artikel dipakai.",
+          multiline: true,
+          validation: { length: { max: 180 } },
+        }),
+        canonicalUrl: fields.url({
+          label: "Canonical URL manual",
+          description: "Opsional. Isi hanya jika artikel punya URL utama lain.",
         }),
         image: fields.image({
           label: "Cover artikel",
@@ -158,6 +200,20 @@ export default config({
           label: "Deskripsi",
           multiline: true,
           validation: { length: { min: 40, max: 240 } },
+        }),
+        seoTitle: fields.text({
+          label: "SEO title",
+          description: "Opsional. Jika kosong, nama produk dipakai.",
+        }),
+        seoDescription: fields.text({
+          label: "SEO description",
+          description: "Opsional. Jika kosong, deskripsi produk dipakai.",
+          multiline: true,
+          validation: { length: { max: 180 } },
+        }),
+        canonicalUrl: fields.url({
+          label: "Canonical URL manual",
+          description: "Opsional. Isi hanya jika produk punya URL utama lain.",
         }),
         bestFor: fields.text({ label: "Cocok untuk", multiline: true }),
         format: fields.text({ label: "Format file" }),

@@ -17,13 +17,16 @@ export async function getStaticPaths() {
 const { product } = Astro.props;
 const products = (await getCollection("produk")).sort((a, b) => a.data.order - b.data.order);
 const otherProducts = products.filter((item) => item.id !== product.id).slice(0, 3);
-const title = `${product.data.title} | Produk PramukaUpdate`;
-const description = product.data.description;
+const seoTitle = product.data.seoTitle || product.data.title;
+const seoDescription = product.data.seoDescription || product.data.description;
+const title = `${seoTitle} | Produk PramukaUpdate`;
+const description = seoDescription;
 const productWhatsAppUrl = whatsappUrl(
   `Halo PramukaUpdate, saya tertarik dengan ${product.data.title}. Bisa minta info detail dan cara memesannya?`,
 );
 const site = Astro.site ?? Astro.url;
-const productUrl = absoluteUrl(`/produk/${product.id}`, site);
+const defaultProductUrl = absoluteUrl(`/produk/${product.id}`, site);
+const productUrl = product.data.canonicalUrl ? new URL(product.data.canonicalUrl, site).toString() : defaultProductUrl;
 const productImage = absoluteUrl(product.data.image, site);
 const productJsonLd = productSchema({
   title: product.data.title,
@@ -32,6 +35,8 @@ const productJsonLd = productSchema({
   image: productImage,
   price: product.data.price,
   category: product.data.category,
+  paymentUrl: product.data.paymentUrl,
+  site,
 });
 const breadcrumbJsonLd = breadcrumbSchema([
   { label: "Beranda", href: absoluteUrl("/", site) },
@@ -44,6 +49,7 @@ const breadcrumbJsonLd = breadcrumbSchema([
   title={title}
   description={description}
   image={product.data.image}
+  canonicalUrl={productUrl}
   analytics={{
     contentType: "product",
     contentId: product.id,

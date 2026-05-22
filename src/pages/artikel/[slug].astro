@@ -28,7 +28,9 @@ const relatedArticles = allArticles
   .slice(0, 3);
 const fallbackRelated = allArticles.filter((item) => item.id !== article.id).slice(0, 3);
 const recommendations = relatedArticles.length ? relatedArticles : fallbackRelated;
-const canonical = new URL(`/artikel/${article.id}`, Astro.site ?? Astro.url).toString();
+const site = Astro.site ?? Astro.url;
+const defaultCanonical = new URL(`/artikel/${article.id}`, site).toString();
+const canonical = article.data.canonicalUrl ? new URL(article.data.canonicalUrl, site).toString() : defaultCanonical;
 const shareText = encodeURIComponent(`${article.data.title} — Pramuka Update`);
 const shareUrl = encodeURIComponent(canonical);
 const tableOfContents = headings.filter((heading) => heading.depth === 2 || heading.depth === 3);
@@ -36,16 +38,19 @@ const readTime = getDisplayReadTime(article);
 const updatedAt = article.data.updatedAt ?? article.data.publishedAt;
 const readAlsoArticle =
   relatedArticles[0] ?? allArticles.find((item) => item.id !== article.id) ?? null;
-const site = Astro.site ?? Astro.url;
-const articleUrl = absoluteUrl(`/artikel/${article.id}`, site);
+const articleUrl = canonical;
 const articleImage = absoluteUrl(ogImage, site);
+const seoTitle = article.data.seoTitle || article.data.title;
+const seoDescription = article.data.seoDescription || article.data.excerpt;
 const articleJsonLd = articleSchema({
   title: article.data.title,
   description: article.data.excerpt,
   url: articleUrl,
   image: articleImage,
+  author: article.data.author,
   publishedAt: article.data.publishedAt,
   updatedAt,
+  site,
 });
 const breadcrumbJsonLd = breadcrumbSchema([
   { label: "Beranda", href: absoluteUrl("/", site) },
@@ -55,10 +60,11 @@ const breadcrumbJsonLd = breadcrumbSchema([
 ---
 
 <BaseLayout
-  title={`${article.data.title} | Pramuka Update`}
-  description={article.data.excerpt}
+  title={`${seoTitle} | Pramuka Update`}
+  description={seoDescription}
   image={ogImage}
   type="article"
+  canonicalUrl={canonical}
   analytics={{
     contentType: "article",
     contentId: article.id,

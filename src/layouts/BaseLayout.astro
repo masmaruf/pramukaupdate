@@ -5,12 +5,14 @@ import Footer from "../components/Footer.astro";
 import Analytics from "../components/Analytics.astro";
 import { ClientRouter } from "astro:transitions";
 import { whatsappUrl } from "../lib/contact";
+import { organizationSchema, websiteSchema } from "../lib/seo";
 
 interface Props {
   title: string;
   description?: string;
   image?: string;
   type?: "website" | "article";
+  canonicalUrl?: string;
   noindex?: boolean;
   pagefind?: boolean;
   analytics?: {
@@ -29,15 +31,18 @@ const {
   description = "Pramuka Update — media digital Pramuka untuk gagasan, administrasi, produk, dan kelas.",
   image = "/og-default.svg",
   type = "website",
+  canonicalUrl,
   noindex = false,
   pagefind = true,
   analytics,
   jsonLd,
 } = Astro.props;
 
-const canonical = new URL(Astro.url.pathname, Astro.site ?? Astro.url).toString();
+const site = Astro.site ?? Astro.url;
+const canonical = canonicalUrl ? new URL(canonicalUrl, site).toString() : new URL(Astro.url.pathname, site).toString();
 const socialImage = new URL(image, Astro.site ?? Astro.url).toString();
-const structuredData = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const pageSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
+const structuredData = [organizationSchema(site), websiteSchema(site), ...pageSchemas];
 ---
 
 <!doctype html>
