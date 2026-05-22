@@ -1,6 +1,7 @@
 ---
 title: "Membaca Ulang Arti Disiplin dalam Pramuka"
 category: "Opini"
+tags: ["Opini", "Disiplin", "Pembinaan"]
 excerpt: "Disiplin bukan sekadar baris-berbaris atau ketepatan waktu, melainkan kemampuan menjaga komitmen ketika tidak ada yang mengawasi."
 image: "/covers/opini.svg"
 publishedAt: 2026-05-17

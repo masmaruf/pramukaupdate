@@ -1,6 +1,7 @@
 ---
 title: "Administrasi Satuan Pramuka"
 category: "Administrasi"
+tags: ["Administrasi", "Gudep", "Dokumen Satuan"]
 excerpt: "Panduan mengelola dokumen, proposal, dan pencatatan kegiatan agar gugusdepan bekerja lebih rapi di era digital."
 image: "/covers/administrasi.svg"
 publishedAt: 2026-05-10

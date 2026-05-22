@@ -110,6 +110,11 @@ export default config({
           options: articleTypes,
           defaultValue: "Panduan",
         }),
+        tags: fields.array(fields.text({ label: "Tag" }), {
+          label: "Tag artikel",
+          description: "Topik lintas rubrik. Contoh: Gudep, Media Sosial, Administrasi",
+          itemLabel: (props) => props.value,
+        }),
         author: fields.text({
           label: "Penulis / Redaksi",
           defaultValue: "Redaksi PramukaUpdate",

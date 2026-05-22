@@ -1,6 +1,7 @@
 ---
 title: "Kritik Kegiatan yang Terlalu Seremonial"
 category: "Kritik"
+tags: ["Kritik", "Kegiatan", "Pembinaan"]
 excerpt: "Upacara dan simbol penting, tetapi kegiatan Pramuka perlu memastikan anggota pulang membawa pengalaman yang benar-benar membentuk."
 image: "/covers/kritik.svg"
 publishedAt: 2026-05-16

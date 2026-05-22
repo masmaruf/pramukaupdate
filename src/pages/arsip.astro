@@ -1,0 +1,48 @@
+﻿---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Breadcrumb from "../components/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+import { getArchiveMonths, getArchiveYears } from "../lib/taxonomy";
+
+const articles = await getCollection("artikel");
+const years = getArchiveYears(articles);
+const months = getArchiveMonths(articles);
+---
+
+<BaseLayout
+  title="Arsip Artikel | Pramuka Update"
+  description="Arsip artikel PramukaUpdate berdasarkan tahun dan bulan terbit."
+>
+  <section class="page-hero shell">
+    <Breadcrumb items={[{ label: "Beranda", href: "/" }, { label: "Artikel", href: "/artikel" }, { label: "Arsip" }]} />
+    <span class="eyebrow">Arsip</span>
+    <h1>Temukan tulisan berdasarkan waktu terbit.</h1>
+    <p>Arsip ini membantu pembaca menelusuri perkembangan gagasan PramukaUpdate dari bulan ke bulan.</p>
+  </section>
+
+  <section class="section shell archive-layout">
+    <div class="archive-card">
+      <span class="eyebrow">Tahun</span>
+      <div class="archive-link-grid">
+        {years.map((year) => (
+          <a href={`/arsip/${year.year}`}>
+            <strong>{year.label}</strong>
+            <small>{year.count} artikel</small>
+          </a>
+        ))}
+      </div>
+    </div>
+
+    <div class="archive-card">
+      <span class="eyebrow">Bulan</span>
+      <div class="archive-link-grid">
+        {months.map((month) => (
+          <a href={`/arsip/${month.slug}`}>
+            <strong>{month.label}</strong>
+            <small>{month.count} artikel</small>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

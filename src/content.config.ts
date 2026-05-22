@@ -7,6 +7,7 @@ const artikel = defineCollection({
     title: z.string(),
     category: z.string(),
     type: z.string().default("Panduan"),
+    tags: z.array(z.string()).default([]),
     author: z.string().default("Redaksi PramukaUpdate"),
     excerpt: z.string(),
     seoTitle: z.string().optional().default(""),

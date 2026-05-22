@@ -92,6 +92,7 @@ export function articleSchema({
   author,
   publishedAt,
   updatedAt,
+  keywords,
   site,
 }: {
   title: string;
@@ -101,6 +102,7 @@ export function articleSchema({
   author: string;
   publishedAt: Date;
   updatedAt?: Date;
+  keywords?: string[];
   site: URL | string;
 }): JsonLd {
   return {
@@ -111,6 +113,7 @@ export function articleSchema({
     image,
     datePublished: publishedAt.toISOString(),
     dateModified: (updatedAt ?? publishedAt).toISOString(),
+    keywords: keywords?.join(", "),
     author: personOrOrganizationAuthor(author, site),
     publisher: {
       "@type": "Organization",

@@ -1,5 +1,6 @@
----
+﻿---
 import OptimizedImage from "./OptimizedImage.astro";
+import { tagSlug } from "../lib/taxonomy";
 
 interface Props {
   slug: string;
@@ -7,12 +8,25 @@ interface Props {
   category: string;
   type?: string;
   author?: string;
+  tags?: string[];
   excerpt: string;
   readTime: string;
   image: string;
 }
 
-const { slug, title, category, type = "Panduan", author = "Redaksi PramukaUpdate", excerpt, readTime, image } = Astro.props;
+const {
+  slug,
+  title,
+  category,
+  type = "Panduan",
+  author = "Redaksi PramukaUpdate",
+  tags = [],
+  excerpt,
+  readTime,
+  image,
+} = Astro.props;
+const visibleTags = tags.slice(0, 2);
+const rubricHref = `/rubrik/${category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`;
 ---
 
 <article class="card article-card">
@@ -20,10 +34,17 @@ const { slug, title, category, type = "Panduan", author = "Redaksi PramukaUpdate
   <div class="card-body">
     <div class="article-label-row">
       <span class="eyebrow category-badge">{type}</span>
-      <a class="rubric-link" href={`/rubrik/${category.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "")}`}>{category}</a>
+      <a class="rubric-link" href={rubricHref}>{category}</a>
     </div>
     <h3><a href={`/artikel/${slug}`}>{title}</a></h3>
     <p>{excerpt}</p>
+    {visibleTags.length > 0 && (
+      <div class="tag-list tag-list-small" aria-label="Tag artikel">
+        {visibleTags.map((tag) => (
+          <a href={`/tag/${tagSlug(tag)}`}>#{tag}</a>
+        ))}
+      </div>
+    )}
     <small>{author} • {readTime}</small>
   </div>
 </article>

@@ -1,6 +1,7 @@
 ---
 title: "Membuat Proposal Kegiatan yang Mudah Dipahami"
 category: "Administrasi"
+tags: ["Administrasi", "Proposal", "Kegiatan"]
 excerpt: "Proposal yang baik tidak perlu tebal; yang penting jelas menjawab tujuan, kebutuhan, alur kegiatan, dan tanggung jawab."
 image: "/covers/administrasi.svg"
 publishedAt: 2026-05-13

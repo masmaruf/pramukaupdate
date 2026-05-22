@@ -1,6 +1,7 @@
 ---
 title: "Ide Konten Pramuka untuk Gugusdepan"
 category: "Konten Pramuka"
+tags: ["Konten Pramuka", "Gudep", "Media Sosial"]
 excerpt: "Beberapa format konten sederhana yang bisa membuat kegiatan gugusdepan lebih terlihat, terdokumentasi, dan dekat dengan anggota muda."
 image: "/covers/konten-pramuka.svg"
 publishedAt: 2026-05-15

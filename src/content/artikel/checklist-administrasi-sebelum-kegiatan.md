@@ -1,6 +1,7 @@
 ---
 title: "Checklist Administrasi Sebelum Kegiatan Pramuka"
 category: "Administrasi"
+tags: ["Administrasi", "Kegiatan", "Checklist"]
 excerpt: "Daftar sederhana yang membantu pembina dan panitia menyiapkan kegiatan tanpa kehilangan hal-hal penting di menit akhir."
 image: "/covers/administrasi.svg"
 publishedAt: 2026-05-18

@@ -1,6 +1,7 @@
 ---
 title: "Membangun Suara Editorial Akun Pramuka"
 category: "Konten Pramuka"
+tags: ["Konten Pramuka", "Editorial", "Media Sosial"]
 excerpt: "Akun satuan yang kuat bukan hanya rajin posting, tetapi punya sudut pandang yang terasa konsisten."
 image: "/covers/editorial.svg"
 publishedAt: 2026-05-12

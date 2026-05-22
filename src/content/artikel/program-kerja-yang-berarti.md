@@ -1,6 +1,7 @@
 ---
 title: "Menyusun Program Kerja yang Tidak Sekadar Ramai"
 category: "Pembinaan"
+tags: ["Pembinaan", "Program Kerja", "Gudep"]
 excerpt: "Cara memilih kegiatan yang benar-benar menumbuhkan, bukan cuma memenuhi kalender."
 image: "/covers/pembinaan.svg"
 publishedAt: 2026-04-28

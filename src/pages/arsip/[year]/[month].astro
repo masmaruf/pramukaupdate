@@ -1,0 +1,44 @@
+﻿---
+import BaseLayout from "../../../layouts/BaseLayout.astro";
+import ArticleCard from "../../../components/ArticleCard.astro";
+import Breadcrumb from "../../../components/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+import { getDisplayReadTime } from "../../../lib/articles";
+import { getArchiveMonths } from "../../../lib/taxonomy";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("artikel");
+  return getArchiveMonths(articles).map((archive) => ({
+    params: { year: archive.year, month: archive.month },
+    props: { archive },
+  }));
+}
+
+const { archive } = Astro.props;
+const articles = (await getCollection("artikel"))
+  .filter((article) => {
+    const date = article.data.publishedAt;
+    return String(date.getFullYear()) === archive.year && String(date.getMonth() + 1).padStart(2, "0") === archive.month;
+  })
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout
+  title={`Arsip ${archive.label} | Pramuka Update`}
+  description={`Kumpulan artikel PramukaUpdate yang terbit pada ${archive.label}.`}
+>
+  <section class="page-hero shell">
+    <Breadcrumb items={[{ label: "Beranda", href: "/" }, { label: "Artikel", href: "/artikel" }, { label: "Arsip", href: "/arsip" }, { label: archive.year, href: `/arsip/${archive.year}` }, { label: archive.label }]} />
+    <span class="eyebrow">Arsip bulan</span>
+    <h1>{archive.label}</h1>
+    <p>{archive.count} artikel terbit pada periode ini.</p>
+  </section>
+
+  <section class="section shell">
+    <div class="article-grid article-grid-wide">
+      {articles.map((article) => (
+        <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

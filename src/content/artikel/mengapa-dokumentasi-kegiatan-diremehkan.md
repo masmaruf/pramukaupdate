@@ -1,6 +1,7 @@
 ---
 title: "Mengapa Dokumentasi Kegiatan Sering Diremehkan"
 category: "Konten Pramuka"
+tags: ["Konten Pramuka", "Dokumentasi", "Kegiatan"]
 excerpt: "Dokumentasi bukan hanya foto bersama; ia adalah bahan evaluasi, arsip organisasi, dan cerita yang bisa menguatkan identitas satuan."
 image: "/covers/konten-pramuka.svg"
 publishedAt: 2026-05-12

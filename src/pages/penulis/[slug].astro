@@ -1,0 +1,41 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+import { getDisplayReadTime } from "../../lib/articles";
+import { authorSlug, getAuthors } from "../../lib/taxonomy";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("artikel");
+  return getAuthors(articles).map((author) => ({
+    params: { slug: author.slug },
+    props: { author },
+  }));
+}
+
+const { author } = Astro.props;
+const articles = (await getCollection("artikel"))
+  .filter((article) => authorSlug(article.data.author || "Redaksi PramukaUpdate") === author.slug)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout
+  title={`${author.label} | Penulis Pramuka Update`}
+  description={`Profil penulis ${author.label} dan kumpulan artikelnya di PramukaUpdate.`}
+>
+  <section class="page-hero shell author-hero">
+    <Breadcrumb items={[{ label: "Beranda", href: "/" }, { label: "Artikel", href: "/artikel" }, { label: "Penulis" }, { label: author.label }]} />
+    <span class="eyebrow">Penulis</span>
+    <h1>{author.label}</h1>
+    <p>{author.count} artikel dari penulis/redaksi ini. Halaman ini membantu pembaca mengikuti suara editorial yang mereka percaya.</p>
+  </section>
+
+  <section class="section shell">
+    <div class="article-grid article-grid-wide">
+      {articles.map((article) => (
+        <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>

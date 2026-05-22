@@ -1,6 +1,7 @@
 ---
 title: "Pembinaan yang Tidak Membuat Anggota Takut Salah"
 category: "Pembinaan"
+tags: ["Pembinaan", "Peserta Didik", "Karakter"]
 excerpt: "Lingkungan belajar yang sehat memberi ruang untuk mencoba, gagal, memperbaiki, lalu tumbuh dengan percaya diri."
 image: "/covers/pembinaan.svg"
 publishedAt: 2026-05-14

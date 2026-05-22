@@ -19,10 +19,27 @@ const {
 
 const endpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT ?? "";
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN ?? "";
+const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
 ---
 
 {plausibleDomain && (
   <script defer data-domain={plausibleDomain} src="https://plausible.io/js/script.js"></script>
+)}
+
+{gaMeasurementId && (
+  <>
+    <script async src={`https://www.googletagmanager.com/gtag/js?id=${gaMeasurementId}`}></script>
+    <script define:vars={{ gaMeasurementId }}>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){window.dataLayer.push(arguments);}
+      window.gtag = gtag;
+      gtag("js", new Date());
+      gtag("config", gaMeasurementId, {
+        page_path: window.location.pathname,
+        page_title: document.title,
+      });
+    </script>
+  </>
 )}
 
 <script

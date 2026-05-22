@@ -1,6 +1,7 @@
 ---
 title: "Cara Menulis Opini Pramuka yang Tetap Santun"
 category: "Opini"
+tags: ["Opini", "Menulis", "Editorial"]
 excerpt: "Opini yang kuat tidak harus keras; ia cukup jernih, punya alasan, dan tetap menghormati orang yang mungkin berbeda pandangan."
 image: "/covers/opini.svg"
 publishedAt: 2026-05-11

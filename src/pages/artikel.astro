@@ -2,8 +2,9 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
 import { getCollection } from "astro:content";
-import { getDisplayReadTime, getPopularArticles } from "../lib/articles";
+import { getArticleMetric, getDisplayReadTime, getPopularArticles, hasArticleMetrics } from "../lib/articles";
 import { getRubrics } from "../lib/rubrics";
+import { getArchiveMonths, getAuthors, getTags } from "../lib/taxonomy";
 
 const articles = (await getCollection("artikel")).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
@@ -13,6 +14,10 @@ const featuredArticles = articles.filter((article) => article.data.featured).sli
 const popularArticles = getPopularArticles(articles, 5);
 const latestArticles = articles.slice(0, 5);
 const rubrics = getRubrics(articles);
+const tags = getTags(articles).slice(0, 16);
+const authors = getAuthors(articles).slice(0, 8);
+const archives = getArchiveMonths(articles).slice(0, 8);
+const metricsReady = hasArticleMetrics();
 ---
 
 <BaseLayout
@@ -62,11 +67,16 @@ const rubrics = getRubrics(articles);
             <a href={`/artikel/${article.id}`}>
               <span>{article.data.category}</span>
               <strong>{article.data.title}</strong>
-              <small>{getDisplayReadTime(article)}</small>
+              <small>{metricsReady ? `${getArticleMetric(article.id).views ?? 0} dibaca` : getDisplayReadTime(article)}</small>
             </a>
           </li>
         ))}
       </ol>
+      <p class="metric-note">
+        {metricsReady
+          ? "Diurutkan dari data Google Analytics yang sudah diekspor ke website."
+          : "Siap memakai Google Analytics. Sementara belum ada ekspor data, urutan memakai unggulan dan terbaru."}
+      </p>
     </div>
 
     <div class="article-rank-panel article-rank-panel-light">
@@ -106,6 +116,34 @@ const rubrics = getRubrics(articles);
       </div>
     </div>
 
+    <div class="taxonomy-grid">
+      <div class="rubrik-strip taxonomy-card">
+        <span class="eyebrow">Tag</span>
+        <div>
+          {tags.map((tag) => (
+            <a href={`/tag/${tag.slug}`}>#{tag.label} <small>{tag.count}</small></a>
+          ))}
+        </div>
+      </div>
+      <div class="rubrik-strip taxonomy-card">
+        <span class="eyebrow">Penulis</span>
+        <div>
+          {authors.map((author) => (
+            <a href={`/penulis/${author.slug}`}>{author.label} <small>{author.count}</small></a>
+          ))}
+        </div>
+      </div>
+      <div class="rubrik-strip taxonomy-card">
+        <span class="eyebrow">Arsip</span>
+        <div>
+          <a href="/arsip">Semua arsip</a>
+          {archives.map((archive) => (
+            <a href={`/arsip/${archive.slug}`}>{archive.label} <small>{archive.count}</small></a>
+          ))}
+        </div>
+      </div>
+    </div>
+
     <div class="pagefind-shell">
       <div>
         <span class="eyebrow">Search lengkap</span>
@@ -142,7 +180,7 @@ const rubrics = getRubrics(articles);
         <div
           data-card
           data-category={article.data.category}
-          data-search-text={`${article.data.title} ${article.data.category} ${article.data.excerpt}`.toLowerCase()}
+          data-search-text={`${article.data.title} ${article.data.category} ${article.data.type} ${article.data.author} ${(article.data.tags ?? []).join(" ")} ${article.data.excerpt}`.toLowerCase()}
         >
           <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
         </div>

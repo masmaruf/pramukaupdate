@@ -1,0 +1,41 @@
+﻿---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import Breadcrumb from "../../components/Breadcrumb.astro";
+import { getCollection } from "astro:content";
+import { getDisplayReadTime } from "../../lib/articles";
+import { getArchiveYears } from "../../lib/taxonomy";
+
+export async function getStaticPaths() {
+  const articles = await getCollection("artikel");
+  return getArchiveYears(articles).map((year) => ({
+    params: { year: year.year },
+    props: { archiveYear: year },
+  }));
+}
+
+const { archiveYear } = Astro.props;
+const articles = (await getCollection("artikel"))
+  .filter((article) => String(article.data.publishedAt.getFullYear()) === archiveYear.year)
+  .sort((a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf());
+---
+
+<BaseLayout
+  title={`Arsip ${archiveYear.label} | Pramuka Update`}
+  description={`Kumpulan artikel PramukaUpdate yang terbit pada tahun ${archiveYear.label}.`}
+>
+  <section class="page-hero shell">
+    <Breadcrumb items={[{ label: "Beranda", href: "/" }, { label: "Artikel", href: "/artikel" }, { label: "Arsip", href: "/arsip" }, { label: archiveYear.label }]} />
+    <span class="eyebrow">Arsip tahun</span>
+    <h1>{archiveYear.label}</h1>
+    <p>{archiveYear.count} artikel dari PramukaUpdate terbit pada tahun ini.</p>
+  </section>
+
+  <section class="section shell">
+    <div class="article-grid article-grid-wide">
+      {articles.map((article) => (
+        <ArticleCard slug={article.id} {...article.data} readTime={getDisplayReadTime(article)} />
+      ))}
+    </div>
+  </section>
+</BaseLayout>
