@@ -1,17 +1,17 @@
 :root {
-  --bg: #fffaf0;
-  --surface: #ffe9cc;
-  --surface-strong: #ffd399;
-  --ink: #19111f;
-  --muted: #65566d;
-  --line: #ead7c2;
-  --primary: #240046;
-  --secondary: #7b2cbf;
-  --accent: #ff9100;
-  --warm: #ffe4cc;
-  --brown: #662c00;
-  --brown-soft: #cc6900;
-  --cream: #fff4dd;
+  --bg: #ffffff; /* clean white background */
+  --surface: #ffffff;
+  --surface-strong: #f8fafc;
+  --ink: #111827; /* neutral dark for text */
+  --muted: #6b7280; /* subtle muted gray */
+  --line: #e6e6ea; /* faint separators */
+  --primary: #111827; /* primary neutral (headings, text) */
+  --secondary: #7b2cbf; /* purple kept as supporting accent */
+  --accent: var(--secondary); /* accent now purple */
+  --warm: #fff7ed;
+  --brown: #6b3e00;
+  --brown-soft: #9CA3AF; /* neutral gray */
+  --cream: #fffaf0;
   --red: #c62828;
   --white: #ffffff;
 }
@@ -32,10 +32,7 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at top left, rgba(255, 145, 0, 0.18), transparent 28rem),
-    radial-gradient(circle at top right, rgba(123, 44, 191, 0.12), transparent 24rem),
-    linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
+  background: var(--bg);
   color: var(--ink);
   font-family: "Plus Jakarta Sans", system-ui, sans-serif;
   overflow-x: hidden;
@@ -60,9 +57,9 @@ img {
   position: sticky;
   top: 0;
   z-index: 40;
-  border-bottom: 1px solid rgba(234, 215, 194, 0.9);
-  background: rgba(255, 250, 240, 0.88);
-  backdrop-filter: blur(18px);
+  border-bottom: 1px solid var(--line);
+  background: rgba(255,255,255,0.9);
+  backdrop-filter: blur(8px);
 }
 
 .topbar-inner,
@@ -89,10 +86,10 @@ img {
   width: 42px;
   height: 42px;
   place-items: center;
-  border: 1px solid rgba(255, 145, 0, 0.4);
+  border: 1px solid rgba(123, 44, 191, 0.18);
   border-radius: 15px;
   background:
-    radial-gradient(circle at 30% 20%, rgba(255, 145, 0, 0.36), transparent 42%),
+    radial-gradient(circle at 30% 20%, rgba(123, 44, 191, 0.12), transparent 42%),
     linear-gradient(135deg, var(--primary), var(--secondary));
   color: white;
   font-size: 0.78rem;
@@ -155,7 +152,7 @@ nav a:hover,
 .primary-nav > a.active,
 .nav-dropdown summary:hover,
 .nav-dropdown summary.active {
-  background: rgba(255, 145, 0, 0.12);
+  background: rgba(123, 44, 191, 0.06);
   color: var(--primary);
 }
 
@@ -490,7 +487,7 @@ nav a:hover,
   aspect-ratio: 1 / 1;
   place-items: center;
   background:
-    radial-gradient(circle at top left, rgba(255, 145, 0, 0.35), transparent 56%),
+    radial-gradient(circle at top left, rgba(123, 44, 191, 0.06), transparent 56%),
     var(--surface-strong);
   color: var(--secondary);
   overflow: hidden;
@@ -1000,7 +997,7 @@ nav a:hover,
   width: 280px;
   height: 280px;
   border-radius: 50%;
-  background: rgba(255, 145, 0, 0.14);
+  background: rgba(123, 44, 191, 0.06);
 }
 
 .page-hero {
@@ -1101,7 +1098,7 @@ nav a:hover,
   min-height: 30px;
   align-items: center;
   padding: 0 10px;
-  border: 1px solid rgba(255, 145, 0, 0.28);
+  border: 1px solid rgba(123, 44, 191, 0.12);
   border-radius: 999px;
   background: rgba(255, 233, 204, 0.62);
   color: var(--primary);
@@ -1297,7 +1294,7 @@ nav a:hover,
 
 .search-box input:focus {
   border-color: var(--secondary);
-  box-shadow: 0 0 0 4px rgba(255, 145, 0, 0.35);
+  box-shadow: 0 0 0 4px rgba(123, 44, 191, 0.12);
 }
 
 .empty-state {
@@ -1600,7 +1597,7 @@ nav a:hover,
 }
 
 .share-copy.is-copied {
-  border-color: rgba(255, 145, 0, 0.4);
+  border-color: rgba(123, 44, 191, 0.12);
   background: var(--warm);
 }
 
@@ -1967,6 +1964,22 @@ nav a:hover,
   transition: opacity 160ms ease, transform 160ms ease;
 }
 
+/* WhatsApp specific FAB */
+.fab.fab-whatsapp {
+  background: #25D366;
+  border-radius: 50%;
+  width: 56px;
+  height: 56px;
+  border: none;
+  box-shadow: 0 10px 24px rgba(37, 211, 102, 0.18);
+  color: #ffffff; /* ensures SVG using currentColor is white */
+}
+.fab.fab-whatsapp svg {
+  width: 22px;
+  height: 22px;
+}
+
+
 .fab:hover {
   opacity: 1;
   transform: translateY(-2px);
@@ -1975,7 +1988,7 @@ nav a:hover,
 @media (max-width: 860px) {
   body {
     background:
-      radial-gradient(circle at top, rgba(255, 145, 0, 0.32), transparent 20rem),
+      radial-gradient(circle at top, rgba(123, 44, 191, 0.06), transparent 20rem),
       linear-gradient(180deg, #ffffff 0%, var(--bg) 100%);
   }
 

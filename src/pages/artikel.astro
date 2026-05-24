@@ -116,41 +116,9 @@ const metricsReady = hasArticleMetrics();
       </div>
     </div>
 
-    <div class="taxonomy-grid">
-      <div class="rubrik-strip taxonomy-card">
-        <span class="eyebrow">Tag</span>
-        <div>
-          {tags.map((tag) => (
-            <a href={`/tag/${tag.slug}`}>#{tag.label} <small>{tag.count}</small></a>
-          ))}
-        </div>
-      </div>
-      <div class="rubrik-strip taxonomy-card">
-        <span class="eyebrow">Penulis</span>
-        <div>
-          {authors.map((author) => (
-            <a href={`/penulis/${author.slug}`}>{author.label} <small>{author.count}</small></a>
-          ))}
-        </div>
-      </div>
-      <div class="rubrik-strip taxonomy-card">
-        <span class="eyebrow">Arsip</span>
-        <div>
-          <a href="/arsip">Semua arsip</a>
-          {archives.map((archive) => (
-            <a href={`/arsip/${archive.slug}`}>{archive.label} <small>{archive.count}</small></a>
-          ))}
-        </div>
-      </div>
-    </div>
+    <!-- Taxonomy cards (Tag, Penulis, Arsip) removed temporarily -->
 
-    <div class="pagefind-shell">
-      <div>
-        <span class="eyebrow">Search lengkap</span>
-        <h2>Cari sampai ke isi tulisan.</h2>
-      </div>
-      <div id="pagefind-search"></div>
-    </div>
+    <!-- Search lengkap block removed temporarily -->
 
     <div class="article-tools">
       <label class="search-box">

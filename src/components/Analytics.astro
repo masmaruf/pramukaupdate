@@ -20,6 +20,7 @@ const {
 const endpoint = import.meta.env.PUBLIC_ANALYTICS_ENDPOINT ?? "";
 const plausibleDomain = import.meta.env.PUBLIC_PLAUSIBLE_DOMAIN ?? "";
 const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
+const fbPixelId = import.meta.env.PUBLIC_FACEBOOK_PIXEL_ID ?? "551130505241561";
 ---
 
 {plausibleDomain && (
@@ -42,6 +43,26 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
   </>
 )}
 
+{fbPixelId && (
+  <>
+    <script define:vars={{ fbPixelId }}>
+      !function(f,b,e,v,n,t,s)
+      {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+      if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+      n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];
+      s.parentNode.insertBefore(t,s)}(window, document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', fbPixelId);
+    </script>
+    <noscript>
+      <img height="1" width="1" style="display:none"
+           src={`https://www.facebook.com/tr?id=${fbPixelId}&ev=PageView&noscript=1`} />
+    </noscript>
+  </>
+)}
+
 <script
   define:vars={{
     endpoint,
@@ -51,6 +72,7 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
     category,
     author,
     publishedAt,
+    fbPixelId,
   }}
 >
   const getTrafficSource = () => {
@@ -118,6 +140,42 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
     }).catch(() => {});
   };
 
+  const mapFbEventName = (name) => {
+    switch (name) {
+      case "content_view":
+        return "PageView";
+      case "product_detail_click":
+        return "ViewContent";
+      case "product_payment_click":
+        return "InitiateCheckout";
+      default:
+        return name;
+    }
+  };
+
+  const sendToFacebookCapi = (fbEventName, eventID, properties) => {
+    fetch("/api/facebook-capi", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        eventName: fbEventName,
+        eventId: eventID,
+        eventSourceUrl: window.location.href,
+        clientUserAgent: navigator.userAgent,
+        customData: {
+          content_name: properties.content_title || properties.product || document.title,
+          content_category: properties.category || "",
+          content_ids: properties.content_id || properties.product ? [properties.content_id || properties.product] : [],
+          content_type: properties.content_type || "product",
+          value: properties.value ? parseFloat(properties.value) : undefined,
+          currency: properties.currency || "IDR",
+        },
+      }),
+    }).catch(() => {});
+  };
+
   window.pramukaAnalyticsTrack = (name, properties = {}) => {
     const payload = { ...baseProperties(), ...properties };
     const eventRecord = {
@@ -149,6 +207,24 @@ const gaMeasurementId = import.meta.env.PUBLIC_GA_MEASUREMENT_ID ?? "";
     }
 
     sendToEndpoint(name, payload);
+
+    if (fbPixelId) {
+      const fbEventName = mapFbEventName(name);
+      const eventID = `evt-${Date.now()}-${Math.random().toString(36).substring(2, 9)}`;
+
+      if (typeof window.fbq === "function") {
+        window.fbq("track", fbEventName, {
+          content_name: payload.content_title || payload.product || document.title,
+          content_category: payload.category || "",
+          content_ids: payload.content_id || payload.product ? [payload.content_id || payload.product] : [],
+          content_type: payload.content_type || "product",
+          value: payload.value ? parseFloat(payload.value) : undefined,
+          currency: payload.currency || "IDR",
+        }, { eventID });
+      }
+
+      sendToFacebookCapi(fbEventName, eventID, payload);
+    }
   };
 
   window.pramukaAnalyticsTrack("content_view");

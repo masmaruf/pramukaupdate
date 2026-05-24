@@ -6,6 +6,7 @@
     "dev": "astro dev",
     "build": "astro build && node scripts/generate-redirects.mjs && pagefind --site dist",
     "metrics:ga": "node scripts/import-ga-article-metrics.mjs",
+    "metrics:ga:api": "node scripts/fetch-ga-article-metrics.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
