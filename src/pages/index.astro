@@ -28,12 +28,13 @@ const featuredProducts = products.filter((product) => product.featured).slice(0,
         dan alat bantu yang membuat pembinaan terasa lebih jernih.
       </p>
       <div class="actions">
-        <a class="button button-solid" href="/artikel">Baca artikel</a>
-        <a class="button button-outline" href="/produk">Lihat produk</a>
-        <a class="button button-ghost" href="/kelas">Ikuti kelas</a>
+        <form action="/artikel" method="get" class="hero-search-form">
+          <input type="search" name="q" placeholder="Cari artikel, panduan, atau produk..." required aria-label="Cari di situs" />
+          <button type="submit" class="button button-solid" aria-label="Cari">Mulai Mencari</button>
+        </form>
       </div>
     </div>
-    <div class="hero-visual">
+    <div class="hero-visual hero-visual-overlay">
       <OptimizedImage
         src={featuredArticle.data.image}
         alt="Kegiatan Pramuka modern di alam terbuka"
@@ -65,34 +66,42 @@ const featuredProducts = products.filter((product) => product.featured).slice(0,
     </div>
   </section>
 
-  <section class="section section-tint">
+  <section class="section section-ecommerce">
     <div class="shell">
-      <div class="section-head">
-        <h2>Produk digital unggulan</h2>
-        <a href="/produk">Semua produk</a>
+      <div class="ecommerce-header">
+        <h2>Resource & Tools Premium</h2>
+        <p>Alat bantu dan kelas eksklusif untuk mendukung manajemen ambalan dan pembinaan.</p>
+      </div>
+
+      <div class="section-head mt-8">
+        <h3>Produk Digital Unggulan</h3>
+        <a href="/produk">Lihat semua produk &rarr;</a>
       </div>
       <div class="product-grid">
         {(featuredProducts.length ? featuredProducts : products.slice(0, 2)).map((product) => <ProductCard {...product} />)}
       </div>
+
+      <div class="spotlight spotlight-ecommerce mt-12">
+        <div>
+          <span class="pill">Pendaftaran dibuka</span>
+          <h2>Kelas 30 Hari Belajar Bikin Konten</h2>
+          <p>
+            Belajar copywriting, desain editorial, dan strategi publikasi digital
+            untuk akun ambalan yang ingin tumbuh dengan suara sendiri.
+          </p>
+          <a class="button button-light" href="/kelas">Lihat detail kelas</a>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="section shell spotlight">
-    <div>
-      <span class="pill">Pendaftaran dibuka</span>
-      <h2>Kelas 30 Hari Belajar Bikin Konten</h2>
-      <p>
-        Belajar copywriting, desain editorial, dan strategi publikasi digital
-        untuk akun ambalan yang ingin tumbuh dengan suara sendiri.
-      </p>
-      <a class="button button-light" href="/kelas">Lihat kelas</a>
+  <section class="manifesto-banner mt-12">
+    <div class="shell manifesto-inner">
+      <blockquote>
+        “Gerakan yang kuat tidak hanya punya banyak kegiatan. Ia punya bahasa,
+        ingatan, dan keberanian untuk terus memperbarui dirinya.”
+      </blockquote>
+      <cite>— Redaksi PramukaUpdate</cite>
     </div>
-  </section>
-
-  <section class="shell manifesto">
-    <p>
-      “Gerakan yang kuat tidak hanya punya banyak kegiatan. Ia punya bahasa,
-      ingatan, dan keberanian untuk terus memperbarui dirinya.”
-    </p>
   </section>
 </BaseLayout>

@@ -191,11 +191,21 @@ const metricsReady = hasArticleMetrics();
     });
 
     search?.addEventListener("input", applyArticleFilters);
+
+    window.addEventListener("DOMContentLoaded", () => {
+      const params = new URLSearchParams(window.location.search);
+      const q = params.get("q");
+      if (q && search instanceof HTMLInputElement) {
+        search.value = q;
+        applyArticleFilters();
+      }
+    });
   </script>
 
   <script is:inline>
     window.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector("#pagefind-search");
+      if (!target) return;
       const script = document.createElement("script");
       script.src = "/pagefind/pagefind-ui.js";
       script.onload = () => {

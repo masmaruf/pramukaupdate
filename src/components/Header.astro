@@ -17,7 +17,8 @@ const isActive = (href: string) => {
   return currentPath === href || currentPath.startsWith(`${href}/`);
 };
 
-const isRubricActive = currentPath.startsWith("/rubrik");
+const isEdukasiActive = currentPath.startsWith("/artikel") || currentPath.startsWith("/rubrik") || currentPath === "/about";
+const isResourceActive = currentPath.startsWith("/produk") || currentPath.startsWith("/kelas") || currentPath === "/rubrik/administrasi";
 ---
 
 <header class="topbar">
@@ -36,25 +37,39 @@ const isRubricActive = currentPath.startsWith("/rubrik");
     </button>
 
     <nav id="site-menu" class="primary-nav" aria-label="Navigasi utama">
-      {navItems.map((item) => (
-        <>
-          <a class={isActive(item.href) ? "active" : ""} href={item.href}>
-            {item.label}
-          </a>
-          {item.href === "/artikel" && (
-            <details class="nav-dropdown" open={isRubricActive}>
-              <summary class={isRubricActive ? "active" : ""}>Rubrik</summary>
-              <div class="nav-dropdown-panel">
-                {rubricItems.map((rubric) => (
-                  <a class={isActive(rubric.href) ? "active" : ""} href={rubric.href}>
-                    {rubric.label}
-                  </a>
-                ))}
-              </div>
-            </details>
-          )}
-        </>
-      ))}
+      <a class={isActive("/") ? "active" : ""} href="/">Beranda</a>
+      
+      <details class="nav-dropdown" open={isEdukasiActive}>
+        <summary class={isEdukasiActive ? "active" : ""}>Edukasi & Artikel</summary>
+        <div class="nav-dropdown-panel mega-menu-panel">
+          <div class="mega-menu-col">
+            <strong>Rubrik</strong>
+            <a href="/rubrik/opini">Opini</a>
+            <a href="/rubrik/kritik">Kritik</a>
+            <a href="/rubrik/pembinaan">Pembinaan</a>
+          </div>
+          <div class="mega-menu-col">
+            <strong>Jelajahi</strong>
+            <a href="/artikel">Semua Artikel</a>
+            <a href="/about">Tentang Kami</a>
+          </div>
+        </div>
+      </details>
+
+      <details class="nav-dropdown" open={isResourceActive}>
+        <summary class={isResourceActive ? "active" : ""}>Resource & Tools</summary>
+        <div class="nav-dropdown-panel mega-menu-panel">
+          <div class="mega-menu-col">
+            <strong>Download</strong>
+            <a href="/produk">Produk Digital</a>
+            <a href="/rubrik/administrasi">Administrasi</a>
+          </div>
+          <div class="mega-menu-col">
+            <strong>Belajar</strong>
+            <a href="/kelas">Kelas Pembinaan</a>
+          </div>
+        </div>
+      </details>
     </nav>
 
     <div class="header-actions">

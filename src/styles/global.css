@@ -2399,3 +2399,158 @@ nav a:hover,
     border-radius: 24px;
   }
 }
+
+/* --- UI/UX Redesign Additions --- */
+
+/* 1. Hero Search Bar & Overlay */
+.hero-search-form {
+  display: flex;
+  gap: 8px;
+  margin-top: 24px;
+  max-width: 480px;
+}
+.hero-search-form input {
+  flex: 1;
+  padding: 12px 18px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font-size: 1rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+.hero-search-form input:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+.hero-visual-overlay {
+  position: relative;
+}
+.hero-visual-overlay::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 32px;
+  background: linear-gradient(135deg, rgba(36, 0, 70, 0.4) 0%, rgba(123, 44, 191, 0.1) 100%);
+  pointer-events: none;
+}
+
+/* 2. Mega Menu */
+.mega-menu-panel {
+  display: flex !important;
+  gap: 32px;
+  padding: 24px !important;
+  min-width: 320px;
+}
+.mega-menu-col {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  flex: 1;
+}
+.mega-menu-col strong {
+  color: var(--muted);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 4px;
+}
+.mega-menu-col a {
+  color: var(--primary);
+  font-weight: 600;
+  padding: 4px 0;
+}
+.mega-menu-col a:hover {
+  color: var(--accent);
+}
+.header-wa {
+  background-color: var(--secondary) !important;
+  border-color: var(--secondary) !important;
+  color: white !important;
+}
+
+/* 3. Category Badges */
+.category-badge[data-category="kritik"] { background-color: #ffebee; color: #c62828; }
+.category-badge[data-category="administrasi"] { background-color: #e8f5e9; color: #2e7d32; }
+.category-badge[data-category="opini"] { background-color: #fff3e0; color: #ef6c00; }
+.category-badge[data-category="pembinaan"] { background-color: #e3f2fd; color: #1565c0; }
+.category-badge[data-category="konten pramuka"] { background-color: #f3e5f5; color: #6a1b9a; }
+
+/* Force 3 columns for articles on desktop */
+@media (min-width: 861px) {
+  .article-grid {
+    grid-template-columns: repeat(3, 1fr) !important;
+  }
+}
+
+/* 4. E-Commerce Section */
+.section-ecommerce {
+  background-color: #fdfbf7;
+  padding: 64px 0;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  margin: 48px 0;
+}
+.ecommerce-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.ecommerce-header h2 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  color: var(--primary);
+  margin-bottom: 12px;
+}
+.ecommerce-header p {
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+.product-social-proof {
+  font-size: 0.85rem !important;
+  color: #d97706 !important;
+  font-weight: 600;
+  margin: 4px 0 8px !important;
+}
+.product-card .product-media {
+  perspective: 1000px;
+}
+.product-card .product-media img {
+  box-shadow: -8px 12px 24px rgba(0,0,0,0.12);
+  transform: rotateY(-5deg) scale(0.95);
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.product-card:hover .product-media img {
+  transform: rotateY(0deg) scale(1);
+}
+
+/* 5. Manifesto Banner & Footer */
+.manifesto-banner {
+  background-color: var(--primary);
+  color: white;
+  padding: 80px 24px;
+  text-align: center;
+}
+.manifesto-inner blockquote {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 700;
+  max-width: 800px;
+  margin: 0 auto 24px;
+  line-height: 1.4;
+}
+.manifesto-inner cite {
+  font-style: normal;
+  color: var(--secondary);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+.footer-social {
+  display: flex;
+  gap: 16px;
+}
+.footer-social a {
+  color: var(--muted);
+  transition: color 0.2s;
+}
+.footer-social a:hover {
+  color: var(--secondary);
+}

@@ -1,4 +1,4 @@
-﻿---
+---
 import OptimizedImage from "./OptimizedImage.astro";
 import { tagSlug } from "../lib/taxonomy";
 
@@ -33,8 +33,8 @@ const rubricHref = `/rubrik/${category.toLowerCase().replace(/[^a-z0-9]+/g, "-")
   <OptimizedImage src={image} alt="" width={900} height={600} />
   <div class="card-body">
     <div class="article-label-row">
-      <span class="eyebrow category-badge">{type}</span>
-      <a class="rubric-link" href={rubricHref}>{category}</a>
+      <a class="eyebrow category-badge" href={rubricHref} data-category={category.toLowerCase()}>{category}</a>
+      <span class="article-type">{type}</span>
     </div>
     <h3><a href={`/artikel/${slug}`}>{title}</a></h3>
     <p>{excerpt}</p>
