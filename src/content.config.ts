@@ -18,6 +18,8 @@ const artikel = defineCollection({
     updatedAt: z.date().nullable().optional(),
     readTime: z.string(),
     featured: z.boolean().default(false),
+    series: z.string().nullable().optional(),
+    seriesOrder: z.number().nullable().optional(),
   }),
 });
 
@@ -55,4 +57,22 @@ const produk = defineCollection({
   }),
 });
 
-export const collections = { artikel, produk };
+const seri = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/seri" }),
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional().default(""),
+  })
+});
+
+const penulis = defineCollection({
+  loader: glob({ pattern: "**/*.yaml", base: "./src/content/penulis" }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string().default("Kontributor"),
+    bio: z.string(),
+    photo: z.string().optional(),
+  })
+});
+
+export const collections = { artikel, produk, seri, penulis };

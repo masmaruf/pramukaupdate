@@ -11,6 +11,7 @@ interface Props {
   title: string;
   description?: string;
   image?: string;
+  imageType?: string;
   type?: "website" | "article";
   canonicalUrl?: string;
   noindex?: boolean;
@@ -29,7 +30,8 @@ interface Props {
 const {
   title,
   description = "Pramuka Update — media digital Pramuka untuk gagasan, administrasi, produk, dan kelas.",
-  image = "/og-default.svg",
+  image = "/og-default.png",
+  imageType,
   type = "website",
   canonicalUrl,
   noindex = false,
@@ -40,7 +42,8 @@ const {
 
 const site = Astro.site ?? Astro.url;
 const canonical = canonicalUrl ? new URL(canonicalUrl, site).toString() : new URL(Astro.url.pathname, site).toString();
-const socialImage = new URL(image, Astro.site ?? Astro.url).toString();
+const socialImage = image.startsWith('http') ? image : new URL(image, Astro.site ?? Astro.url).toString();
+const detectedImageType = imageType ?? (image.endsWith('.jpg') || image.endsWith('.jpeg') ? 'image/jpeg' : image.endsWith('.webp') ? 'image/webp' : 'image/png');
 const pageSchemas = jsonLd ? (Array.isArray(jsonLd) ? jsonLd : [jsonLd]) : [];
 const structuredData = [organizationSchema(site), websiteSchema(site), ...pageSchemas];
 ---
@@ -54,6 +57,8 @@ const structuredData = [organizationSchema(site), websiteSchema(site), ...pageSc
     {noindex && <meta name="robots" content="noindex,nofollow" />}
     <link rel="canonical" href={canonical} />
     <title>{title}</title>
+    <meta property="og:site_name" content="PramukaUpdate" />
+    <meta property="og:locale" content="id_ID" />
     <meta property="og:type" content={type} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -61,10 +66,14 @@ const structuredData = [organizationSchema(site), websiteSchema(site), ...pageSc
     <meta property="og:image" content={socialImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
+    <meta property="og:image:type" content={detectedImageType} />
+    <meta property="og:image:alt" content={title} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@pramukaupdate" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={socialImage} />
+    <meta name="twitter:image:alt" content={title} />
     {structuredData.map((schema) => (
       <script type="application/ld+json" set:html={JSON.stringify(schema)} />
     ))}
@@ -75,8 +84,37 @@ const structuredData = [organizationSchema(site), websiteSchema(site), ...pageSc
       rel="stylesheet"
     />
     <ClientRouter />
+    <script is:inline>
+      const theme = (() => {
+        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+          return localStorage.getItem('theme');
+        }
+        return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      })();
+      if (theme === 'dark') {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    </script>
   </head>
   <body>
+    <div id="reading-progress"></div>
+    <script is:inline>
+      let scrollListener = null;
+      document.addEventListener('astro:page-load', () => {
+        const progressBar = document.getElementById('reading-progress');
+        if (!progressBar) return;
+        if (scrollListener) window.removeEventListener('scroll', scrollListener);
+        scrollListener = () => {
+          const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+          const scrollHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+          if (scrollHeight <= 0) return;
+          const scrollPercentage = (scrollTop / scrollHeight) * 100;
+          progressBar.style.width = scrollPercentage + '%';
+        };
+        window.addEventListener('scroll', scrollListener, { passive: true });
+        scrollListener();
+      });
+    </script>
     <Header />
     <main {...(pagefind ? { "data-pagefind-body": true } : {})}>
       <slot />

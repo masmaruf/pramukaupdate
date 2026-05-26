@@ -2,7 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import Breadcrumb from "../../components/Breadcrumb.astro";
 import OptimizedImage from "../../components/OptimizedImage.astro";
-import { getCollection, render } from "astro:content";
+import { getCollection, getEntry, render } from "astro:content";
 import { getDisplayReadTime } from "../../lib/articles";
 import { rubricSlug } from "../../lib/rubrics";
 import { authorSlug, tagSlug } from "../../lib/taxonomy";
@@ -18,7 +18,7 @@ export async function getStaticPaths() {
 
 const { article } = Astro.props;
 const { Content, headings } = await render(article);
-const ogImage = `/og/${article.id}.svg`;
+const ogImage = `/og/${article.id}.png`;
 const allArticles = (await getCollection("artikel")).sort(
   (a, b) => b.data.publishedAt.valueOf() - a.data.publishedAt.valueOf(),
 );
@@ -45,6 +45,25 @@ const readTime = getDisplayReadTime(article);
 const updatedAt = article.data.updatedAt ?? article.data.publishedAt;
 const readAlsoArticle =
   relatedArticles[0] ?? allArticles.find((item) => item.id !== article.id) ?? null;
+
+let seriesData = null;
+let seriesArticles = [];
+if (article.data.series) {
+  seriesData = await getEntry("seri", article.data.series);
+  seriesArticles = allArticles
+    .filter((a) => a.data.series === article.data.series)
+    .sort((a, b) => (a.data.seriesOrder ?? 0) - (b.data.seriesOrder ?? 0));
+}
+
+const penulisId = authorSlug(article.data.author);
+const penulisData = await getEntry("penulis", penulisId);
+
+const allProducts = (await getCollection("produk")).sort((a, b) => a.data.order - b.data.order);
+const recommendedProduct = allProducts.find(p => 
+  p.data.category === article.data.category || 
+  articleTags.some(t => p.data.category.toLowerCase().includes(t.toLowerCase()))
+) || allProducts[0];
+
 const articleUrl = canonical;
 const articleImage = absoluteUrl(ogImage, site);
 const seoTitle = article.data.seoTitle || article.data.title;
@@ -126,7 +145,8 @@ const breadcrumbJsonLd = breadcrumbSchema([
       )}
     </header>
     <OptimizedImage src={article.data.image} alt="" width={1400} height={820} />
-    {tableOfContents.length > 0 && (
+    <div class="article-body-grid">
+      {tableOfContents.length > 0 && (
       <details class="article-toc" open={tableOfContents.length <= 4}>
         <summary>
           <span>Daftar isi</span>
@@ -147,25 +167,56 @@ const breadcrumbJsonLd = breadcrumbSchema([
         <a href={`/artikel/${readAlsoArticle.id}`}>{readAlsoArticle.data.title}</a>
       </aside>
     )}
+    {seriesData && (
+      <div class="article-series-box">
+        <span class="eyebrow">Seri Tulisan</span>
+        <h3>{seriesData.data.title}</h3>
+        {seriesData.data.description && <p>{seriesData.data.description}</p>}
+        <ol>
+          {seriesArticles.map(a => (
+            <li>
+              {a.id === article.id ? (
+                <strong>{a.data.title}</strong>
+              ) : (
+                <a href={`/artikel/${a.id}`}>{a.data.title}</a>
+              )}
+            </li>
+          ))}
+        </ol>
+      </div>
+    )}
     <div class="prose">
       <Content />
     </div>
+    </div>
+    {penulisData && (
+      <div class="article-author-box">
+        {penulisData.data.photo && (
+          <img src={penulisData.data.photo} alt={penulisData.data.name} width="64" height="64" loading="lazy" />
+        )}
+        <div class="author-info">
+          <span class="author-name">{penulisData.data.name}</span>
+          <span class="author-role">{penulisData.data.role}</span>
+          {penulisData.data.bio && <p class="author-bio">{penulisData.data.bio}</p>}
+        </div>
+      </div>
+    )}
     <section class="article-product-cta">
       <div>
-        <span class="eyebrow">Alat bantu satuan</span>
-        <h2>Butuh template yang membantu satuan bekerja lebih rapi?</h2>
-        <p>Butuh template administrasi? Lihat produk digital yang bisa langsung dipakai satuan.</p>
+        <span class="eyebrow">Rekomendasi untuk Anda</span>
+        <h2>{recommendedProduct.data.title}</h2>
+        <p>{recommendedProduct.data.description}</p>
       </div>
       <a
         class="button button-solid"
-        href="/produk"
+        href={`/produk/${recommendedProduct.id}`}
         data-analytics-event="article_product_click"
         data-analytics-article={article.id}
         data-analytics-category={article.data.category}
-        data-analytics-target="/produk"
+        data-analytics-target={`/produk/${recommendedProduct.id}`}
         data-analytics-placement="article_cta"
       >
-        Lihat produk
+        Lihat detail
       </a>
     </section>
     <section class="article-share-box" aria-label="Bagikan artikel">
@@ -191,6 +242,12 @@ const breadcrumbJsonLd = breadcrumbSchema([
             <path fill="currentColor" d="M8 7a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4h-1v-2h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-5a2 2 0 0 0-2 2v1H8V7Zm-5 5a4 4 0 0 1 4-4h5a4 4 0 0 1 4 4v5a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4v-5Zm4-2a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h5a2 2 0 0 0 2-2v-5a2 2 0 0 0-2-2H7Z"/>
           </svg>
           <span>Salin</span>
+        </button>
+        <button class="share-button bookmark-button" type="button" data-bookmark-id={article.id} aria-label="Simpan Artikel">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path fill="currentColor" d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/>
+          </svg>
+          <span class="bookmark-label">Simpan</span>
         </button>
       </div>
     </section>
@@ -223,17 +280,48 @@ const breadcrumbJsonLd = breadcrumbSchema([
   </article>
 
   <script>
-    const copyButton = document.querySelector("[data-copy-link]");
-    copyButton?.addEventListener("click", async () => {
-      const link = copyButton.getAttribute("data-copy-link") ?? window.location.href;
-      await navigator.clipboard?.writeText(link);
-      copyButton.classList.add("is-copied");
-      const label = copyButton.querySelector("span");
-      if (label) label.textContent = "Tersalin";
-      window.setTimeout(() => {
-        copyButton.classList.remove("is-copied");
-        if (label) label.textContent = "Salin";
-      }, 1800);
+    document.addEventListener("astro:page-load", () => {
+      const copyButton = document.querySelector("[data-copy-link]");
+      copyButton?.addEventListener("click", async () => {
+        const link = copyButton.getAttribute("data-copy-link") ?? window.location.href;
+        await navigator.clipboard?.writeText(link);
+        copyButton.classList.add("is-copied");
+        const label = copyButton.querySelector("span");
+        if (label) label.textContent = "Tersalin";
+        window.setTimeout(() => {
+          copyButton.classList.remove("is-copied");
+          if (label) label.textContent = "Salin";
+        }, 1800);
+      });
+
+      const bookmarkBtn = document.querySelector(".bookmark-button");
+      if (bookmarkBtn) {
+        const articleId = bookmarkBtn.getAttribute("data-bookmark-id");
+        if (articleId) {
+          const saved = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+          const label = bookmarkBtn.querySelector(".bookmark-label");
+          
+          if (saved.includes(articleId)) {
+            bookmarkBtn.classList.add("is-saved");
+            if (label) label.textContent = "Tersimpan";
+          }
+
+          bookmarkBtn.addEventListener("click", () => {
+            const currentSaved = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+            if (currentSaved.includes(articleId)) {
+              const newSaved = currentSaved.filter((id: string) => id !== articleId);
+              localStorage.setItem("bookmarks", JSON.stringify(newSaved));
+              bookmarkBtn.classList.remove("is-saved");
+              if (label) label.textContent = "Simpan";
+            } else {
+              currentSaved.push(articleId);
+              localStorage.setItem("bookmarks", JSON.stringify(currentSaved));
+              bookmarkBtn.classList.add("is-saved");
+              if (label) label.textContent = "Tersimpan";
+            }
+          });
+        }
+      }
     });
   </script>
 </BaseLayout>

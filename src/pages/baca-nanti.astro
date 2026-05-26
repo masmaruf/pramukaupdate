@@ -1,0 +1,65 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout title="Baca Nanti | Pramuka Update" description="Kumpulan artikel yang Anda simpan untuk dibaca nanti.">
+  <div class="shell">
+    <header style="margin: 40px 0; text-align: center;">
+      <h1>Baca Nanti</h1>
+      <p>Artikel yang Anda simpan di perangkat ini.</p>
+    </header>
+
+    <div id="bookmark-list" class="article-grid">
+      <!-- Injected via client side script -->
+    </div>
+    
+    <div id="bookmark-empty" style="text-align: center; display: none; padding: 40px 0;">
+      <p>Belum ada artikel yang disimpan.</p>
+      <br/>
+      <a href="/artikel" class="button button-solid">Jelajahi Artikel</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("astro:page-load", async () => {
+      const listEl = document.getElementById("bookmark-list");
+      const emptyEl = document.getElementById("bookmark-empty");
+      if (!listEl || !emptyEl) return;
+
+      const saved = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+      if (saved.length === 0) {
+        emptyEl.style.display = "block";
+        return;
+      }
+
+      try {
+        const res = await fetch("/api/articles.json");
+        const articles = await res.json();
+        const bookmarkedArticles = articles.filter((a: any) => saved.includes(a.id));
+
+        if (bookmarkedArticles.length === 0) {
+          emptyEl.style.display = "block";
+          return;
+        }
+
+        const html = bookmarkedArticles.map((a: any) => `
+          <a class="article-card" href="${a.url}">
+            <div class="card-image-wrap">
+              <img src="${a.image}" alt="" width="800" height="450" loading="lazy" />
+            </div>
+            <div class="card-content">
+              <span class="category-badge">${a.category}</span>
+              <h3>${a.title}</h3>
+              <p>${a.excerpt}</p>
+              <span class="read-time">${a.readTime}</span>
+            </div>
+          </a>
+        `).join("");
+
+        listEl.innerHTML = html;
+      } catch (err) {
+        console.error("Failed to load bookmarks:", err);
+      }
+    });
+  </script>
+</BaseLayout>

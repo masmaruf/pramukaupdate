@@ -162,6 +162,15 @@ export default config({
           label: "Tampilkan sebagai unggulan",
           defaultValue: false,
         }),
+        series: fields.relationship({
+          label: "Seri Artikel",
+          description: "Opsional. Jika artikel ini bagian dari seri.",
+          collection: "seri",
+        }),
+        seriesOrder: fields.integer({
+          label: "Urutan dalam seri",
+          description: "Contoh: 1 untuk Bagian 1.",
+        }),
         content: fields.mdx({
           label: "Isi artikel",
           extension: "md",
@@ -245,9 +254,35 @@ export default config({
           {
             label: "FAQ produk",
             itemLabel: (props) => props.fields.question.value,
-          },
+          }
         ),
       },
+    }),
+    seri: collection({
+      label: "Seri Artikel",
+      slugField: "title",
+      path: "src/content/seri/*",
+      format: "yaml",
+      schema: {
+        title: fields.slug({ name: { label: "Judul Seri" }, slug: { label: "Slug" } }),
+        description: fields.text({ label: "Deskripsi", multiline: true }),
+      }
+    }),
+    penulis: collection({
+      label: "Penulis",
+      slugField: "name",
+      path: "src/content/penulis/*",
+      format: "yaml",
+      schema: {
+        name: fields.slug({ name: { label: "Nama Lengkap" }, slug: { label: "Slug" } }),
+        role: fields.text({ label: "Peran/Jabatan", defaultValue: "Kontributor" }),
+        bio: fields.text({ label: "Biodata Singkat", multiline: true }),
+        photo: fields.image({
+          label: "Foto Profil",
+          directory: "public/uploads/penulis",
+          publicPath: "/uploads/penulis/",
+        }),
+      }
     }),
   },
 });
