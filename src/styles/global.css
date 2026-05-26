@@ -1439,7 +1439,6 @@ nav a:hover,
 }
 
 .article-editor-note,
-.article-toc,
 .read-also-box,
 .article-product-cta {
   margin: 26px 0;
@@ -1468,56 +1467,6 @@ nav a:hover,
   margin: 10px 0 0;
   color: var(--muted);
   line-height: 1.7;
-}
-
-.article-toc ol {
-  display: grid;
-  gap: 10px;
-  margin: 14px 0 0;
-  padding-left: 18px;
-}
-
-.article-toc {
-  max-width: 68ch;
-  margin-inline: auto;
-  padding: 0;
-  overflow: hidden;
-}
-
-.article-toc summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  padding: 18px 20px;
-  cursor: pointer;
-  color: var(--primary);
-  font-weight: 900;
-  list-style: none;
-}
-
-.article-toc summary::-webkit-details-marker {
-  display: none;
-}
-
-.article-toc summary small {
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 800;
-}
-
-.article-toc ol {
-  padding: 0 22px 20px 38px;
-}
-
-.article-toc a {
-  color: var(--primary);
-  font-weight: 700;
-}
-
-.article-toc .toc-depth-3 {
-  margin-left: 18px;
-  color: var(--muted);
 }
 
 .article-product-cta {
@@ -2672,24 +2621,98 @@ nav a:hover,
   margin: 0;
 }
 
-/* Article Body Grid for Sticky TOC */
-@media (min-width: 1024px) {
-  .article-body-grid {
+/* Article Body Grid - single column, TOC is outside */
+.article-body-grid {
+  margin-top: 40px;
+}
+
+/* Floating TOC - fixed panel that takes zero space from article */
+.article-toc-floating {
+  display: none; /* hidden by default (mobile) */
+}
+
+@media (min-width: 1400px) {
+  .article-toc-floating {
+    display: block;
+    position: fixed;
+    top: 90px;
+    right: max(24px, calc((100vw - 860px) / 2 - 300px));
+    width: 260px;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    z-index: 50;
+    border: 1px solid var(--line);
+    border-radius: 20px;
+    background: white;
+    box-shadow: 0 8px 32px rgba(36, 0, 70, 0.07);
+    scrollbar-width: thin;
+  }
+
+  [data-theme="dark"] .article-toc-floating {
+    background: var(--surface);
+  }
+
+  .article-toc-floating details[open] summary {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .article-toc-floating summary {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 14px 18px;
+    cursor: pointer;
+    color: var(--primary);
+    font-size: 0.84rem;
+    font-weight: 900;
+    list-style: none;
+    user-select: none;
+  }
+
+  .article-toc-floating summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .article-toc-floating summary small {
+    color: var(--muted);
+    font-size: 0.72rem;
+    font-weight: 700;
+  }
+
+  .article-toc-floating ol {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 280px;
-    align-items: start;
-    gap: 40px;
-    margin-top: 40px;
-  }
-  .article-body-grid > .prose,
-  .article-body-grid > .article-series-box,
-  .article-body-grid > .read-also-box {
-    grid-column: 1;
-  }
-  .article-body-grid > .article-toc {
-    grid-column: 2;
-    position: sticky;
-    top: 100px;
+    gap: 2px;
     margin: 0;
+    padding: 10px 14px 14px;
+    list-style: none;
+  }
+
+  .article-toc-floating a {
+    display: block;
+    padding: 5px 8px;
+    border-radius: 8px;
+    color: var(--muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    transition: background 120ms, color 120ms;
+  }
+
+  .article-toc-floating a:hover {
+    background: var(--warm);
+    color: var(--primary);
+  }
+
+  .article-toc-floating a.toc-active {
+    background: var(--warm);
+    color: var(--secondary);
+    font-weight: 800;
+  }
+
+  .article-toc-floating .toc-depth-3 a {
+    padding-left: 20px;
+    font-size: 0.75rem;
   }
 }

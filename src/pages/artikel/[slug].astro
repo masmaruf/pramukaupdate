@@ -145,49 +145,51 @@ const breadcrumbJsonLd = breadcrumbSchema([
       )}
     </header>
     <OptimizedImage src={article.data.image} alt="" width={1400} height={820} />
+    {tableOfContents.length > 0 && (
+      <nav class="article-toc-floating" aria-label="Daftar isi artikel">
+        <details open>
+          <summary>
+            <span>Daftar isi</span>
+            <small>{tableOfContents.length} bagian</small>
+          </summary>
+          <ol>
+            {tableOfContents.map((heading) => (
+              <li class={`toc-depth-${heading.depth}`}>
+                <a href={`#${heading.slug}`}>{heading.text}</a>
+              </li>
+            ))}
+          </ol>
+        </details>
+      </nav>
+    )}
     <div class="article-body-grid">
-      {tableOfContents.length > 0 && (
-      <details class="article-toc" open={tableOfContents.length <= 4}>
-        <summary>
-          <span>Daftar isi</span>
-          <small>{tableOfContents.length} bagian</small>
-        </summary>
-        <ol>
-          {tableOfContents.map((heading) => (
-            <li class={`toc-depth-${heading.depth}`}>
-              <a href={`#${heading.slug}`}>{heading.text}</a>
-            </li>
-          ))}
-        </ol>
-      </details>
-    )}
-    {readAlsoArticle && (
-      <aside class="read-also-box" aria-label="Baca juga">
-        <span class="eyebrow">Baca juga</span>
-        <a href={`/artikel/${readAlsoArticle.id}`}>{readAlsoArticle.data.title}</a>
-      </aside>
-    )}
-    {seriesData && (
-      <div class="article-series-box">
-        <span class="eyebrow">Seri Tulisan</span>
-        <h3>{seriesData.data.title}</h3>
-        {seriesData.data.description && <p>{seriesData.data.description}</p>}
-        <ol>
-          {seriesArticles.map(a => (
-            <li>
-              {a.id === article.id ? (
-                <strong>{a.data.title}</strong>
-              ) : (
-                <a href={`/artikel/${a.id}`}>{a.data.title}</a>
-              )}
-            </li>
-          ))}
-        </ol>
+      {readAlsoArticle && (
+        <aside class="read-also-box" aria-label="Baca juga">
+          <span class="eyebrow">Baca juga</span>
+          <a href={`/artikel/${readAlsoArticle.id}`}>{readAlsoArticle.data.title}</a>
+        </aside>
+      )}
+      {seriesData && (
+        <div class="article-series-box">
+          <span class="eyebrow">Seri Tulisan</span>
+          <h3>{seriesData.data.title}</h3>
+          {seriesData.data.description && <p>{seriesData.data.description}</p>}
+          <ol>
+            {seriesArticles.map(a => (
+              <li>
+                {a.id === article.id ? (
+                  <strong>{a.data.title}</strong>
+                ) : (
+                  <a href={`/artikel/${a.id}`}>{a.data.title}</a>
+                )}
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+      <div class="prose">
+        <Content />
       </div>
-    )}
-    <div class="prose">
-      <Content />
-    </div>
     </div>
     {penulisData && (
       <div class="article-author-box">
@@ -321,6 +323,33 @@ const breadcrumbJsonLd = breadcrumbSchema([
             }
           });
         }
+      }
+
+      // TOC active heading highlight via IntersectionObserver
+      const tocLinks = document.querySelectorAll(".article-toc-floating a");
+      if (tocLinks.length > 0) {
+        const headingIds = Array.from(tocLinks).map(a => {
+          const href = (a as HTMLAnchorElement).getAttribute("href") || "";
+          return href.replace("#", "");
+        });
+        const headingEls = headingIds
+          .map(id => document.getElementById(id))
+          .filter(Boolean) as HTMLElement[];
+
+        let activeId = "";
+        const observer = new IntersectionObserver(
+          (entries) => {
+            for (const entry of entries) {
+              if (entry.isIntersecting) activeId = entry.target.id;
+            }
+            tocLinks.forEach(link => {
+              const href = (link as HTMLAnchorElement).getAttribute("href") || "";
+              link.classList.toggle("toc-active", href === `#${activeId}`);
+            });
+          },
+          { rootMargin: "-15% 0px -70% 0px", threshold: 0 }
+        );
+        headingEls.forEach(el => observer.observe(el));
       }
     });
   </script>
